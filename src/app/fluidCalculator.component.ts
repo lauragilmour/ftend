@@ -1,0 +1,89 @@
+import { Component } from '@angular/core';
+import { WebService } from './web.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+
+@Component({
+    selector: 'fluidCalculator',
+    templateUrl: './fluidCalculator.component.html',
+    styleUrls: ['./fluidCalculator.component.css']
+})
+
+export class FluidCalculatorComponent {
+
+    fluidCalculatorForm;
+
+    onSubmit() {
+        console.log(this.fluidCalculatorForm.value);
+        this.webService.postFluidCalculator(this.fluidCalculatorForm.value);
+        this.fluidCalculatorForm.reset();
+    }
+
+    isInvalid(control) {
+        return this.fluidCalculatorForm.controls[control].invalid &&
+            this.fluidCalculatorForm.controls[control].touched;
+    }
+
+    isUnTouched() {
+        return this.fluidCalculatorForm.controls.weight.pristine &&
+        this.fluidCalculatorForm.controls.measurement.pristine &&
+        this.fluidCalculatorForm.controls.ueAvailable.pristine &&
+        this.fluidCalculatorForm.controls.reasonIvFluids.pristine &&
+        this.fluidCalculatorForm.controls.commentIv.pristine &&
+        this.fluidCalculatorForm.controls.dehydration.pristine &&
+        this.fluidCalculatorForm.controls.fluidBolus.pristine &&
+        this.fluidCalculatorForm.controls.amount.pristine &&
+        this.fluidCalculatorForm.controls.commentAmount.pristine &&
+        this.fluidCalculatorForm.controls.percentageDehydration.pristine &&
+        this.fluidCalculatorForm.controls.twentyfourhrPeriod.pristine &&
+        this.fluidCalculatorForm.controls.fourtyeighthrPeriod.pristine &&
+        this.fluidCalculatorForm.controls.timeStamp.pristine;
+    }
+
+    isIncomplete() {
+        return this.isInvalid('weight') ||
+            this.isInvalid('measurement') ||
+            this.isInvalid('ueAvailable') ||
+            this.isInvalid('reasonIvFluids') ||
+            this.isInvalid('commentIv') ||
+            this.isInvalid('dehydration') ||
+            this.isInvalid('fluidBolus') ||
+            this.isInvalid('amount') ||
+            this.isInvalid('commentAmount') ||
+            this.isInvalid('percentageDehydration') ||
+            this.isInvalid('twentyfourhrPeriod') ||
+            this.isInvalid('fourtyeighthrPeriod') ||
+            this.isInvalid('timeStamp') ||
+            this.isUnTouched();
+    }
+
+    constructor(private webService: WebService,
+        private route: ActivatedRoute,
+        private formBuilder: FormBuilder) { }
+
+
+    ngOnInit() {
+
+        this.fluidCalculatorForm = this.formBuilder.group({
+            weight: ['', Validators.required],
+            measurement: ['', Validators.required],
+            ueAvailable: ['', Validators.required],
+            reasonIvFluids: ['', Validators.required],
+            commentIv: ['', Validators.required],
+            dehydration: ['', Validators.required],
+            fluidBolus: ['', Validators.required],
+            amount: ['', Validators.required],
+            commentAmount: ['', Validators.required],
+            percentageDehydration: ['', Validators.required],
+            twentyfourhrPeriod: ['', Validators.required],
+            fourtyeighthrPeriod: ['', Validators.required],
+            timeStamp: ['', Validators.required]
+        });
+
+        this.webService.getPatient(
+            this.route.snapshot.params.id);
+
+        this.webService.getFluidCalculator(
+            this.route.snapshot.params.id);
+    }
+}

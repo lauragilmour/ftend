@@ -1,0 +1,42 @@
+<div class="jumbotron">
+    <h1>Age</h1>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Confirm Age</h2>
+            <form [formGroup]="ageForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="age">Please confirm age</label>
+                    <select id="age" name="age" class="form-control" formControlName="age"
+                        [ngClass]="{ 'error': isInvalid('age') }">
+                        <option value="Neonate">Neonate (0-28 days)</option>
+                        <option value="Child">Child (4 weeks up till 16th birthday</option>
+                    </select>
+                </div>
+                <span *ngIf="isIncomplete()">
+                    You must complete all fields
+                    <hr>
+                </span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card bg-light mb-3" *ngFor="let age of webService.age_list | async">
+                <div class="card-header">
+                    <strong>Age</strong>
+                </div>
+                <div class="card-body">
+                    Age: {{ age.age }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

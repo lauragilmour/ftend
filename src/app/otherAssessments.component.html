@@ -1,0 +1,58 @@
+<div class="jumbotron">
+        <h1>Other Assessments</h1>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Other Assessments</h2>
+                <form [formGroup]="otherAssessmentsForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="VIP Score">VIP Score</label>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="timeStamp">Name</label>
+                        <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
+                            formControlName="timeStamp" [ngClass]="{ 'error': isInvalid('vipScore') }">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="vipScore">Please provide a VIP Score</label>
+                        <select id="vipScore" name="vipScore" class="form-control" formControlName="vipScore"
+                            [ngClass]="{ 'error': isInvalid('vipScore') }">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <span *ngIf="isIncomplete()">
+                        You must complete all fields
+                        <hr>
+                    </span>
+                    <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card bg-light mb-3" *ngFor="let otherAssessments of webService.otherAssessments_list | async">
+                    <div class="card-header">
+                        <strong>OtherAssessments</strong>
+                    </div>
+                    <div class="card-body">
+                        VipScore: {{ otherAssessments.vipScore }}
+                        <hr>
+                        TimeStamp: {{ otherAssessments.timeStamp }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

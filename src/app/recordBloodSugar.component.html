@@ -1,0 +1,75 @@
+<div class="jumbotron">
+    <h1>Record Blood Sugar</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form [formGroup]="recordBloodSugarForm" (ngSubmit)="onSubmit()">
+
+
+                <div class="form-group">
+                    <label for="bloodSugarLevel">Blood Sugar Level*</label>
+                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+" name="bloodSugarLevel" class="form-control"
+                        formControlName="bloodSugarLevel" [ngClass]="{ 'error': isInvalid('bloodSugarLevel') }">
+                </div>
+
+                <div class="form-group">
+                    <label for="clinicalComment">clinicalComment</label>
+                    <select id="clinicalComment" name="clinicalComment" class="form-control" formControlName="clinicalComment"
+                        [ngClass]="{ 'error': isInvalid('clinicalComment') }">
+                        <option value="Normal Result: No action taken">Normal Result: No action taken</option>
+                        <option value="Low Sugar: Extra feed given">Low Sugar: Extra feed given</option>
+                        <option value="Low Sugar: IVbolus and infusion increased">Low Sugar: IVbolus and infusion increased</option>
+                        <option value="Low Sugar: Hypopack taken">Low Sugar: Hypopack taken</option>
+                        <option value="High Sugar: Insulin given">High Sugar: Insulin given</option>
+                        <option value="High Sugar: Insulin commenced ">High Sugar: Insulin commenced </option>
+                        <option value="High Sugar: Urine check">High Sugar: Urine check</option>
+                        <option value="High Sugar: Insulin infusion increased">High Sugar: Insulin infusion increased</option>
+                        <option value="Other (please state)">Other (please state)</option>
+                    </select>
+                </div>      
+                <div class="form-group">
+                    <label for="comment">comment</label>
+                    <input type="comment" id="comment" name="comment" class="form-control"
+                        formControlName="comment" [ngClass]="{ 'error': isInvalid('comment') }">
+                </div>
+
+                <div class="form-group">
+                    <label for="timeStamp">timeStamp</label>
+                    <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
+                        formControlName="timeStamp" [ngClass]="{ 'error': isInvalid('timeStamp') }">
+                </div>
+
+                <span *ngIf="isIncomplete()">
+                    You must complete all fields
+                    <hr>
+                </span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card bg-light mb-3" *ngFor="let recordBloodSugar of webService.recordBloodSugar_list | async">
+                <div class="card-header">
+                    <strong>RecordBloodSugar</strong>
+                </div>
+                <div class="card-body">
+                    BloodSugarLevel: {{recordBloodSugar.bloodSugarLevel}}
+                    <hr>
+                    Comment: {{recordBloodSugar.comment}}
+                    <hr>
+                    ClinicalComment: {{recordBloodSugar.clinicalComment}}
+                    <hr>
+                    TimeStamp: {{recordBloodSugar.timeStamp}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,18 +4,45 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'patient',
-    templateUrl: './patient.component.html',
-    styleUrls: ['./patient.component.css']
+    selector: 'age',
+    templateUrl: './age.component.html',
+    styleUrls: ['./age.component.css']
 })
 
-export class PatientComponent {
+export class AgeComponent {
+
+    ageForm;
+
+    onSubmit() {
+        console.log(this.ageForm.value);
+        this.webService.postAge(this.ageForm.value);
+        this.ageForm.reset();
+    }
+
+    isInvalid(control) {
+        return this.ageForm.controls[control].invalid &&
+            this.ageForm.controls[control].touched;
+    }
+
+    isUnTouched() {
+        return this.ageForm.controls.age.pristine;
+    }
+
+    isIncomplete() {
+        return this.isInvalid('age') ||
+            this.isUnTouched();
+    }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
         private formBuilder: FormBuilder) { }
 
+        
     ngOnInit() {
+
+        this.ageForm = this.formBuilder.group({
+            age: ['', Validators.required]
+        });
 
         this.webService.getPatient(
             this.route.snapshot.params.id);
@@ -37,5 +64,5 @@ export class PatientComponent {
 
         this.webService.getRecordBloodSugar(
             this.route.snapshot.params.id);
-    }
+        }
 }

@@ -1,0 +1,136 @@
+<div class="jumbotron">
+    <h1>Fluid Choice</h1>
+</div>
+
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card bg-light mb-3" *ngFor="let fluidChoice of webService.fluidChoice_list | async">
+                    <div class="card-header">
+                        <strong>Fluid Choice</strong>
+                    </div>
+                    <div class="card-body">
+                        ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
+                        <hr>
+                        SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
+                        <hr>
+                        SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
+                        <hr>
+                        IvFluidType: {{ fluidChoice.ivFluidType }}
+                        <hr>
+                        IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
+                        <hr>
+                        IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
+                        <hr>
+                        TimeStamp: {{ fluidChoice.timeStamp }}
+                        <hr>
+                        SampleObtained: {{ fluidChoice.sampleObtained }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form [formGroup]="fluidChoiceForm" (ngSubmit)="onSubmit()">
+
+
+                <div class="form-group">
+                    <label for="electrolytesAvailable">electrolytesAvailable</label>
+                    <select id="electrolytesAvailable" name="electrolytesAvailable" class="form-control" formControlName="electrolytesAvailable"
+                        [ngClass]="{ 'error': isInvalid('electrolytesAvailable') }">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="serumSodiumRange">serumSodiumRange</label>
+                    <select id="serumSodiumRange" name="serumSodiumRange" class="form-control" formControlName="serumSodiumRange"
+                        [ngClass]="{ 'error': isInvalid('serumSodiumRange') }">
+                        <option value="Low">Low</option>
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="serumPotasiumRange">serumPotasiumRange</label>
+                    <select id="serumPotasiumRange" name="serumPotasiumRange" class="form-control" formControlName="serumPotasiumRange"
+                        [ngClass]="{ 'error': isInvalid('serumPotasiumRange') }">
+                        <option value="Low">Low</option>
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ivFluidType">ivFluidType</label>
+                    <select id="ivFluidType" name="ivFluidType" class="form-control" formControlName="ivFluidType"
+                        [ngClass]="{ 'error': isInvalid('ivFluidType') }">
+                        <option value="0.9% NaCl">0.9% NaCl</option>
+                        <option value="0.9% NaCl + 5% Gluc">0.9% NaCl + 5% Gluc</option>
+                        <option value="0.9% NaCl + 5% Gluc + 10mmol KCl">0.9% NaCl + 5% Gluc + 10mmol KCl</option>
+                        <option value="0.9% NaCl + 5% Gluc + 20mmol KCl">0.9% NaCl + 5% Gluc + 20mmol KCl</option>
+                        <option value="0.9% NaCl + 10mmol KCl">0.9% NaCl + 10mmol KCl</option>
+                        <option value="0.9% NaCl + 20mmol KCl">0.9% NaCl + 20mmol KCl</option>
+                        <option value="0.45% NaCl">0.45% NaCl</option>
+                        <option value="0.45% NaCl + 2.5% Gluc">0.45% NaCl + 2.5% Gluc</option>
+                        <option value="0.45% NaCl + 5% Gluc">0.45% NaCl + 5% Gluc</option>
+                        <option value="0.45% NaCl + 5% Gluc + 10mmol KCl">0.45% NaCl + 5% Gluc + 10mmol KCl</option>
+                        <option value="0.45% NaCl + 5% Gluc + 20mmol KCl">0.45% NaCl + 5% Gluc + 20mmol KCl</option>
+                        <option value="Hartmann's solution">Hartmann's solution</option>
+                        <option value="Hartmann's solution + 3% Gluc">Hartmann's solution + 3% Gluc</option>
+                        <option value="Glucose 5% + 10mmol KCl">Glucose 5% + 10mmol KCl</option>
+                        <option value="Glucose 5% + 20mmol KCl">Glucose 5% + 20mmol KCl</option>
+                        <option value="Glucose 5%">Glucose 5%</option>
+                        <option value="Glucose 10%">Glucose 10%</option>
+                        <option value="Metronidazole 500mg">Metronidazole 500mg</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ivFluidVolume">ivFluidVolume</label>
+                    <select id="ivFluidVolume" name="ivFluidVolume" class="form-control" formControlName="ivFluidVolume"
+                        [ngClass]="{ 'error': isInvalid('ivFluidVolume') }">
+                        <option value="100ml">100ml</option>
+                        <option value="250ml">250ml</option>
+                        <option value="500ml">500ml</option>
+                        <option value="1000ml">1000ml</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sampleObtained">sampleObtained</label>
+                    <select id="sampleObtained" name="sampleObtained" class="form-control" formControlName="sampleObtained"
+                        [ngClass]="{ 'error': isInvalid('sampleObtained') }">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                        <label for="ivFluidVolumeComment">ivFluidVolumeComment</label>
+                        <input type="ivFluidVolumeComment" id="ivFluidVolumeComment" name="ivFluidVolumeComment" class="form-control"
+                            formControlName="ivFluidVolumeComment" [ngClass]="{ 'error': isInvalid('ivFluidVolumeComment') }">
+                    </div>
+
+                <div class="form-group">
+                    <label for="timeStamp">timeStamp</label>
+                    <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
+                        formControlName="timeStamp" [ngClass]="{ 'error': isInvalid('timeStamp') }">
+                </div>
+                <span *ngIf="isIncomplete()">
+                    You must complete all fields
+                    <hr>
+                </span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

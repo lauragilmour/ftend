@@ -1,0 +1,174 @@
+<div class="jumbotron">
+    <h1>Fluid Calculator</h1>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>fluidCalculator</h2>
+            <form [formGroup]="fluidCalculatorForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="fluidCalculator">fluidCalculator</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight">weight</label>
+                    <input type="weight" id="weight" name="weight" pattern="[0-9]+" class="form-control" formControlName="weight"
+                        [ngClass]="{ 'error': isInvalid('weight') }">
+                </div>
+
+                <div class="form-group">
+                    <label for="measurement">measurement</label>
+                    <select id="measurement" name="measurement" class="form-control" formControlName="measurement"
+                        [ngClass]="{ 'error': isInvalid('measurement') }">
+                        <option value="Measured">Measured</option>
+                        <option value="Recent">Recent</option>
+                        <option value="Estimate">Estimate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ueAvailable">ueAvailable</label>
+                    <select id="ueAvailable" name="ueAvailable" class="form-control" formControlName="ueAvailable"
+                        [ngClass]="{ 'error': isInvalid('ueAvailable') }">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reasonIvFluids">reasonIvFluids</label>
+                    <select id="reasonIvFluids" name="reasonIvFluids" class="form-control"
+                        formControlName="reasonIvFluids" [ngClass]="{ 'error': isInvalid('reasonIvFluids') }">
+                        <option value="Intractable Vomiting">Intractable Vomiting</option>
+                        <option value="Excessive Losses">Excessive Losses</option>
+                        <option value="Resp Compromise">Resp Compromise</option>
+                        <option value="Critically Unwell">Critically Unwell</option>
+                        <option value="Other (Specify)">Other (Specify)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="commentIv">commentIv</label>
+                    <input type="commentIv" id="commentIv" name="commentIv" class="form-control"
+                        formControlName="commentIv" [ngClass]="{ 'error': isInvalid('commentIv') }">
+                </div>
+
+                <div class="form-group">
+                    <label for="dehydration">dehydration</label>
+                    <select id="dehydration" name="dehydration" class="form-control" formControlName="dehydration"
+                        [ngClass]="{ 'error': isInvalid('dehydration') }">
+                        <option value="No">No</option>
+                        <option value="Mild">Mild</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Severe">Severe</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fluidBolus">fluidBolus</label>
+                    <select id="fluidBolus" name="fluidBolus" class="form-control" formControlName="fluidBolus"
+                        [ngClass]="{ 'error': isInvalid('fluidBolus') }">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">amount</label>
+                    <select id="amount" name="amount" class="form-control" formControlName="amount"
+                        [ngClass]="{ 'error': isInvalid('amount') }">
+                        <option value="1x10ml/kg">1x10ml/kg</option>
+                        <option value="2x10ml/kg">2x10ml/kg</option>
+                        <option value="1x20ml/kg">1x20ml/kg</option>
+                        <option value="2x20ml/kg">2x20ml/kg</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="commentAmount">commentAmount</label>
+                    <input type="commentAmount" id="commentAmount" name="commentAmount" class="form-control"
+                        formControlName="commentAmount" [ngClass]="{ 'error': isInvalid('commentAmount') }">
+                </div>
+
+                <div class="form-group">
+                    <label for="percentageDehydration">percentageDehydration</label>
+                    <select id="percentageDehydration" name="percentageDehydration" class="form-control"
+                        formControlName="percentageDehydration"
+                        [ngClass]="{ 'error': isInvalid('percentageDehydration') }">
+                        <option value="3%">3%</option>
+                        <option value="5%">5%</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="twentyfourhrPeriod">twentyfourhrPeriod</label>
+                    <input type="twentyfourhrPeriod" id="twentyfourhrPeriod" name="twentyfourhrPeriod"
+                        class="form-control" formControlName="twentyfourhrPeriod"
+                        [ngClass]="{ 'error': isInvalid('twentyfourhrPeriod') }">
+                </div>
+                <div class="form-group">
+                    <label for="fourtyeighthrPeriod">fourtyeighthrPeriod</label>
+                    <input type="fourtyeighthrPeriod" id="fourtyeighthrPeriod" name="fourtyeighthrPeriod"
+                        class="form-control" formControlName="fourtyeighthrPeriod"
+                        [ngClass]="{ 'error': isInvalid('fourtyeighthrPeriod') }">
+                </div>
+
+                <div class="form-group">
+                    <label for="timeStamp">timeStamp</label>
+                    <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
+                        formControlName="timeStamp" [ngClass]="{ 'error': isInvalid('timeStamp') }">
+                </div>
+
+                <span *ngIf="isIncomplete()">
+                    You must complete all fields
+                    <hr>
+                </span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card bg-light mb-3" *ngFor="let fluidCalculator of webService.fluidCalculator_list | async">
+                    <div class="card-header">
+                        <strong>Fluid Calculator</strong>
+                    </div>
+                    <div class="card-body">
+                        Weight: {{ fluidCalculator.weight }}
+                        <hr>
+                        Measurement: {{ fluidCalculator.measurement }}
+                        <hr>
+                        UeAvailable: {{ fluidCalculator.ueAvailable }}
+                        <hr>
+                        ReasonIvFluids: {{ fluidCalculator.reasonIvFluids }}
+                        <hr>
+                        CommentIv: {{ fluidCalculator.commentIv }}
+                        <hr>
+                        Dehydration: {{ fluidCalculator.dehydration }}
+                        <hr>
+                        FluidBolus: {{ fluidCalculator.fluidBolus }}
+                        <hr>
+                        Amount: {{ fluidCalculator.amount }}
+                        <hr>
+                        CommentAmount: {{ fluidCalculator.commentAmount }}
+                        <hr>
+                        PercentageDehydration: {{ fluidCalculator.percentageDehydration }}
+                         <hr>
+                        24hrPeriod: {{ fluidCalculator.twentyfourhrPeriod }}
+                        <hr>
+                        48hrPeriod: {{ fluidCalculator.fourtyeighthrPeriod }}
+                        <hr>
+                        TimeStamp: {{ fluidCalculator.timeStamp }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
