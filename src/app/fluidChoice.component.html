@@ -3,36 +3,6 @@
 </div>
 
 
-
-<div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card bg-light mb-3" *ngFor="let fluidChoice of webService.fluidChoice_list | async">
-                    <div class="card-header">
-                        <strong>Fluid Choice</strong>
-                    </div>
-                    <div class="card-body">
-                        ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
-                        <hr>
-                        SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
-                        <hr>
-                        SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
-                        <hr>
-                        IvFluidType: {{ fluidChoice.ivFluidType }}
-                        <hr>
-                        IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
-                        <hr>
-                        IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
-                        <hr>
-                        TimeStamp: {{ fluidChoice.timeStamp }}
-                        <hr>
-                        SampleObtained: {{ fluidChoice.sampleObtained }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -119,11 +89,6 @@
                             formControlName="ivFluidVolumeComment" [ngClass]="{ 'error': isInvalid('ivFluidVolumeComment') }">
                     </div>
 
-                <div class="form-group">
-                    <label for="timeStamp">timeStamp</label>
-                    <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
-                        formControlName="timeStamp" [ngClass]="{ 'error': isInvalid('timeStamp') }">
-                </div>
                 <span *ngIf="isIncomplete()">
                     You must complete all fields
                     <hr>
@@ -134,3 +99,32 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card bg-light mb-3" *ngFor="let fluidChoice of webService.fluidChoice_list | async">
+                    <div class="card-header">
+                        <strong>Fluid Choice</strong>
+                    </div>
+                    <div class="card-body">
+                        ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
+                        <hr>
+                        SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
+                        <hr>
+                        SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
+                        <hr>
+                        IvFluidType: {{ fluidChoice.ivFluidType }}
+                        <hr>
+                        IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
+                        <hr>
+                        IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
+                        <hr>
+                        SampleObtained: {{ fluidChoice.sampleObtained }}
+                        <hr>
+                        TimeStamp: {{ fluidChoice.timeStamp }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

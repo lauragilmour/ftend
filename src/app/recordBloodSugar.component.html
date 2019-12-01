@@ -35,12 +35,6 @@
                         formControlName="comment" [ngClass]="{ 'error': isInvalid('comment') }">
                 </div>
 
-                <div class="form-group">
-                    <label for="timeStamp">timeStamp</label>
-                    <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
-                        formControlName="timeStamp" [ngClass]="{ 'error': isInvalid('timeStamp') }">
-                </div>
-
                 <span *ngIf="isIncomplete()">
                     You must complete all fields
                     <hr>

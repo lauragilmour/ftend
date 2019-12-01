@@ -31,7 +31,11 @@ export class FluidBalanceComponent {
     isUnTouched() {
         return this.fluidBalanceForm.controls.currentBalance.pristine &&
         this.fluidBalanceForm.controls.overallInput.pristine &&
-        this.fluidBalanceForm.controls.overallOutput.pristine;
+        this.fluidBalanceForm.controls.overallOutput.pristine
+        this.fluidBalanceForm.controls.fluidInput.pristine &&
+        this.fluidBalanceForm.controls.volInput.pristine &&
+        this.fluidBalanceForm.controls.fluidOutput.pristine &&
+        this.fluidBalanceForm.controls.volOutput.pristine;
     }
 
 
@@ -39,29 +43,10 @@ export class FluidBalanceComponent {
         return this.isInvalid('currentBalance') ||
             this.isInvalid('overallInput') ||
             this.isInvalid('overallOutput') ||
-            this.isUnTouched();
-    }
-
-    isCalInvalid(control) {
-        return this.fluidBalanceForm.controls[control].invalid &&
-            this.fluidBalanceForm.controls[control].touched;
-    }
-
-    isCalUnTouched() {
-        return this.fluidBalanceForm.controls.fluidInput.pristine &&
-        this.fluidBalanceForm.controls.volInput.pristine &&
-        this.fluidBalanceForm.controls.fluidOutput.pristine &&
-        this.fluidBalanceForm.controls.volOutput.pristine &&
-        this.fluidBalanceForm.controls.timeStamp.pristine;
-    }
-
-
-    isCalIncomplete() {
-        return this.isInvalid('fluidInput') ||
+            this.isInvalid('fluidInput') ||
             this.isInvalid('volInput') ||
             this.isInvalid('fluidOutput') ||
             this.isInvalid('volOutput') ||
-            this.isInvalid('timeStamp') ||
             this.isUnTouched();
     }
 
@@ -79,8 +64,7 @@ export class FluidBalanceComponent {
             volOutput: ['', Validators.required],
             currentBalance: ['', Validators.required],
             overallInput: ['', Validators.required],
-            overallOutput: ['', Validators.required],
-            timeStamp: ['', Validators.required]
+            overallOutput: ['', Validators.required]
         });
 
         this.webService.getPatient(

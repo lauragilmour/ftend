@@ -25,14 +25,13 @@ export class FluidChoiceComponent {
     }
 
     isUnTouched() {
-        return this.fluidChoiceForm.controls.electrolytesAvailable.pristine &&
-        this.fluidChoiceForm.controls.serumSodiumRange.pristine &&
-        this.fluidChoiceForm.controls.serumPotasiumRange.pristine &&
-        this.fluidChoiceForm.controls.ivFluidType.pristine &&
-        this.fluidChoiceForm.controls.ivFluidVolume.pristine &&
-        this.fluidChoiceForm.controls.ivFluidVolumeComment.pristine &&
-        this.fluidChoiceForm.controls.sampleObtained.pristine &&
-        this.fluidChoiceForm.controls.timeStamp.pristine;
+        return this.fluidChoiceForm.controls.electrolytesAvailable.pristine ||
+        this.fluidChoiceForm.controls.serumSodiumRange.pristine ||
+        this.fluidChoiceForm.controls.serumPotasiumRange.pristine ||
+        this.fluidChoiceForm.controls.ivFluidType.pristine ||
+        this.fluidChoiceForm.controls.ivFluidVolume.pristine ||
+        this.fluidChoiceForm.controls.ivFluidVolumeComment.pristine ||
+        this.fluidChoiceForm.controls.sampleObtained.pristine;
     }
 
     isIncomplete() {
@@ -43,7 +42,6 @@ export class FluidChoiceComponent {
             this.isInvalid('ivFluidVolume') ||
             this.isInvalid('ivFluidVolumeComment') ||
             this.isInvalid('sampleObtained') ||
-            this.isInvalid('timeStamp') ||
             this.isUnTouched();
     }
 
@@ -61,8 +59,7 @@ export class FluidChoiceComponent {
             ivFluidType: ['', Validators.required],
             ivFluidVolume: ['', Validators.required],
             ivFluidVolumeComment: [''],
-            sampleObtained: ['', Validators.required],
-            timeStamp: ['', Validators.required]
+            sampleObtained: ['', Validators.required]
         });
 
         this.webService.getPatient(

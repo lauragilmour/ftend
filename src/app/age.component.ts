@@ -49,20 +49,5 @@ export class AgeComponent {
 
         this.webService.getAge(
             this.route.snapshot.params.id);
-
-        this.webService.getFluidCalculator(
-            this.route.snapshot.params.id);
-
-        this.webService.getFluidChoice(
-            this.route.snapshot.params.id);
-
-        this.webService.getFluidBalance(
-            this.route.snapshot.params.id);
-
-        this.webService.getOtherAssessments(
-            this.route.snapshot.params.id);
-
-        this.webService.getRecordBloodSugar(
-            this.route.snapshot.params.id);
-        }
+    }
 }

@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>fluidBalance</h2>
-            <form [formGroup]="fluidBalanceForm" (ngSubmit)="onSubmit()" (ngCalculate)="onCalculate()">
+            <form [formGroup]="fluidBalanceForm" (ngSubmit)="onSubmit()" >
 
                 <div class="form-group">
                     <label for="fluidInput">fluidInput</label>
                     <select id="fluidInput" name="fluidInput" class="form-control" formControlName="fluidInput"
-                        [ngClass]="{ 'error': isCalInvalid('fluidInput') }">
+                        [ngClass]="{ 'error': isInvalid('fluidInput') }">
                         <option value="Oral Intake">Oral Intake</option>
                         <option value="Jejunal Feed">Jejunal Feed</option>
                         <option value="Naso-gastric Feed">Naso-gastric Feed</option>
@@ -19,13 +19,13 @@
                 <div class="form-group">
                     <label for="volInput">volInput</label>
                     <input type="volInput" id="volInput" pattern="[0-9]+" name="volInput" class="form-control" formControlName="volInput"
-                        [ngClass]="{ 'error': isCalInvalid('volInput') }">
+                        [ngClass]="{ 'error': isInvalid('volInput') }">
                 </div>
 
                 <div class="form-group">
                     <label for="fluidOutput">fluidOutput</label>
                     <select id="fluidOutput" name="fluidOutput" class="form-control" formControlName="fluidOutput"
-                        [ngClass]="{ 'error': isCalInvalid('fluidOutput') }">
+                        [ngClass]="{ 'error': isInvalid('fluidOutput') }">
                         <option value="Urine">Urine</option>
                         <option value="Faeces">Faeces</option>
                         <option value="Gastric">Gastric</option>
@@ -36,21 +36,8 @@
                 <div class="form-group">
                     <label for="volOutput">volOutput</label>
                     <input type="volOutput" id="volOutput" pattern="[0-9]+" name="volOutput" class="form-control"
-                        formControlName="volOutput" [ngClass]="{ 'error': isCalInvalid('volOutput') }">
+                        formControlName="volOutput" [ngClass]="{ 'error': isInvalid('volOutput') }">
                 </div>
-
-                <div class="form-group">
-                    <label for="timeStamp">timeStamp</label>
-                    <input type="timeStamp" id="timeStamp" name="timeStamp" class="form-control"
-                        formControlName="timeStamp" [ngClass]="{ 'error': isCalInvalid('timeStamp') }">
-                </div>
-
-                <span *ngIf="isCalIncomplete()">
-                    You must complete all fields before you can calculate fluids
-                    <hr>
-                </span>
-                <button *ngIf="!isCalIncomplete()" type="calculate" class="btn btn-primary">Calculate</button>
-
 
                 <div class="form-group">
                     <label for="currentBalance">currentBalance</label>

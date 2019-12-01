@@ -16,6 +16,7 @@
                         <option value="Child">Child (4 weeks up till 16th birthday</option>
                     </select>
                 </div>
+
                 <span *ngIf="isIncomplete()">
                     You must complete all fields
                     <hr>
@@ -35,6 +36,8 @@
                 </div>
                 <div class="card-body">
                     Age: {{ age.age }}
+                    <br>
+                    TimeStamp: {{ age.timeStamp }}
                 </div>
             </div>
         </div>

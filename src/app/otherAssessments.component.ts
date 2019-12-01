@@ -25,13 +25,11 @@ export class OtherAssessmentsComponent {
     }
 
     isUnTouched() {
-        return this.otherAssessmentsForm.controls.vipScore.pristine ||
-               this.otherAssessmentsForm.controls.timeStamp.pristine;
+        return this.otherAssessmentsForm.controls.vipScore.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('vipScore') ||
-            this.isInvalid('timeStamp') ||
             this.isUnTouched();
     }
 
@@ -42,8 +40,7 @@ export class OtherAssessmentsComponent {
     ngOnInit() {
 
         this.otherAssessmentsForm = this.formBuilder.group({
-            vipScore: ['', Validators.required],
-            timeStamp: ['', Validators.required]
+            vipScore: ['', Validators.required]
         });
 
         this.webService.getPatient(

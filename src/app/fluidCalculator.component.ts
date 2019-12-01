@@ -25,19 +25,18 @@ export class FluidCalculatorComponent {
     }
 
     isUnTouched() {
-        return this.fluidCalculatorForm.controls.weight.pristine &&
-        this.fluidCalculatorForm.controls.measurement.pristine &&
-        this.fluidCalculatorForm.controls.ueAvailable.pristine &&
-        this.fluidCalculatorForm.controls.reasonIvFluids.pristine &&
-        this.fluidCalculatorForm.controls.commentIv.pristine &&
-        this.fluidCalculatorForm.controls.dehydration.pristine &&
-        this.fluidCalculatorForm.controls.fluidBolus.pristine &&
-        this.fluidCalculatorForm.controls.amount.pristine &&
-        this.fluidCalculatorForm.controls.commentAmount.pristine &&
-        this.fluidCalculatorForm.controls.percentageDehydration.pristine &&
-        this.fluidCalculatorForm.controls.twentyfourhrPeriod.pristine &&
-        this.fluidCalculatorForm.controls.fourtyeighthrPeriod.pristine &&
-        this.fluidCalculatorForm.controls.timeStamp.pristine;
+        return this.fluidCalculatorForm.controls.weight.pristine ||
+            this.fluidCalculatorForm.controls.measurement.pristine ||
+            this.fluidCalculatorForm.controls.ueAvailable.pristine ||
+            this.fluidCalculatorForm.controls.reasonIvFluids.pristine ||
+            this.fluidCalculatorForm.controls.commentIv.pristine ||
+            this.fluidCalculatorForm.controls.dehydration.pristine ||
+            this.fluidCalculatorForm.controls.fluidBolus.pristine ||
+            this.fluidCalculatorForm.controls.amount.pristine ||
+            this.fluidCalculatorForm.controls.commentAmount.pristine ||
+            this.fluidCalculatorForm.controls.percentageDehydration.pristine ||
+            this.fluidCalculatorForm.controls.twentyfourhrPeriod.pristine ||
+            this.fluidCalculatorForm.controls.fourtyeighthrPeriod.pristine;
     }
 
     isIncomplete() {
@@ -53,7 +52,6 @@ export class FluidCalculatorComponent {
             this.isInvalid('percentageDehydration') ||
             this.isInvalid('twentyfourhrPeriod') ||
             this.isInvalid('fourtyeighthrPeriod') ||
-            this.isInvalid('timeStamp') ||
             this.isUnTouched();
     }
 
@@ -76,8 +74,7 @@ export class FluidCalculatorComponent {
             commentAmount: ['', Validators.required],
             percentageDehydration: ['', Validators.required],
             twentyfourhrPeriod: ['', Validators.required],
-            fourtyeighthrPeriod: ['', Validators.required],
-            timeStamp: ['', Validators.required]
+            fourtyeighthrPeriod: ['', Validators.required]
         });
 
         this.webService.getPatient(

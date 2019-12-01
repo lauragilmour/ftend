@@ -5,13 +5,14 @@
 <div class="container" style="margin-top:100px;">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card text-white bg-primary mb-3" >
+            <div class="card text-white bg-primary mb-3">
                 <div class="card-header">
                     H&SC Number: {{patient.hscNumber}}
                 </div>
                 <div class="card-body">
                     Name: {{patient.name}}
-                    <hr>
+                </div>
+                <div class="card-footer">
                     DOB: {{patient.dob}}
                 </div>
             </div>
@@ -19,56 +20,43 @@
     </div>
 </div>
 
-
-<!-- <div class="container" style="margin-top:100px;">
-    <div class="row">
-        <div class="col-sm-12"></div>
-        <div class="card bg-light mb-3" *ngFor="let patient of webService.patient_list | async">
-            <div class="card-header">
-
-                [routerLink]="['/patient', patient._id, '/age']"
-                H&SC Number: {{patient.hscNumber}}
-
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="navbar navbar-expand-sm bg-primary
- navbar-dark fixed-bottom">
+<!-- <div class="navbar navbar-expand-sm bg-primary -->
+<!-- navbar-dark fixed-bottom">
     <span class="navbar-brand"><strong>Patient</strong></span>
     <ul class="navbar-nav">
-        <button class="btn btn-outline-light" (click)="authService.logout()">
+        <button class="btn btn-outline-light" (click)=[routerLink]="['/patient', patient._id, '/age']">
             Confirm Age</button>
-        <button class="btn btn-outline-light" (click)="authService.login()">
+        <button class="btn btn-outline-light" (click)="">
             Fluid Calculator</button>
-        <button class="btn btn-outline-light" (click)="authService.logout()">
+        <button class="btn btn-outline-light" (click)="">
             Fluid Choice</button>
-        <button class="btn btn-outline-light" (click)="authService.login()">
+        <button class="btn btn-outline-light" (click)="">
             Fluid Balance</button>
-        <button class="btn btn-outline-light" (click)="authService.login()">
+        <button class="btn btn-outline-light" (click)="">
             Other Assessments</button>
-        <button class="btn btn-outline-light" (click)="authService.logout()">
+        <button class="btn btn-outline-light" (click)="">
             Record Blood Sugar</button>
     </ul>
-</div> -->
+</div>  -->
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card bg-light mb-3" *ngFor="let age of webService.age_list | async" >
+            <div class="card bg-light mb-3" *ngFor="let age of webService.age_list | async">
                 <div class="card-header">
                     <strong>Age</strong>
                 </div>
                 <div class="card-body">
                     Age: {{ age.age }}
+                    <br>
+                    TimeStamp: {{ age.timeStamp }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
- <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div class="card bg-light mb-3" *ngFor="let fluidCalculator of webService.fluidCalculator_list | async">
@@ -95,7 +83,7 @@
                     CommentAmount: {{ fluidCalculator.commentAmount }}
                     <hr>
                     PercentageDehydration: {{ fluidCalculator.percentageDehydration }}
-                     <hr>
+                    <hr>
                     24hrPeriod: {{ fluidCalculator.twentyfourhrPeriod }}
                     <hr>
                     48hrPeriod: {{ fluidCalculator.fourtyeighthrPeriod }}
@@ -105,13 +93,13 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div class="card bg-light mb-3" *ngFor="let fluidChoice of webService.fluidChoice_list | async">
-               <div class="card-header">
+                <div class="card-header">
                     <strong>Fluid Choice</strong>
                 </div>
                 <div class="card-body">

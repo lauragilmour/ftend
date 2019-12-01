@@ -25,17 +25,15 @@ export class RecordBloodSugarComponent {
     }
 
     isUnTouched() {
-        return this.recordBloodSugarForm.controls.bloodSugarLevel.pristine &&
-        this.recordBloodSugarForm.controls.clinicalComment.pristine &&
-        this.recordBloodSugarForm.controls.comment.pristine &&
-        this.recordBloodSugarForm.controls.timeStamp.pristine;
+        return this.recordBloodSugarForm.controls.bloodSugarLevel.pristine ||
+        this.recordBloodSugarForm.controls.clinicalComment.pristine ||
+        this.recordBloodSugarForm.controls.comment.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('bloodSugarLevel') ||
             this.isInvalid('clinicalComment') ||
             this.isInvalid('comment') ||
-            this.isInvalid('timeStamp') ||
             this.isUnTouched();
     }
 
@@ -49,8 +47,7 @@ export class RecordBloodSugarComponent {
         this.recordBloodSugarForm = this.formBuilder.group({
             bloodSugarLevel: ['', Validators.required],
             clinicalComment: ['', Validators.required],
-            comment: [''],
-            timeStamp: ['', Validators.required]
+            comment: ['']
         });
 
         this.webService.getPatient(

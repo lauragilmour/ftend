@@ -59,6 +59,7 @@ export class WebService {
                 this.patient_private_list = response;
                 this.patientSubject.next(
                     this.patient_private_list);
+                this.patientID = id;
             }
             )
     }
@@ -69,6 +70,7 @@ export class WebService {
                 this.age_private_list = response;
                 this.ageSubject.next(
                     this.age_private_list);
+                this.patientID = id;
             }
             )
     }
@@ -76,6 +78,16 @@ export class WebService {
     postAge(age) {
         let postData = new FormData();
         postData.append("age", age.age);
+        
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            today.getMonth() + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
 
         this.http.post(
             'http://localhost:5000/patient/' +
@@ -92,6 +104,7 @@ export class WebService {
                 this.fluidCalculator_private_list = response;
                 this.fluidCalculatorSubject.next(
                     this.fluidCalculator_private_list);
+                this.patientID = id;
             }
             )
     }
@@ -108,9 +121,18 @@ export class WebService {
         postData.append("amount", fluidCalculator.amount);
         postData.append("commentAmount", fluidCalculator.commentAmount);
         postData.append("percentageDehydration", fluidCalculator.percentageDehydration);
-        postData.append("24hrPeriod", fluidCalculator.twentyfourhrPeriod);
-        postData.append("48hrPeriod", fluidCalculator.fourtyeighthrPeriod);
-        postData.append("timeStamp", fluidCalculator.timeStamp);
+        postData.append("twentyfourhrPeriod", fluidCalculator.twentyfourhrPeriod);
+        postData.append("fourtyeighthrPeriod", fluidCalculator.fourtyeighthrPeriod);
+        
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            today.getMonth() + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
 
         this.http.post(
             'http://localhost:5000/patient/' +
@@ -127,6 +149,7 @@ export class WebService {
                 this.fluidChoice_private_list = response;
                 this.fluidChoiceSubject.next(
                     this.fluidChoice_private_list);
+                this.patientID = id;
             }
             )
     }
@@ -140,7 +163,16 @@ export class WebService {
         postData.append("ivFluidVolume", fluidChoice.ivFluidVolume);
         postData.append("ivFluidVolumeComment", fluidChoice.ivFluidVolumeComment);
         postData.append("sampleObtained", fluidChoice.sampleObtained);
-        postData.append("timeStamp", fluidChoice.timeStamp);
+        
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            today.getMonth() + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
 
         this.http.post(
             'http://localhost:5000/patient/' +
@@ -157,6 +189,7 @@ export class WebService {
                 this.fluidBalance_private_list = response;
                 this.fluidBalanceSubject.next(
                     this.fluidBalance_private_list);
+                this.patientID = id;
             }
             )
     }
@@ -170,7 +203,16 @@ export class WebService {
         postData.append("currentBalance", fluidBalance.currentBalance);
         postData.append("overallInput", fluidBalance.overallInput);
         postData.append("overallOutput", fluidBalance.overallOutput);
-        postData.append("timeStamp", fluidBalance.timeStamp);
+
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            today.getMonth() + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
 
         this.http.post(
             'http://localhost:5000/patient/' +
@@ -196,14 +238,16 @@ export class WebService {
     postOtherAssessments(otherAssessments) {
         let postData = new FormData();
         postData.append("vipScore", otherAssessments.vipScore);
-        postData.append("timeStamp", otherAssessments.timeStamp);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
             today.getMonth() + "-" +
-            today.getDate();
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
 
-        postData.append("date", todayDate);
+        postData.append("timeStamp", todayDate);
 
         this.http.post(
             'http://localhost:5000/patient/' +
@@ -220,6 +264,7 @@ export class WebService {
                 this.recordBloodSugar_private_list = response;
                 this.recordBloodSugarSubject.next(
                     this.recordBloodSugar_private_list);
+                this.patientID = id;
             }
             )
     }
@@ -229,7 +274,16 @@ export class WebService {
         postData.append("bloodSugarLevel", recordBloodSugar.bloodSugarLevel);
         postData.append("clinicalComment", recordBloodSugar.clinicalComment);
         postData.append("comment", recordBloodSugar.comment);
-        postData.append("timeStamp", recordBloodSugar.timeStamp);
+        
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            today.getMonth() + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
 
         this.http.post(
             'http://localhost:5000/patient/' +
