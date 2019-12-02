@@ -78,11 +78,11 @@
                     <label for="amount">amount</label>
                     <select id="amount" name="amount" class="form-control" formControlName="amount"
                         [ngClass]="{ 'error': isInvalid('amount') }">
-                        <option value="1x10ml/kg">1x10ml/kg</option>
-                        <option value="2x10ml/kg">2x10ml/kg</option>
-                        <option value="1x20ml/kg">1x20ml/kg</option>
-                        <option value="2x20ml/kg">2x20ml/kg</option>
-                        <option value="Other">Other</option>
+                        <option value="0">None</option>
+                        <option value="10">1x10ml/kg</option>
+                        <option value="20">2x10ml/kg</option>
+                        <option value="20">1x20ml/kg</option>
+                        <option value="40">2x20ml/kg</option>
                     </select>
                 </div>
 
@@ -103,7 +103,13 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <span *ngIf="isIncomplete()">
+                    You must complete all fields
+                    <hr>
+                </span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+
+                <!-- <div class="form-group">
                     <label for="twentyfourhrPeriod">twentyfourhrPeriod</label>
                     <input type="twentyfourhrPeriod" id="twentyfourhrPeriod" name="twentyfourhrPeriod"
                         class="form-control" formControlName="twentyfourhrPeriod"
@@ -114,13 +120,8 @@
                     <input type="fourtyeighthrPeriod" id="fourtyeighthrPeriod" name="fourtyeighthrPeriod"
                         class="form-control" formControlName="fourtyeighthrPeriod"
                         [ngClass]="{ 'error': isInvalid('fourtyeighthrPeriod') }">
-                </div>
+                </div> -->
 
-                <span *ngIf="isIncomplete()">
-                    You must complete all fields
-                    <hr>
-                </span>
-                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
 
             </form>
         </div>
@@ -154,12 +155,13 @@
                         CommentAmount: {{ fluidCalculator.commentAmount }}
                         <hr>
                         PercentageDehydration: {{ fluidCalculator.percentageDehydration }}
-                         <hr>
+                        <hr>
+                        TimeStamp: {{ fluidCalculator.timeStamp }}
+                    </div>
+                    <div class="card-footer">
                         24hrPeriod: {{ fluidCalculator.twentyfourhrPeriod }}
                         <hr>
                         48hrPeriod: {{ fluidCalculator.fourtyeighthrPeriod }}
-                        <hr>
-                        TimeStamp: {{ fluidCalculator.timeStamp }}
                     </div>
                 </div>
             </div>

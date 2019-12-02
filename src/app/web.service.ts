@@ -110,6 +110,7 @@ export class WebService {
     }
 
     postFluidCalculator(fluidCalculator) {
+        
         let postData = new FormData();
         postData.append("weight", fluidCalculator.weight);
         postData.append("measurement", fluidCalculator.measurement);
@@ -121,8 +122,15 @@ export class WebService {
         postData.append("amount", fluidCalculator.amount);
         postData.append("commentAmount", fluidCalculator.commentAmount);
         postData.append("percentageDehydration", fluidCalculator.percentageDehydration);
-        postData.append("twentyfourhrPeriod", fluidCalculator.twentyfourhrPeriod);
-        postData.append("fourtyeighthrPeriod", fluidCalculator.fourtyeighthrPeriod);
+        
+        let weight = Number(fluidCalculator.weight);
+        let percentageDehydration = Number(fluidCalculator.percentageDehydration);
+        let amount = Number(fluidCalculator.amount);
+        let twentyfourhrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) /24 );
+        let fourtyeighthrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) /48 );
+
+        postData.append("twentyfourhrPeriod", String(twentyfourhrPeriod));
+        postData.append("fourtyeighthrPeriod", String(fourtyeighthrPeriod));
         
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
@@ -200,7 +208,13 @@ export class WebService {
         postData.append("volInput", fluidBalance.volInput);
         postData.append("fluidOutput", fluidBalance.fluidOutput);
         postData.append("volOutput", fluidBalance.volOutput);
-        postData.append("currentBalance", fluidBalance.currentBalance);
+
+        let volInput = Number(fluidBalance.volInput);
+        let volOutput = Number(fluidBalance.volOutput);
+        
+        let currentBalance = (volInput - volOutput );
+
+        postData.append("currentBalance", String(currentBalance));
         postData.append("overallInput", fluidBalance.overallInput);
         postData.append("overallOutput", fluidBalance.overallOutput);
 

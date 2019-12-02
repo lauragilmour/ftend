@@ -13,10 +13,6 @@ export class FluidBalanceComponent {
 
     fluidBalanceForm;
 
-    onCalculate(){
-
-    }
-
     onSubmit() {
         console.log(this.fluidBalanceForm.value);
         this.webService.postFluidBalance(this.fluidBalanceForm.value);
@@ -29,19 +25,17 @@ export class FluidBalanceComponent {
     }
 
     isUnTouched() {
-        return this.fluidBalanceForm.controls.currentBalance.pristine &&
-        this.fluidBalanceForm.controls.overallInput.pristine &&
-        this.fluidBalanceForm.controls.overallOutput.pristine
-        this.fluidBalanceForm.controls.fluidInput.pristine &&
-        this.fluidBalanceForm.controls.volInput.pristine &&
-        this.fluidBalanceForm.controls.fluidOutput.pristine &&
+        return this.fluidBalanceForm.controls.overallInput.pristine ||
+        this.fluidBalanceForm.controls.overallOutput.pristine ||
+        this.fluidBalanceForm.controls.fluidInput.pristine ||
+        this.fluidBalanceForm.controls.volInput.pristine ||
+        this.fluidBalanceForm.controls.fluidOutput.pristine ||
         this.fluidBalanceForm.controls.volOutput.pristine;
     }
 
 
     isIncomplete() {
-        return this.isInvalid('currentBalance') ||
-            this.isInvalid('overallInput') ||
+        return this.isInvalid('overallInput') ||
             this.isInvalid('overallOutput') ||
             this.isInvalid('fluidInput') ||
             this.isInvalid('volInput') ||
@@ -62,7 +56,6 @@ export class FluidBalanceComponent {
             volInput: ['', Validators.required],
             fluidOutput: ['', Validators.required],
             volOutput: ['', Validators.required],
-            currentBalance: ['', Validators.required],
             overallInput: ['', Validators.required],
             overallOutput: ['', Validators.required]
         });
