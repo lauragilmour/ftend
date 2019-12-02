@@ -56,10 +56,11 @@ export class WebService {
         return this.http.get(
             'http://localhost:5000/patient/' + id)
             .subscribe(response => {
-                this.patient_private_list = response;
+                this.patient_private_list = [response];
                 this.patientSubject.next(
                     this.patient_private_list);
                 this.patientID = id;
+                console.log(response);
             }
             )
     }

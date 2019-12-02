@@ -2,12 +2,40 @@
     <h1>Patient Details</h1>
 </div>
 
+
+<!-- <div class="container">
+    <div class="column">
+        <div class="col-sm-12">
+            <form [formGroup]="goToAge" (ngSubmit)="onAge()">
+                <button type="age" class="btn btn-primary">Age</button>
+            </form>
+            <form [formGroup]="goToFluidCalculator" (ngSubmit)="onFluidCalculator()">
+                <button type="fluidCalculator" class="btn btn-primary">Fluid Calculator</button>
+            </form>
+            <form [formGroup]="goToFluidChoice" (ngSubmit)="onFluidChoice()">
+                <button type="fluidChoice" class="btn btn-primary">Fluid Choice</button>
+            </form>
+            <form [formGroup]="goToFluidBalance" (ngSubmit)="onFluidBalance()">
+                <button type="fluidBalance" class="btn btn-primary">FluidBalance</button>
+            </form>
+            <form [formGroup]="goToOtherAssessments" (ngSubmit)="onOtherAssessments()">
+                <button type="otherAssessments" class="btn btn-primary">OtherAssessments</button>
+            </form>
+            <form [formGroup]="goToRecordBloodSugar" (ngSubmit)="onRecordBloodSugar()">
+                <button type="recordBloodSugar" class="btn btn-primary">RecordBloodSugar</button>
+            </form>
+        </div>
+    </div>
+</div> -->
+
 <div class="container" style="margin-top:100px;">
     <div class="row">
         <div class="col-sm-12">
+        <div *ngFor="let patient of webService.patient_list | async" >
+
             <div class="card text-white bg-primary mb-3">
                 <div class="card-header">
-                    H&SC Number: {{hscNumber}}
+                    This patient number is {{patient.hscNumber}}
                 </div>
                 <div class="card-body">
                     Name: {{patient.name}}
@@ -17,14 +45,17 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
+
+
 
 <!-- <div class="navbar navbar-expand-sm bg-primary -->
 <!-- navbar-dark fixed-bottom">
     <span class="navbar-brand"><strong>Patient</strong></span>
     <ul class="navbar-nav">
-        <button class="btn btn-outline-light" (click)=[routerLink]="['/patient', patient._id, '/age']">
+        <button class="btn btn-outline-light" (click)=[routerLink]="['/patient', patient._id, 'age']">
             Confirm Age</button>
         <button class="btn btn-outline-light" (click)="">
             Fluid Calculator</button>

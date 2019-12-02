@@ -12,19 +12,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class FluidCalculatorComponent {
 
     fluidCalculatorForm;
-    twentyfourhrPeriod;
-    fourtyeighthrPeriod;
 
     onSubmit() {
-        
-        // this.fourtyeighthrPeriod = this.fluidCalculatorForm.controls.percentageDehyration.value;
-        // this.twentyfourhrPeriod = this.fluidCalculatorForm.controls.weight.value;
-        //this.twentyfourhrPeriod = (((this.fluidCalculatorForm.controls['weight'].value * this.fluidCalculatorForm.controls['percentageDehyration'].value * 10) - (this.fluidCalculatorForm.controls['amount'].value * this.fluidCalculatorForm.controls['weight'].value)) /24 );
-        //this.fourtyeighthrPeriod = (((this.fluidCalculatorForm.controls['weight'].value * this.fluidCalculatorForm.controls['percentageDehyration'].value * 10) - (this.fluidCalculatorForm.controls['amount'].value * this.fluidCalculatorForm.controls['weight'].value)) /48 );
-        
         console.log(this.fluidCalculatorForm.value);
         this.webService.postFluidCalculator(this.fluidCalculatorForm.value);
-            //, this.twentyfourhrPeriod, this.fourtyeighthrPeriod);
         this.fluidCalculatorForm.reset();
     }
 

@@ -11,6 +11,43 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class PatientComponent {
 
+    goToAge;
+    goToFluidCalculator;
+    goToFluidChoice;
+    goToFluidBalance;
+    goToOtherAssessments;
+    goToRecordBloodSugar;
+
+    onAge() {
+        console.log("goToAge");
+        // /patient/_id/age
+    }
+
+    onFluidCalculator() {
+        console.log("goToFluidCalculator");
+        // /patient/_id/fluidCalculator
+    }
+
+    onFluidChoice() {
+        console.log("goToFluidChoice");
+        // /patient/_id/fluidChoice
+    }
+
+    onFluidBalance() {
+        console.log("goToFluidBalance");
+        // /patient/_id/fluidBalance
+    }
+
+    onOtherAssessments() {
+        console.log("goToOtherAssessments");
+        // /patient/_id/otherAssessments
+    }
+
+    onRecordBloodSugar() {
+        console.log("goToRecordBloodSugar");
+        // /patient/_id/recordBloofSugar
+    }
+
     constructor(private webService: WebService,
         private route: ActivatedRoute,
         private formBuilder: FormBuilder) { }
