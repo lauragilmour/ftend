@@ -1,29 +1,12 @@
 <div class="jumbotron">
     <h5>Patient Details</h5>
     <div *ngFor="let patient of webService.patient_list | async">
-            <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
-        </div>
+        <h6>HSCNumber: {{patient.hscNumber}}</h6>
+        <h6>Name: {{patient.name}}</h6>
+        <h6>DOB: {{patient.dob}}</h6>
+    </div>
 </div>
 
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div *ngFor="let patient of webService.patient_list | async">
-                <div class="card text-white bg-primary mb-3">
-                    <div class="card-header">
-                        HSCNumber {{patient.hscNumber}}
-                    </div>
-                    <div class="card-body">
-                        Name: {{patient.name}}
-                    </div>
-                    <div class="card-footer">
-                        DOB: {{patient.dob}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <div class="card">
     <div class="card-header">
@@ -64,9 +47,6 @@
             Age Review
         </mat-expansion-panel-header>
         <div class="card bg-light mb-3" *ngFor="let age of webService.age_list | async">
-            <div class="card-header">
-                <strong>Age</strong>
-            </div>
             <div class="card-body">
                 Age: {{ age.age }}
                 <br>
@@ -80,9 +60,6 @@
             Fluid Calculator Review
         </mat-expansion-panel-header>
         <div class="card bg-light mb-3" *ngFor="let fluidCalculator of webService.fluidCalculator_list | async">
-            <div class="card-header">
-                <strong>Fluid Calculator</strong>
-            </div>
             <div class="card-body">
                 Weight: {{ fluidCalculator.weight }}
                 <hr>
@@ -118,9 +95,6 @@
             Fluid Choice Review
         </mat-expansion-panel-header>
         <div class="card bg-light mb-3" *ngFor="let fluidChoice of webService.fluidChoice_list | async">
-            <div class="card-header">
-                <strong>Fluid Choice</strong>
-            </div>
             <div class="card-body">
                 ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
                 <hr>
@@ -146,9 +120,6 @@
             Fluid Balance Review
         </mat-expansion-panel-header>
         <div class="card bg-light mb-3" *ngFor="let fluidBalance of webService.fluidBalance_list | async">
-            <div class="card-header">
-                <strong>Fluid Balance</strong>
-            </div>
             <div class="card-body">
                 FluidInput: {{ fluidBalance.fluidInput }}
                 <hr>
@@ -190,9 +161,6 @@
             Record Blood Sugar Review
         </mat-expansion-panel-header>
         <div class="card bg-light mb-3" *ngFor="let recordBloodSugar of webService.recordBloodSugar_list | async">
-            <div class="card-header">
-                <strong>RecordBloodSugar</strong>
-            </div>
             <div class="card-body">
                 BloodSugarLevel: {{recordBloodSugar.bloodSugarLevel}}
                 <hr>
