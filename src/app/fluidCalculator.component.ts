@@ -29,11 +29,9 @@ export class FluidCalculatorComponent {
             this.fluidCalculatorForm.controls.measurement.pristine ||
             this.fluidCalculatorForm.controls.ueAvailable.pristine ||
             this.fluidCalculatorForm.controls.reasonIvFluids.pristine ||
-            this.fluidCalculatorForm.controls.commentIv.pristine ||
             this.fluidCalculatorForm.controls.dehydration.pristine ||
             this.fluidCalculatorForm.controls.fluidBolus.pristine ||
             this.fluidCalculatorForm.controls.amount.pristine ||
-            this.fluidCalculatorForm.controls.commentAmount.pristine ||
             this.fluidCalculatorForm.controls.percentageDehydration.pristine;
     }
 
@@ -42,11 +40,9 @@ export class FluidCalculatorComponent {
             this.isInvalid('measurement') ||
             this.isInvalid('ueAvailable') ||
             this.isInvalid('reasonIvFluids') ||
-            this.isInvalid('commentIv') ||
             this.isInvalid('dehydration') ||
             this.isInvalid('fluidBolus') ||
             this.isInvalid('amount') ||
-            this.isInvalid('commentAmount') ||
             this.isInvalid('percentageDehydration') ||
             this.isUnTouched();
     }
@@ -63,11 +59,11 @@ export class FluidCalculatorComponent {
             measurement: ['', Validators.required],
             ueAvailable: ['', Validators.required],
             reasonIvFluids: ['', Validators.required],
-            commentIv: ['', Validators.required],
+            commentIv: [''],
             dehydration: ['', Validators.required],
             fluidBolus: ['', Validators.required],
             amount: ['', Validators.required],
-            commentAmount: ['', Validators.required],
+            commentAmount: [''],
             percentageDehydration: ['', Validators.required]
         });
 

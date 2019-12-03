@@ -1,24 +1,35 @@
 <div class="jumbotron">
     <h1>Fluid Calculator</h1>
+    <div *ngFor="let patient of webService.patient_list | async">
+        <h3>HSCNumber {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h3>
+    </div>
 </div>
-
+<div class="container">
+        <div class="column">
+            <div class="col-sm-12">
+                <div *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+                    style="cursor: pointer">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">
+                            Back
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h2>fluidCalculator</h2>
             <form [formGroup]="fluidCalculatorForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="fluidCalculator">fluidCalculator</label>
-                </div>
-
-                <div class="form-group">
-                    <label for="weight">weight</label>
-                    <input type="weight" id="weight" name="weight" pattern="[0-9]+" class="form-control" formControlName="weight"
+                    <label for="weight">Weight*</label>
+                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9]+" class="form-control" formControlName="weight"
                         [ngClass]="{ 'error': isInvalid('weight') }">
                 </div>
 
                 <div class="form-group">
-                    <label for="measurement">measurement</label>
+                    <label for="measurement">Measurement Type*</label>
                     <select id="measurement" name="measurement" class="form-control" formControlName="measurement"
                         [ngClass]="{ 'error': isInvalid('measurement') }">
                         <option value="Measured">Measured</option>
@@ -28,7 +39,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="ueAvailable">ueAvailable</label>
+                    <label for="ueAvailable">UE Available*</label>
                     <select id="ueAvailable" name="ueAvailable" class="form-control" formControlName="ueAvailable"
                         [ngClass]="{ 'error': isInvalid('ueAvailable') }">
                         <option value="Yes">Yes</option>
@@ -37,7 +48,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="reasonIvFluids">reasonIvFluids</label>
+                    <label for="reasonIvFluids">Reason for IV Fluids*</label>
                     <select id="reasonIvFluids" name="reasonIvFluids" class="form-control"
                         formControlName="reasonIvFluids" [ngClass]="{ 'error': isInvalid('reasonIvFluids') }">
                         <option value="Intractable Vomiting">Intractable Vomiting</option>
@@ -49,13 +60,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="commentIv">commentIv</label>
-                    <input type="commentIv" id="commentIv" name="commentIv" class="form-control"
-                        formControlName="commentIv" [ngClass]="{ 'error': isInvalid('commentIv') }">
+                    <label for="commentIv">Comment</label>
+                    <input type="commentIv" id="commentIv" autocomplete="off" name="commentIv" class="form-control"
+                        formControlName="commentIv">
                 </div>
 
                 <div class="form-group">
-                    <label for="dehydration">dehydration</label>
+                    <label for="dehydration">Is there any Dehydration?*</label>
                     <select id="dehydration" name="dehydration" class="form-control" formControlName="dehydration"
                         [ngClass]="{ 'error': isInvalid('dehydration') }">
                         <option value="No">No</option>
@@ -66,7 +77,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="fluidBolus">fluidBolus</label>
+                    <label for="fluidBolus">Was Fluid Bolus required?*</label>
                     <select id="fluidBolus" name="fluidBolus" class="form-control" formControlName="fluidBolus"
                         [ngClass]="{ 'error': isInvalid('fluidBolus') }">
                         <option value="Yes">Yes</option>
@@ -75,7 +86,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="amount">amount</label>
+                    <label for="amount">Amount of Fluid Bolus*</label>
                     <select id="amount" name="amount" class="form-control" formControlName="amount"
                         [ngClass]="{ 'error': isInvalid('amount') }">
                         <option value="0">None</option>
@@ -87,13 +98,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="commentAmount">commentAmount</label>
+                    <label for="commentAmount">Comment</label>
                     <input type="commentAmount" id="commentAmount" name="commentAmount" class="form-control"
-                        formControlName="commentAmount" [ngClass]="{ 'error': isInvalid('commentAmount') }">
+                        formControlName="commentAmount" autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <label for="percentageDehydration">percentageDehydration</label>
+                    <label for="percentageDehydration">Percentage of Dehydration*</label>
                     <select id="percentageDehydration" name="percentageDehydration" class="form-control"
                         formControlName="percentageDehydration"
                         [ngClass]="{ 'error': isInvalid('percentageDehydration') }">
@@ -104,7 +115,7 @@
                 </div>
 
                 <span *ngIf="isIncomplete()">
-                    You must complete all fields
+                    You must complete all required (*) fields
                     <hr>
                 </span>
                 <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
@@ -112,7 +123,7 @@
         </div>
     </div>
 </div>
-
+<!-- 
 <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -151,4 +162,4 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  -->

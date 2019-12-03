@@ -1,5 +1,23 @@
 <div class="jumbotron">
     <h1>Record Blood Sugar</h1>
+    <div *ngFor="let patient of webService.patient_list | async">
+        <h3>HSCNumber {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h3>
+    </div>
+</div>
+
+<div class="container">
+    <div class="column">
+        <div class="col-sm-12">
+            <div *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+                style="cursor: pointer">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">
+                        Back
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -10,33 +28,35 @@
 
                 <div class="form-group">
                     <label for="bloodSugarLevel">Blood Sugar Level*</label>
-                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+" name="bloodSugarLevel" class="form-control"
-                        formControlName="bloodSugarLevel" [ngClass]="{ 'error': isInvalid('bloodSugarLevel') }">
+                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+" name="bloodSugarLevel"
+                        class="form-control" autocomplete="off" formControlName="bloodSugarLevel"
+                        [ngClass]="{ 'error': isInvalid('bloodSugarLevel') }">
                 </div>
 
                 <div class="form-group">
-                    <label for="clinicalComment">clinicalComment</label>
-                    <select id="clinicalComment" name="clinicalComment" class="form-control" formControlName="clinicalComment"
-                        [ngClass]="{ 'error': isInvalid('clinicalComment') }">
+                    <label for="clinicalComment">Clinical Comment*</label>
+                    <select id="clinicalComment" name="clinicalComment" class="form-control"
+                        formControlName="clinicalComment" [ngClass]="{ 'error': isInvalid('clinicalComment') }">
                         <option value="Normal Result: No action taken">Normal Result: No action taken</option>
                         <option value="Low Sugar: Extra feed given">Low Sugar: Extra feed given</option>
-                        <option value="Low Sugar: IVbolus and infusion increased">Low Sugar: IVbolus and infusion increased</option>
+                        <option value="Low Sugar: IVbolus and infusion increased">Low Sugar: IVbolus and infusion
+                            increased</option>
                         <option value="Low Sugar: Hypopack taken">Low Sugar: Hypopack taken</option>
                         <option value="High Sugar: Insulin given">High Sugar: Insulin given</option>
                         <option value="High Sugar: Insulin commenced ">High Sugar: Insulin commenced </option>
                         <option value="High Sugar: Urine check">High Sugar: Urine check</option>
-                        <option value="High Sugar: Insulin infusion increased">High Sugar: Insulin infusion increased</option>
+                        <option value="High Sugar: Insulin infusion increased">High Sugar: Insulin infusion increased
+                        </option>
                         <option value="Other (please state)">Other (please state)</option>
                     </select>
-                </div>      
+                </div>
                 <div class="form-group">
-                    <label for="comment">comment</label>
-                    <input type="comment" id="comment" name="comment" class="form-control"
-                        formControlName="comment" [ngClass]="{ 'error': isInvalid('comment') }">
+                    <label for="comment">Comment</label>
+                    <input type="comment" id="comment" autocomplete="off" name="comment" class="form-control" formControlName="comment">
                 </div>
 
                 <span *ngIf="isIncomplete()">
-                    You must complete all fields
+                    You must complete all required (*) fields
                     <hr>
                 </span>
                 <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
@@ -46,7 +66,7 @@
     </div>
 </div>
 
-
+<!-- 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -66,4 +86,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

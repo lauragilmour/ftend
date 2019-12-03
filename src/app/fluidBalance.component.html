@@ -1,11 +1,32 @@
+<div class="jumbotron">
+        <h1>Fluid Balance</h1>
+        <div *ngFor="let patient of webService.patient_list | async">
+            <h3>HSCNumber {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h3>
+        </div>
+    </div>
+
+<div class="container">
+        <div class="column">
+            <div class="col-sm-12">
+                <div *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+                    style="cursor: pointer">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">
+                            Back
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h2>fluidBalance</h2>
             <form [formGroup]="fluidBalanceForm" (ngSubmit)="onSubmit()" >
 
                 <div class="form-group">
-                    <label for="fluidInput">fluidInput</label>
+                    <label for="fluidInput">Fluid Input*</label>
                     <select id="fluidInput" name="fluidInput" class="form-control" formControlName="fluidInput"
                         [ngClass]="{ 'error': isInvalid('fluidInput') }">
                         <option value="Oral Intake">Oral Intake</option>
@@ -17,13 +38,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="volInput">volInput</label>
-                    <input type="volInput" id="volInput" pattern="[0-9]+" name="volInput" class="form-control" formControlName="volInput"
+                    <label for="volInput">Volume Input*</label>
+                    <input type="volInput" id="volInput" autocomplete="off" pattern="[0-9]+" name="volInput" class="form-control" formControlName="volInput"
                         [ngClass]="{ 'error': isInvalid('volInput') }">
                 </div>
 
                 <div class="form-group">
-                    <label for="fluidOutput">fluidOutput</label>
+                    <label for="fluidOutput">Fluid Output*</label>
                     <select id="fluidOutput" name="fluidOutput" class="form-control" formControlName="fluidOutput"
                         [ngClass]="{ 'error': isInvalid('fluidOutput') }">
                         <option value="Urine">Urine</option>
@@ -34,25 +55,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="volOutput">volOutput</label>
-                    <input type="volOutput" id="volOutput" pattern="[0-9]+" name="volOutput" class="form-control"
+                    <label for="volOutput">Volume Output*</label>
+                    <input type="volOutput" id="volOutput" autocomplete="off" pattern="[0-9]+" name="volOutput" class="form-control"
                         formControlName="volOutput" [ngClass]="{ 'error': isInvalid('volOutput') }">
                 </div>
 
-                <div class="form-group">
-                    <label for="overallInput">overallInput</label>
-                    <input type="overallInput" id="overallInput" pattern="[0-9]+" name="overallInput" class="form-control"
-                        formControlName="overallInput" [ngClass]="{ 'error': isInvalid('overallInput') }">
-                </div>
-
-                <div class="form-group">
-                    <label for="overallOutput">overallOutput</label>
-                    <input type="overallOutput" id="overallOutput" pattern="[0-9]+" name="overallOutput" class="form-control"
-                        formControlName="overallOutput" [ngClass]="{ 'error': isInvalid('overallOutput') }">
-                </div>
-
                 <span *ngIf="isIncomplete()">
-                    You must complete all fields
+                    You must complete all required (*) fields
                     <hr>
                 </span>
                 <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
@@ -62,7 +71,7 @@
     </div>
 </div>
 
-
+<!-- 
 
 
 <div class="container">
@@ -92,4 +101,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

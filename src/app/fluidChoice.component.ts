@@ -30,7 +30,6 @@ export class FluidChoiceComponent {
         this.fluidChoiceForm.controls.serumPotasiumRange.pristine ||
         this.fluidChoiceForm.controls.ivFluidType.pristine ||
         this.fluidChoiceForm.controls.ivFluidVolume.pristine ||
-        this.fluidChoiceForm.controls.ivFluidVolumeComment.pristine ||
         this.fluidChoiceForm.controls.sampleObtained.pristine;
     }
 
@@ -40,7 +39,6 @@ export class FluidChoiceComponent {
             this.isInvalid('serumPotasiumRange') ||
             this.isInvalid('ivFluidType') ||
             this.isInvalid('ivFluidVolume') ||
-            this.isInvalid('ivFluidVolumeComment') ||
             this.isInvalid('sampleObtained') ||
             this.isUnTouched();
     }
@@ -58,8 +56,8 @@ export class FluidChoiceComponent {
             serumPotasiumRange: ['', Validators.required],
             ivFluidType: ['', Validators.required],
             ivFluidVolume: ['', Validators.required],
-            ivFluidVolumeComment: [''],
-            sampleObtained: ['', Validators.required]
+            sampleObtained: ['', Validators.required],
+            ivFluidVolumeComment: ['']
         });
 
         this.webService.getPatient(

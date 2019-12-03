@@ -15,9 +15,12 @@ import { AgeComponent } from './age.component';
 import { FluidCalculatorComponent } from './fluidCalculator.component';
 import { FluidChoiceComponent } from './fluidChoice.component';
 import { FluidBalanceComponent } from './fluidBalance.component';
-// import { FluidReviewComponent } from './fluidReview.component';
 import { OtherAssessmentsComponent } from './otherAssessments.component';
 import { RecordBloodSugarComponent } from './recordBloodSugar.component';
+import { IgxExpansionPanelModule } from 'igniteui-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 var routes = [
   {
@@ -48,14 +51,10 @@ var routes = [
     path: 'patient/:id/fluidBalance',
     component: FluidBalanceComponent
   },
-  // {
-  //   path: ':id/fluidReview',
-  //   component: FluidReviewComponent
-  // },
   {
     path: 'patient/:id/otherAssessments',
     component: OtherAssessmentsComponent
-  }, 
+  },
   {
     path: 'patient/:id/recordBloodSugar',
     component: RecordBloodSugarComponent
@@ -64,18 +63,21 @@ var routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, PatientComponent, HomeComponent, 
-    PatientsComponent, NavComponent, AgeComponent, 
+    AppComponent, PatientComponent, HomeComponent,
+    PatientsComponent, NavComponent, AgeComponent,
     OtherAssessmentsComponent, RecordBloodSugarComponent,
-    FluidCalculatorComponent, // FluidReviewComponent,
-    FluidBalanceComponent, FluidChoiceComponent
+    FluidCalculatorComponent, FluidBalanceComponent,
+    FluidChoiceComponent 
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule, RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule, IgxExpansionPanelModule,
+    BrowserAnimationsModule, MatExpansionModule, 
+    Ng2SearchPipeModule
   ],
   providers: [WebService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

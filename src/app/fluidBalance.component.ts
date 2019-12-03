@@ -25,9 +25,7 @@ export class FluidBalanceComponent {
     }
 
     isUnTouched() {
-        return this.fluidBalanceForm.controls.overallInput.pristine ||
-        this.fluidBalanceForm.controls.overallOutput.pristine ||
-        this.fluidBalanceForm.controls.fluidInput.pristine ||
+        return this.fluidBalanceForm.controls.fluidInput.pristine ||
         this.fluidBalanceForm.controls.volInput.pristine ||
         this.fluidBalanceForm.controls.fluidOutput.pristine ||
         this.fluidBalanceForm.controls.volOutput.pristine;
@@ -35,9 +33,7 @@ export class FluidBalanceComponent {
 
 
     isIncomplete() {
-        return this.isInvalid('overallInput') ||
-            this.isInvalid('overallOutput') ||
-            this.isInvalid('fluidInput') ||
+        return this.isInvalid('fluidInput') ||
             this.isInvalid('volInput') ||
             this.isInvalid('fluidOutput') ||
             this.isInvalid('volOutput') ||
@@ -55,9 +51,7 @@ export class FluidBalanceComponent {
             fluidInput: ['', Validators.required],
             volInput: ['', Validators.required],
             fluidOutput: ['', Validators.required],
-            volOutput: ['', Validators.required],
-            overallInput: ['', Validators.required],
-            overallOutput: ['', Validators.required]
+            volOutput: ['', Validators.required]
         });
 
         this.webService.getPatient(

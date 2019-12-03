@@ -26,14 +26,12 @@ export class RecordBloodSugarComponent {
 
     isUnTouched() {
         return this.recordBloodSugarForm.controls.bloodSugarLevel.pristine ||
-        this.recordBloodSugarForm.controls.clinicalComment.pristine ||
-        this.recordBloodSugarForm.controls.comment.pristine;
+        this.recordBloodSugarForm.controls.clinicalComment.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('bloodSugarLevel') ||
             this.isInvalid('clinicalComment') ||
-            this.isInvalid('comment') ||
             this.isUnTouched();
     }
 

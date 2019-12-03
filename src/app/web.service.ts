@@ -216,8 +216,8 @@ export class WebService {
         let currentBalance = (volInput - volOutput );
 
         postData.append("currentBalance", String(currentBalance));
-        postData.append("overallInput", fluidBalance.overallInput);
-        postData.append("overallOutput", fluidBalance.overallOutput);
+        postData.append("overallInput", String(volInput));
+        postData.append("overallOutput", String(volOutput));
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
