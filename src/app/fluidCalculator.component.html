@@ -1,31 +1,18 @@
 <div class="jumbotron">
-    <h1>Fluid Calculator</h1>
+    <h5>Fluid Calculator</h5>
     <div *ngFor="let patient of webService.patient_list | async">
-        <h3>HSCNumber {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h3>
-    </div>
-</div>
-<div class="container">
-        <div class="column">
-            <div class="col-sm-12">
-                <div *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
-                    style="cursor: pointer">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-header">
-                            Back
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
         </div>
-    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <form [formGroup]="fluidCalculatorForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="weight">Weight*</label>
-                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9]+" class="form-control" formControlName="weight"
-                        [ngClass]="{ 'error': isInvalid('weight') }">
+                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9]+"
+                        class="form-control" formControlName="weight" [ngClass]="{ 'error': isInvalid('weight') }">
                 </div>
 
                 <div class="form-group">
@@ -123,43 +110,10 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card bg-light mb-3" *ngFor="let fluidCalculator of webService.fluidCalculator_list | async">
-                    <div class="card-header">
-                        <strong>Fluid Calculator</strong>
-                    </div>
-                    <div class="card-body">
-                        Weight: {{ fluidCalculator.weight }}
-                        <hr>
-                        Measurement: {{ fluidCalculator.measurement }}
-                        <hr>
-                        UeAvailable: {{ fluidCalculator.ueAvailable }}
-                        <hr>
-                        ReasonIvFluids: {{ fluidCalculator.reasonIvFluids }}
-                        <hr>
-                        CommentIv: {{ fluidCalculator.commentIv }}
-                        <hr>
-                        Dehydration: {{ fluidCalculator.dehydration }}
-                        <hr>
-                        FluidBolus: {{ fluidCalculator.fluidBolus }}
-                        <hr>
-                        Amount: {{ fluidCalculator.amount }}
-                        <hr>
-                        CommentAmount: {{ fluidCalculator.commentAmount }}
-                        <hr>
-                        PercentageDehydration: {{ fluidCalculator.percentageDehydration }}
-                        <hr>
-                        TimeStamp: {{ fluidCalculator.timeStamp }}
-                    </div>
-                    <div class="card-footer">
-                        24hrPeriod: {{ fluidCalculator.twentyfourhrPeriod }}
-                        <hr>
-                        48hrPeriod: {{ fluidCalculator.fourtyeighthrPeriod }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>  -->
+
+<div class="card">
+    <div class="card-header">
+        <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+            class="btn btn-primary" role="button">Return to Patient</a>
+    </div>
+</div>

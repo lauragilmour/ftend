@@ -1,24 +1,9 @@
 <div class="jumbotron">
-    <h1>Age</h1>
+    <h5>Age</h5>
     <div *ngFor="let patient of webService.patient_list | async">
-        <h3>HSCNumber {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h3>
+        <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
     </div>
 </div>
-
-<div class="container">
-        <div class="column">
-            <div class="col-sm-12">
-                <div *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
-                    style="cursor: pointer">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-header">
-                            Back
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <div class="container">
     <div class="row">
@@ -42,20 +27,10 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card bg-light mb-3" *ngFor="let age of webService.age_list | async">
-                <div class="card-header">
-                    <strong>Age</strong>
-                </div>
-                <div class="card-body">
-                    Age: {{ age.age }}
-                    <br>
-                    TimeStamp: {{ age.timeStamp }}
-                </div>
-            </div>
-        </div>
+
+<div class="card">
+    <div class="card-header">
+        <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+            class="btn btn-primary" role="button">Return to Patient</a>
     </div>
-</div> -->
+</div>

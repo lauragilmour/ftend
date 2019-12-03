@@ -1,65 +1,41 @@
 <div class="jumbotron">
-        <h1>Other Assessments</h1>
-        <div *ngFor="let patient of webService.patient_list | async">
-            <h3>HSCNumber {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h3>
+    <h5>Other Assessments</h5>
+    <div *ngFor="let patient of webService.patient_list | async">
+            <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
         </div>
-    </div>
-    <div class="container">
-            <div class="column">
-                <div class="col-sm-12">
-                    <div *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
-                        style="cursor: pointer">
-                        <div class="card text-white bg-primary mb-3">
-                            <div class="card-header">
-                                Back
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <form [formGroup]="otherAssessmentsForm" (ngSubmit)="onSubmit()">
-    
-                    <div class="form-group">
-                        <label for="vipScore">VIP Score*</label>
-                        <select id="vipScore" name="vipScore" class="form-control" formControlName="vipScore"
-                            [ngClass]="{ 'error': isInvalid('vipScore') }">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-                    
-                    <span *ngIf="isIncomplete()">
-                        You must complete all required (*) fields
-                        <hr>
-                    </span>
-                    <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
-    
-                </form>
-            </div>
-        </div>
-    </div>
+</div>
 
-<!--     
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card bg-light mb-3" *ngFor="let otherAssessments of webService.otherAssessments_list | async">
-                    <div class="card-header">
-                        <strong>OtherAssessments</strong>
-                    </div>
-                    <div class="card-body">
-                        VipScore: {{ otherAssessments.vipScore }}
-                        <hr>
-                        TimeStamp: {{ otherAssessments.timeStamp }}
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form [formGroup]="otherAssessmentsForm" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label for="vipScore">VIP Score*</label>
+                    <select id="vipScore" name="vipScore" class="form-control" formControlName="vipScore"
+                        [ngClass]="{ 'error': isInvalid('vipScore') }">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
-            </div>
+
+                <span *ngIf="isIncomplete()">
+                    You must complete all required (*) fields
+                    <hr>
+                </span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
         </div>
-    </div> -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+            class="btn btn-primary" role="button">Return to Patient</a>
+    </div>
+</div>
