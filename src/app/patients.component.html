@@ -1,8 +1,8 @@
 <div class="jumbotron">
-    <h1>Patient List</h1>
+    <h5>Patient List</h5>
 </div>
 
-<div class="container" style="margin-top:100px;">
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div *ngFor="let patient of webService.patients_list | async" [routerLink]="['/patient', patient._id]"
