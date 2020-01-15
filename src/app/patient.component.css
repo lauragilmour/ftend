@@ -1,1 +1,23 @@
 .error { background-color: #fff0f0; }
+
+#countdown {
+    width: 100%;
+  }
+  label {
+    clear: both;
+    display: block;
+  }
+  #countdown span {
+    background: #313233;
+    color: #FFF;
+    font-size: 26px;
+    font-weight: normal;
+    text-align: center;
+    width: 25%;
+    display: block;
+    float: left;
+    border-right: 1px solid #FFF;
+  }
+  #countdown span:last-child {
+    border-right: 1px solid #313233;
+  }

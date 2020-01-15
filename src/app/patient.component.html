@@ -4,9 +4,20 @@
         <h6>HSCNumber: {{patient.hscNumber}}</h6>
         <h6>Name: {{patient.name}}</h6>
         <h6>DOB: {{patient.dob}}</h6>
+        <h6 id="prevdate">Last Assessment: {{patient.lastCheck}}</h6>
     </div>
 </div>
 
+<div class="card">
+    <div class="card-header">
+        <button (click)="Update()" >Time since last assessment:</button>
+        <div id="countdown"></div>
+    </div>
+</div>
+
+<div id="space">
+    <hr>
+</div>
 
 <div class="card">
     <div class="card-header">
@@ -46,12 +57,20 @@
         <mat-expansion-panel-header>
             Age Review
         </mat-expansion-panel-header>
-        <div class="card bg-light mb-3" *ngFor="let age of webService.age_list | async">
-            <div class="card-body">
-                Age: {{ age.age }}
-                <br>
-                TimeStamp: {{ age.timeStamp }}
-            </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>Age</th>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let age of webService.age_list | async">
+                    <td>{{ age.age }}</td>
+                    <td>{{ age.timeStamp }}</td>
+                    <td>{{age.user}}</td>
+                </tr>
+            </table>
         </div>
     </mat-expansion-panel>
 
@@ -59,34 +78,41 @@
         <mat-expansion-panel-header>
             Fluid Calculator Review
         </mat-expansion-panel-header>
-        <div class="card bg-light mb-3" *ngFor="let fluidCalculator of webService.fluidCalculator_list | async">
-            <div class="card-body">
-                Weight: {{ fluidCalculator.weight }}
-                <hr>
-                Measurement: {{ fluidCalculator.measurement }}
-                <hr>
-                UeAvailable: {{ fluidCalculator.ueAvailable }}
-                <hr>
-                ReasonIvFluids: {{ fluidCalculator.reasonIvFluids }}
-                <hr>
-                CommentIv: {{ fluidCalculator.commentIv }}
-                <hr>
-                Dehydration: {{ fluidCalculator.dehydration }}
-                <hr>
-                FluidBolus: {{ fluidCalculator.fluidBolus }}
-                <hr>
-                Amount: {{ fluidCalculator.amount }}
-                <hr>
-                CommentAmount: {{ fluidCalculator.commentAmount }}
-                <hr>
-                PercentageDehydration: {{ fluidCalculator.percentageDehydration }}
-                <hr>
-                24hrPeriod: {{ fluidCalculator.twentyfourhrPeriod }}
-                <hr>
-                48hrPeriod: {{ fluidCalculator.fourtyeighthrPeriod }}
-                <hr>
-                TimeStamp: {{ fluidCalculator.timeStamp }}
-            </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>Weight</th>
+                    <th>Measurement</th>
+                    <th>UeAvailable</th>
+                    <th>ReasonIvFluids</th>
+                    <th>CommentIv</th>
+                    <th>Dehydration</th>
+                    <th>FluidBolus</th>
+                    <th>Amount</th>
+                    <th>CommentAmount</th>
+                    <th>PercentageDehydration</th>
+                    <th>24hrPeriod</th>
+                    <th>48hrPeriod</th>
+                    <th>TimeStamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let fluidCalculator of webService.fluidCalculator_list | async">
+                    <td>{{ fluidCalculator.weight }}kg</td>
+                    <td>{{ fluidCalculator.measurement }}</td>
+                    <td>{{ fluidCalculator.ueAvailable }}</td>
+                    <td>{{ fluidCalculator.reasonIvFluids }}</td>
+                    <td>{{ fluidCalculator.commentIv }}</td>
+                    <td>{{ fluidCalculator.dehydration }}</td>
+                    <td>{{ fluidCalculator.fluidBolus }}</td>
+                    <td>{{ fluidCalculator.amount }}</td>
+                    <td>{{ fluidCalculator.commentAmount }}</td>
+                    <td>{{ fluidCalculator.percentageDehydration }}</td>
+                    <td>{{ fluidCalculator.twentyfourhrPeriod }}</td>
+                    <td>{{ fluidCalculator.fourtyeighthrPeriod }}</td>
+                    <td>{{ fluidCalculator.timeStamp }}</td>
+                    <td>{{ fluidCalculator.user }}</td>
+                </tr>
+            </table>
         </div>
     </mat-expansion-panel>
 
@@ -94,24 +120,31 @@
         <mat-expansion-panel-header>
             Fluid Choice Review
         </mat-expansion-panel-header>
-        <div class="card bg-light mb-3" *ngFor="let fluidChoice of webService.fluidChoice_list | async">
-            <div class="card-body">
-                ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
-                <hr>
-                SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
-                <hr>
-                SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
-                <hr>
-                IvFluidType: {{ fluidChoice.ivFluidType }}
-                <hr>
-                IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
-                <hr>
-                IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
-                <hr>
-                TimeStamp: {{ fluidChoice.timeStamp }}
-                <hr>
-                SampleObtained: {{ fluidChoice.sampleObtained }}
-            </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>ElectrolytesAvailable</th>
+                    <th>SerumSodiumRange</th>
+                    <th>SerumPotasiumRange</th>
+                    <th>IvFluidType</th>
+                    <th>IvFluidVolume</th>
+                    <th>IvFluidVolumeComment</th>
+                    <th>SampleObtained</th>
+                    <th>TimeStamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let fluidChoice of webService.fluidChoice_list | async">
+                    <td>{{ fluidChoice.electrolytesAvailable }}</td>
+                    <td>{{ fluidChoice.serumSodiumRange }}</td>
+                    <td>{{ fluidChoice.serumPotasiumRange }}</td>
+                    <td>{{ fluidChoice.ivFluidType }}</td>
+                    <td>{{ fluidChoice.ivFluidVolume }}</td>
+                    <td>{{ fluidChoice.ivFluidVolumeComment }}</td>
+                    <td>{{ fluidChoice.sampleObtained }}</td>
+                    <td>{{ fluidChoice.timeStamp }}</td>
+                    <td>{{ fluidChoice.user }}</td>
+                </tr>
+            </table>
         </div>
     </mat-expansion-panel>
 
@@ -119,24 +152,31 @@
         <mat-expansion-panel-header>
             Fluid Balance Review
         </mat-expansion-panel-header>
-        <div class="card bg-light mb-3" *ngFor="let fluidBalance of webService.fluidBalance_list | async">
-            <div class="card-body">
-                FluidInput: {{ fluidBalance.fluidInput }}
-                <hr>
-                VolInput: {{ fluidBalance.volInput }}
-                <hr>
-                FluidOutput: {{ fluidBalance.fluidOutput }}
-                <hr>
-                VolOutput: {{ fluidBalance.volOutput }}
-                <hr>
-                CurrentBalance: {{ fluidBalance.currentBalance }}
-                <hr>
-                OverallInput: {{ fluidBalance.overallInput }}
-                <hr>
-                OverallOutput: {{ fluidBalance.overallOutput }}
-                <hr>
-                TimeStamp: {{ fluidBalance.timeStamp }}
-            </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>FluidInput</th>
+                    <th>VolInput</th>
+                    <th>FluidOutput</th>
+                    <th>VolOutput</th>
+                    <th>CurrentBalance</th>
+                    <th>OverallInput</th>
+                    <th>OverallOutput</th>
+                    <th>TimeStamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let fluidBalance of webService.fluidBalance_list | async">
+                    <td>{{ fluidBalance.fluidInput }}</td>
+                    <td>{{ fluidBalance.volInput }}</td>
+                    <td>{{ fluidBalance.fluidOutput }}</td>
+                    <td>{{ fluidBalance.volOutput }}</td>
+                    <td>{{ fluidBalance.currentBalance }}</td>
+                    <td>{{ fluidBalance.overallInput }}</td>
+                    <td>{{ fluidBalance.overallOutput }}</td>
+                    <td>{{ fluidBalance.timeStamp }}</td>
+                    <td>{{ fluidBalance.user }}</td>
+                </tr>
+            </table>
         </div>
     </mat-expansion-panel>
 
@@ -144,15 +184,19 @@
         <mat-expansion-panel-header>
             Other Assessments Review
         </mat-expansion-panel-header>
-        <div class="card bg-light mb-3" *ngFor="let otherAssessments of webService.otherAssessments_list | async">
-            <div class="card-header">
-                <strong>OtherAssessments</strong>
-            </div>
-            <div class="card-body">
-                VipScore: {{ otherAssessments.vipScore }}
-                <hr>
-                TimeStamp: {{ otherAssessments.timeStamp }}
-            </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>VipScore</th>
+                    <th>TimeStamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let otherAssessments of webService.otherAssessments_list | async">
+                    <td>{{ otherAssessments.vipScore }}</td>
+                    <td>{{ otherAssessments.timeStamp }}</td>
+                    <td>{{ otherAssessments.user }}</td>
+                </tr>
+            </table>
         </div>
     </mat-expansion-panel>
 
@@ -160,16 +204,23 @@
         <mat-expansion-panel-header>
             Record Blood Sugar Review
         </mat-expansion-panel-header>
-        <div class="card bg-light mb-3" *ngFor="let recordBloodSugar of webService.recordBloodSugar_list | async">
-            <div class="card-body">
-                BloodSugarLevel: {{recordBloodSugar.bloodSugarLevel}}
-                <hr>
-                Comment: {{recordBloodSugar.comment}}
-                <hr>
-                ClinicalComment: {{recordBloodSugar.clinicalComment}}
-                <hr>
-                TimeStamp: {{recordBloodSugar.timeStamp}}
-            </div>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>BloodSugarLevel</th>
+                    <th>Comment</th>
+                    <th>ClinicalComment</th>
+                    <th>TimeStamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let recordBloodSugar of webService.recordBloodSugar_list | async">
+                    <td>{{recordBloodSugar.bloodSugarLevel}}</td>
+                    <td>{{recordBloodSugar.comment}}</td>
+                    <td>{{recordBloodSugar.clinicalComment}}</td>
+                    <td>{{ recordBloodSugar.timeStamp }}</td>
+                    <td>{{ recordBloodSugar.user }}</td>
+                </tr>
+            </table>
         </div>
     </mat-expansion-panel>
 </mat-accordion>

@@ -32,7 +32,8 @@ export class FluidCalculatorComponent {
             this.fluidCalculatorForm.controls.dehydration.pristine ||
             this.fluidCalculatorForm.controls.fluidBolus.pristine ||
             this.fluidCalculatorForm.controls.amount.pristine ||
-            this.fluidCalculatorForm.controls.percentageDehydration.pristine;
+            this.fluidCalculatorForm.controls.percentageDehydration.pristine||
+            this.fluidCalculatorForm.controls.signature.pristine;
     }
 
     isIncomplete() {
@@ -44,6 +45,7 @@ export class FluidCalculatorComponent {
             this.isInvalid('fluidBolus') ||
             this.isInvalid('amount') ||
             this.isInvalid('percentageDehydration') ||
+            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
@@ -64,7 +66,8 @@ export class FluidCalculatorComponent {
             fluidBolus: ['', Validators.required],
             amount: ['', Validators.required],
             commentAmount: [''],
-            percentageDehydration: ['', Validators.required]
+            percentageDehydration: ['', Validators.required],
+            signature: ['', Validators.required]
         });
 
         this.webService.getPatient(

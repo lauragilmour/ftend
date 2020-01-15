@@ -11,7 +11,7 @@
             <form [formGroup]="fluidCalculatorForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="weight">Weight*</label>
-                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9]+"
+                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9.]+"
                         class="form-control" formControlName="weight" [ngClass]="{ 'error': isInvalid('weight') }">
                 </div>
 
@@ -95,10 +95,18 @@
                     <select id="percentageDehydration" name="percentageDehydration" class="form-control"
                         formControlName="percentageDehydration"
                         [ngClass]="{ 'error': isInvalid('percentageDehydration') }">
+                        <option value="0">0%</option>
                         <option value="3">3%</option>
                         <option value="5">5%</option>
                         <option value="8">8%</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="signature">Signature*</label>
+                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
+                        formControlName="signature"
+                        [ngClass]="{ 'error': isInvalid('signature') }">
                 </div>
 
                 <span *ngIf="isIncomplete()">

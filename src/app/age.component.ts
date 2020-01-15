@@ -25,11 +25,13 @@ export class AgeComponent {
     }
 
     isUnTouched() {
-        return this.ageForm.controls.age.pristine;
+        return this.ageForm.controls.age.pristine ||
+                this.ageForm.controls.signature.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('age') ||
+        this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
@@ -41,7 +43,8 @@ export class AgeComponent {
     ngOnInit() {
 
         this.ageForm = this.formBuilder.group({
-            age: ['', Validators.required]
+            age: ['', Validators.required],
+            signature: ['', Validators.required]
         });
 
         this.webService.getPatient(

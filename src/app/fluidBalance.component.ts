@@ -28,7 +28,8 @@ export class FluidBalanceComponent {
         return this.fluidBalanceForm.controls.fluidInput.pristine ||
         this.fluidBalanceForm.controls.volInput.pristine ||
         this.fluidBalanceForm.controls.fluidOutput.pristine ||
-        this.fluidBalanceForm.controls.volOutput.pristine;
+        this.fluidBalanceForm.controls.volOutput.pristine||
+        this.fluidBalanceForm.controls.signature.pristine;
     }
 
 
@@ -37,6 +38,7 @@ export class FluidBalanceComponent {
             this.isInvalid('volInput') ||
             this.isInvalid('fluidOutput') ||
             this.isInvalid('volOutput') ||
+            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
@@ -51,7 +53,8 @@ export class FluidBalanceComponent {
             fluidInput: ['', Validators.required],
             volInput: ['', Validators.required],
             fluidOutput: ['', Validators.required],
-            volOutput: ['', Validators.required]
+            volOutput: ['', Validators.required],
+            signature: ['', Validators.required]
         });
 
         this.webService.getPatient(

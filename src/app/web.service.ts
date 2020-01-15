@@ -65,6 +65,27 @@ export class WebService {
             )
     }
 
+    putLastCheck() {
+        let postData = new FormData();
+
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            (today.getMonth() + 1) + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("lastCheck", todayDate);
+
+        this.http.put(
+            'http://localhost:5000/patient/' + this.patientID,
+            postData).subscribe(
+                response => {
+                    this.getPatient(this.patientID);
+                });
+    }
+
     getAge(id) {
         return this.http.get('http://localhost:5000/patient/' + id + '/age')
             .subscribe(response => {
@@ -79,10 +100,11 @@ export class WebService {
     postAge(age) {
         let postData = new FormData();
         postData.append("age", age.age);
-        
+        postData.append("user", age.signature);
+
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
-            today.getMonth() + "-" +
+            (today.getMonth() + 1) + "-" +
             today.getDate() + " " +
             today.getHours() + ":" +
             today.getMinutes() + ":" +
@@ -95,8 +117,10 @@ export class WebService {
             this.patientID + '/age',
             postData).subscribe(
                 response => {
-                    this.getAge(this.patientID);
+                    this.getAge(this.patientID),
+                        this.putLastCheck();
                 });
+
     }
 
     getFluidCalculator(id) {
@@ -111,7 +135,7 @@ export class WebService {
     }
 
     postFluidCalculator(fluidCalculator) {
-        
+
         let postData = new FormData();
         postData.append("weight", fluidCalculator.weight);
         postData.append("measurement", fluidCalculator.measurement);
@@ -123,19 +147,33 @@ export class WebService {
         postData.append("amount", fluidCalculator.amount);
         postData.append("commentAmount", fluidCalculator.commentAmount);
         postData.append("percentageDehydration", fluidCalculator.percentageDehydration);
-        
+        postData.append("user", fluidCalculator.signature);
+
         let weight = Number(fluidCalculator.weight);
         let percentageDehydration = Number(fluidCalculator.percentageDehydration);
         let amount = Number(fluidCalculator.amount);
-        let twentyfourhrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) /24 );
-        let fourtyeighthrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) /48 );
+        let twentyfourhrPeriod: number = 0;
+        let fourtyeighthrPeriod: number = 0;
+
+        if (percentageDehydration == 0) {
+            twentyfourhrPeriod = 0;
+            fourtyeighthrPeriod = 0;
+            console.log("0" + percentageDehydration)
+        }
+        else {
+            twentyfourhrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) / 24);
+            fourtyeighthrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) / 48);
+            console.log("other" + percentageDehydration)
+        }
+
+
 
         postData.append("twentyfourhrPeriod", String(twentyfourhrPeriod));
         postData.append("fourtyeighthrPeriod", String(fourtyeighthrPeriod));
-        
+
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
-            today.getMonth() + "-" +
+            (today.getMonth() + 1) + "-" +
             today.getDate() + " " +
             today.getHours() + ":" +
             today.getMinutes() + ":" +
@@ -148,7 +186,8 @@ export class WebService {
             this.patientID + '/fluidCalculator',
             postData).subscribe(
                 response => {
-                    this.getFluidCalculator(this.patientID);
+                    this.getFluidCalculator(this.patientID),
+                        this.putLastCheck();
                 });
     }
 
@@ -172,10 +211,11 @@ export class WebService {
         postData.append("ivFluidVolume", fluidChoice.ivFluidVolume);
         postData.append("ivFluidVolumeComment", fluidChoice.ivFluidVolumeComment);
         postData.append("sampleObtained", fluidChoice.sampleObtained);
-        
+        postData.append("user", fluidChoice.signature);
+
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
-            today.getMonth() + "-" +
+            (today.getMonth() + 1) + "-" +
             today.getDate() + " " +
             today.getHours() + ":" +
             today.getMinutes() + ":" +
@@ -188,7 +228,8 @@ export class WebService {
             this.patientID + '/fluidChoice',
             postData).subscribe(
                 response => {
-                    this.getFluidChoice(this.patientID);
+                    this.getFluidChoice(this.patientID),
+                        this.putLastCheck();
                 });
     }
 
@@ -209,11 +250,12 @@ export class WebService {
         postData.append("volInput", fluidBalance.volInput);
         postData.append("fluidOutput", fluidBalance.fluidOutput);
         postData.append("volOutput", fluidBalance.volOutput);
+        postData.append("user", fluidBalance.signature);
 
         let volInput = Number(fluidBalance.volInput);
         let volOutput = Number(fluidBalance.volOutput);
-        
-        let currentBalance = (volInput - volOutput );
+
+        let currentBalance = (volInput - volOutput);
 
         postData.append("currentBalance", String(currentBalance));
         postData.append("overallInput", String(volInput));
@@ -221,7 +263,7 @@ export class WebService {
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
-            today.getMonth() + "-" +
+            (today.getMonth() + 1) + "-" +
             today.getDate() + " " +
             today.getHours() + ":" +
             today.getMinutes() + ":" +
@@ -234,7 +276,8 @@ export class WebService {
             this.patientID + '/fluidBalance',
             postData).subscribe(
                 response => {
-                    this.getFluidBalance(this.patientID);
+                    this.getFluidBalance(this.patientID),
+                        this.putLastCheck();
                 });
     }
 
@@ -253,10 +296,11 @@ export class WebService {
     postOtherAssessments(otherAssessments) {
         let postData = new FormData();
         postData.append("vipScore", otherAssessments.vipScore);
+        postData.append("user", otherAssessments.signature);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
-            today.getMonth() + "-" +
+            (today.getMonth() + 1) + "-" +
             today.getDate() + " " +
             today.getHours() + ":" +
             today.getMinutes() + ":" +
@@ -269,7 +313,8 @@ export class WebService {
             this.patientID + '/otherAssessments',
             postData).subscribe(
                 response => {
-                    this.getOtherAssessments(this.patientID);
+                    this.getOtherAssessments(this.patientID),
+                        this.putLastCheck();
                 });
     }
 
@@ -289,10 +334,11 @@ export class WebService {
         postData.append("bloodSugarLevel", recordBloodSugar.bloodSugarLevel);
         postData.append("clinicalComment", recordBloodSugar.clinicalComment);
         postData.append("comment", recordBloodSugar.comment);
-        
+        postData.append("user", recordBloodSugar.signature);
+
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
-            today.getMonth() + "-" +
+            (today.getMonth() + 1) + "-" +
             today.getDate() + " " +
             today.getHours() + ":" +
             today.getMinutes() + ":" +
@@ -305,7 +351,8 @@ export class WebService {
             this.patientID + '/recordBloodSugar',
             postData).subscribe(
                 response => {
-                    this.getRecordBloodSugar(this.patientID);
+                    this.getRecordBloodSugar(this.patientID),
+                        this.putLastCheck();
                 });
     }
 }
