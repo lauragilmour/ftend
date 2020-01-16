@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 export class WebService {
 
     patientID;
+    choiceID;
 
     private patients_private_list;
     private patientsSubject = new Subject();
@@ -26,6 +27,10 @@ export class WebService {
     private fluidChoice_private_list;
     private fluidChoiceSubject = new Subject();
     fluidChoice_list = this.fluidChoiceSubject.asObservable();
+
+    private oneFluidChoice_private_list;
+    private oneFluidChoiceSubject = new Subject();
+    oneFluidChoice_list = this.oneFluidChoiceSubject.asObservable();
 
     private fluidBalance_private_list;
     private fluidBalanceSubject = new Subject();
@@ -83,6 +88,18 @@ export class WebService {
             postData).subscribe(
                 response => {
                     this.getPatient(this.patientID);
+                });
+    }
+
+    putChoice(){
+        let postData = new FormData();
+        postData.append("continue", "Discontinued")
+
+        this.http.put(
+            'http://localhost:5000/patient/' + this.patientID + '/fluidChoice/' + this.choiceID,
+            postData).subscribe(
+                response => {
+                    this.getFluidChoice(this.patientID);
                 });
     }
 
@@ -200,6 +217,17 @@ export class WebService {
                 this.patientID = id;
             }
             )
+    }
+  
+    getOneFluidChoice(bid, rid) {
+        return this.http.get('http://localhost:5000/patient/' + bid + '/fluidChoice/' + rid)
+            .subscribe(response => {
+                this.oneFluidChoice_private_list = [response];
+                this.oneFluidChoiceSubject.next(
+                    this.oneFluidChoice_private_list);
+                this.patientID = bid;
+                this.choiceID = rid;
+            })
     }
 
     postFluidChoice(fluidChoice) {

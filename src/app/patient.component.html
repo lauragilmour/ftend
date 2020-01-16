@@ -122,6 +122,8 @@
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
+                    <th>Discontinue?</th>
+                    <th>Treatment</th>
                     <th>ElectrolytesAvailable</th>
                     <th>SerumSodiumRange</th>
                     <th>SerumPotasiumRange</th>
@@ -132,7 +134,9 @@
                     <th>TimeStamp</th>
                     <th>User</th>
                 </tr>
-                <tr *ngFor="let fluidChoice of webService.fluidChoice_list | async">
+                <tr *ngFor="let fluidChoice of webService.fluidChoice_list | async" [routerLink]="['fluidChoice', fluidChoice._id]">
+                    <button >Discontinue</button>
+                    <td>{{fluidChoice.continue}}</td>
                     <td>{{ fluidChoice.electrolytesAvailable }}</td>
                     <td>{{ fluidChoice.serumSodiumRange }}</td>
                     <td>{{ fluidChoice.serumPotasiumRange }}</td>

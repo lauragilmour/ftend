@@ -14,6 +14,7 @@ import { AuthService } from 'src/auth-service';
 import { AgeComponent } from './age.component';
 import { FluidCalculatorComponent } from './fluidCalculator.component';
 import { FluidChoiceComponent } from './fluidChoice.component';
+import { DiscontinueComponent } from './discontinue.component';
 import { FluidBalanceComponent } from './fluidBalance.component';
 import { OtherAssessmentsComponent } from './otherAssessments.component';
 import { RecordBloodSugarComponent } from './recordBloodSugar.component';
@@ -48,6 +49,10 @@ var routes = [
     component: FluidChoiceComponent
   },
   {
+    path: 'patient/:bid/fluidChoice/:rid',
+    component: DiscontinueComponent
+  },
+  {
     path: 'patient/:id/fluidBalance',
     component: FluidBalanceComponent
   },
@@ -67,7 +72,7 @@ var routes = [
     PatientsComponent, NavComponent, AgeComponent,
     OtherAssessmentsComponent, RecordBloodSugarComponent,
     FluidCalculatorComponent, FluidBalanceComponent,
-    FluidChoiceComponent 
+    FluidChoiceComponent, DiscontinueComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

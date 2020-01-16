@@ -1,0 +1,49 @@
+<div class="jumbotron">
+    <h5>Discontinue Treatment</h5>
+    <h5>Patient Details</h5>
+    <div *ngFor="let patient of webService.patient_list | async">
+        <h6>HSCNumber: {{patient.hscNumber}}</h6>
+        <h6>Name: {{patient.name}}</h6>
+        <h6>DOB: {{patient.dob}}</h6>
+        <h6 id="prevdate">Last Assessment: {{patient.lastCheck}}</h6>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" *ngFor="let fluidChoice of webService.oneFluidChoice_list | async">
+            <form [formGroup]="choiceForm" (ngSubmit)="onSubmit()">
+                <div class="form-group" >
+                    Treatment: {{fluidChoice.continue}}
+                    <hr>
+                    ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
+                    <hr>
+                    SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
+                    <hr>
+                    SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
+                    <hr>
+                    IvFluidType: {{ fluidChoice.ivFluidType }}
+                    <hr>
+                    IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
+                    <hr>
+                    IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
+                    <hr>
+                    SampleObtained: {{ fluidChoice.sampleObtained }}
+                    <hr>
+                    TimeStamp: {{ fluidChoice.timeStamp }}
+                    <hr>
+                    User: {{ fluidChoice.user }}
+                    <hr>
+                </div>
+                <button type="submit" class="btn btn-danger">Discontinue</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+            class="btn btn-primary" role="button">Return to Patient</a>
+    </div>
+</div>
