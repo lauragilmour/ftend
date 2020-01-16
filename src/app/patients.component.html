@@ -11,11 +11,13 @@
                     <div class="card-header">
                         H&SC Number: {{patient.hscNumber}}
                     </div>
-                    <div class="card-body">
+                    <div id="prevdate" class="card-body">
                         Name: {{patient.name}}
+                        <hr>
+                        DOB: {{patient.dob}}
                     </div>
                     <div class="card-footer">
-                        DOB: {{patient.dob}}
+                        Time of last Assessment: {{patient.lastCheck}}
                     </div>
                 </div>
             </div>

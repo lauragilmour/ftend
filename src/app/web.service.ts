@@ -77,7 +77,7 @@ export class WebService {
             today.getSeconds();
 
         postData.append("lastCheck", todayDate);
-
+        console.log(todayDate);
         this.http.put(
             'http://localhost:5000/patient/' + this.patientID,
             postData).subscribe(
