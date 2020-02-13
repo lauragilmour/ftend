@@ -16,6 +16,8 @@ import { FluidCalculatorComponent } from './fluidCalculator.component';
 import { FluidChoiceComponent } from './fluidChoice.component';
 import { DiscontinueComponent } from './discontinue.component';
 import { FluidBalanceComponent } from './fluidBalance.component';
+import { FluidInputComponent } from './fluidInput.component';
+import { FluidOutputComponent } from './fluidOutput.component';
 import { OtherAssessmentsComponent } from './otherAssessments.component';
 import { RecordBloodSugarComponent } from './recordBloodSugar.component';
 import { IgxExpansionPanelModule } from 'igniteui-angular';
@@ -57,6 +59,14 @@ var routes = [
     component: FluidBalanceComponent
   },
   {
+    path: 'patient/:id/fluidInput',
+    component: FluidInputComponent
+  },
+  {
+    path: 'patient/:id/fluidOutput',
+    component: FluidOutputComponent
+  },
+  {
     path: 'patient/:id/otherAssessments',
     component: OtherAssessmentsComponent
   },
@@ -72,7 +82,8 @@ var routes = [
     PatientsComponent, NavComponent, AgeComponent,
     OtherAssessmentsComponent, RecordBloodSugarComponent,
     FluidCalculatorComponent, FluidBalanceComponent,
-    FluidChoiceComponent, DiscontinueComponent
+    FluidChoiceComponent, DiscontinueComponent, FluidInputComponent,
+    FluidOutputComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

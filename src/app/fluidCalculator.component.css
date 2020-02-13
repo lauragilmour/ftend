@@ -1,1 +1,5 @@
 .error { background-color: #fff0f0; }
+div.sticky{
+    position: sticky;
+    bottom: 0;
+}

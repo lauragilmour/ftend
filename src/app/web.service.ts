@@ -36,6 +36,14 @@ export class WebService {
     private fluidBalanceSubject = new Subject();
     fluidBalance_list = this.fluidBalanceSubject.asObservable();
 
+    private fluidInput_private_list;
+    private fluidInputSubject = new Subject();
+    fluidInput_list = this.fluidInputSubject.asObservable();
+
+    private fluidOutput_private_list;
+    private fluidOutputSubject = new Subject();
+    fluidOutput_list = this.fluidOutputSubject.asObservable();
+
     private otherAssessments_private_list;
     private otherAssessmentsSubject = new Subject();
     otherAssessments_list = this.otherAssessmentsSubject.asObservable();
@@ -91,9 +99,19 @@ export class WebService {
                 });
     }
 
-    putChoice(){
+    putChoice(signature){
         let postData = new FormData();
-        postData.append("continue", "Discontinued")
+
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            (today.getMonth() + 1) + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("continue", "Stopped on " + todayDate + " by " + signature.signature)
+
 
         this.http.put(
             'http://localhost:5000/patient/' + this.patientID + '/fluidChoice/' + this.choiceID,
@@ -305,6 +323,82 @@ export class WebService {
             postData).subscribe(
                 response => {
                     this.getFluidBalance(this.patientID),
+                        this.putLastCheck();
+                });
+    }
+
+    
+    getFluidInput(id) {
+        return this.http.get('http://localhost:5000/patient/' + id + '/fluidInputs')
+            .subscribe(response => {
+                this.fluidInput_private_list = response;
+                this.fluidInputSubject.next(
+                    this.fluidInput_private_list);
+                this.patientID = id;
+            }
+            )
+    }
+
+    postFluidInput(fluidInput) {
+        let postData = new FormData();
+        postData.append("fluidInput", fluidInput.fluidInput);
+        postData.append("volInput", fluidInput.volInput);
+        postData.append("user", fluidInput.signature);
+
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            (today.getMonth() + 1) + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
+
+        this.http.post(
+            'http://localhost:5000/patient/' +
+            this.patientID + '/fluidInputs',
+            postData).subscribe(
+                response => {
+                    this.getFluidInput(this.patientID),
+                        this.putLastCheck();
+                });
+    }
+
+    
+    getFluidOutput(id) {
+        return this.http.get('http://localhost:5000/patient/' + id + '/fluidOutputs')
+            .subscribe(response => {
+                this.fluidOutput_private_list = response;
+                this.fluidOutputSubject.next(
+                    this.fluidOutput_private_list);
+                this.patientID = id;
+            }
+            )
+    }
+
+    postFluidOutput(fluidOutput) {
+        let postData = new FormData();
+        postData.append("fluidOutput", fluidOutput.fluidOutput);
+        postData.append("volOutput", fluidOutput.volOutput);
+        postData.append("user", fluidOutput.signature);
+
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            (today.getMonth() + 1) + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
+
+        postData.append("timeStamp", todayDate);
+
+        this.http.post(
+            'http://localhost:5000/patient/' +
+            this.patientID + '/fluidOutputs',
+            postData).subscribe(
+                response => {
+                    this.getFluidOutput(this.patientID),
                         this.putLastCheck();
                 });
     }

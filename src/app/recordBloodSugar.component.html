@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label for="bloodSugarLevel">Blood Sugar Level*</label>
-                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+" name="bloodSugarLevel"
+                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+([.][0-9]+)?" step="0.1" name="bloodSugarLevel"
                         class="form-control" autocomplete="off" formControlName="bloodSugarLevel"
                         [ngClass]="{ 'error': isInvalid('bloodSugarLevel') }">
                 </div>
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div class="card">
+<div class="sticky" >
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

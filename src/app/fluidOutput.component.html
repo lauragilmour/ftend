@@ -1,5 +1,5 @@
-<div class="jumbotron">
-    <h5>Age</h5>
+<div class="jumbotron jumbotron-fluid">
+    <h5>Fluid Output</h5>
     <div *ngFor="let patient of webService.patient_list | async">
         <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
     </div>
@@ -8,21 +8,30 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <form [formGroup]="ageForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="fluidOutputForm" (ngSubmit)="onSubmit()">
+
                 <div class="form-group">
-                    <label for="age">Confirm age*</label>
-                    <select id="age" name="age" class="form-control" formControlName="age"
-                        [ngClass]="{ 'error': isInvalid('age') }">
-                        <option value="Neonate">Neonate (0-28 days)</option>
-                        <option value="Child">Child (4 weeks up till 16th birthday</option>
+                    <label for="fluidOutput">Fluid Output*</label>
+                    <select id="fluidOutput" name="fluidOutput" class="form-control" formControlName="fluidOutput"
+                        [ngClass]="{ 'error': isInvalid('fluidOutput') }">
+                        <option value="Urine">Urine</option>
+                        <option value="Faeces">Faeces</option>
+                        <option value="Gastric">Gastric</option>
+                        <option value="Drain">Drain</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="volOutput">Volume Output*</label>
+                    <input type="volOutput" id="volOutput" autocomplete="off" pattern="[0-9]+" name="volOutput"
+                        class="form-control" formControlName="volOutput"
+                        [ngClass]="{ 'error': isInvalid('volOutput') }">
                 </div>
 
                 <div class="form-group">
                     <label for="signature">Signature*</label>
                     <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature"
-                        [ngClass]="{ 'error': isInvalid('signature') }">
+                        formControlName="signature" [ngClass]="{ 'error': isInvalid('signature') }">
                 </div>
 
                 <span *ngIf="isIncomplete()">
@@ -30,6 +39,7 @@
                     <hr>
                 </span>
                 <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+
             </form>
         </div>
     </div>

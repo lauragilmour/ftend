@@ -1,5 +1,12 @@
 .error { background-color: #fff0f0; }
 
+.custom {
+  width: 160px !important;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+
 #countdown {
     width: 100%;
   }

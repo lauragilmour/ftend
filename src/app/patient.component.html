@@ -25,21 +25,33 @@
     <div class="card text-center">
         <div class="card-body">
             <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id, 'age']"
-                class="btn btn-primary" role="button">Age</a>
+                class="btn btn-primary custom" role="button">Age</a>
             <a *ngFor="let patient of webService.patient_list | async"
-                [routerLink]="['/patient', patient._id, 'fluidCalculator']" class="btn btn-primary" role="button">Fluid
+                [routerLink]="['/patient', patient._id, 'fluidCalculator']" class="btn btn-primary custom"
+                role="button">Fluid
                 Calculator</a>
             <a *ngFor="let patient of webService.patient_list | async"
-                [routerLink]="['/patient', patient._id, 'fluidChoice']" class="btn btn-primary" role="button">Fluid
+                [routerLink]="['/patient', patient._id, 'fluidChoice']" class="btn btn-primary custom"
+                role="button">Fluid
                 Choice</a>
             <a *ngFor="let patient of webService.patient_list | async"
-                [routerLink]="['/patient', patient._id, 'fluidBalance']" class="btn btn-primary" role="button">Fluid
+                [routerLink]="['/patient', patient._id, 'fluidBalance']" class="btn btn-primary custom"
+                role="button">Fluid
                 Balance</a>
             <a *ngFor="let patient of webService.patient_list | async"
-                [routerLink]="['/patient', patient._id, 'otherAssessments']" class="btn btn-primary" role="button">Other
+                [routerLink]="['/patient', patient._id, 'fluidInput']" class="btn btn-primary custom"
+                role="button">Fluid
+                Input</a>
+            <a *ngFor="let patient of webService.patient_list | async"
+                [routerLink]="['/patient', patient._id, 'fluidOutput']" class="btn btn-primary custom"
+                role="button">Fluid
+                Output</a>
+            <a *ngFor="let patient of webService.patient_list | async"
+                [routerLink]="['/patient', patient._id, 'otherAssessments']" class="btn btn-primary custom"
+                role="button">Other
                 Assessments</a>
             <a *ngFor="let patient of webService.patient_list | async"
-                [routerLink]="['/patient', patient._id, 'recordBloodSugar']" class="btn btn-primary"
+                [routerLink]="['/patient', patient._id, 'recordBloodSugar']" class="btn btn-primary custom"
                 role="button">Record
                 Blood Sugar</a>
         </div>
@@ -122,21 +134,27 @@
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>Discontinue?</th>
+                    <th></th>
                     <th>Treatment</th>
-                    <th>ElectrolytesAvailable</th>
-                    <th>SerumSodiumRange</th>
-                    <th>SerumPotasiumRange</th>
-                    <th>IvFluidType</th>
-                    <th>IvFluidVolume</th>
-                    <th>IvFluidVolumeComment</th>
-                    <th>SampleObtained</th>
-                    <th>TimeStamp</th>
+                    <th>Electrolytes Available</th>
+                    <th>Serum Sodium Range</th>
+                    <th>Serum Potasium Range</th>
+                    <th>Iv Fluid Type</th>
+                    <th>Iv Fluid Volume</th>
+                    <th>Iv Fluid Volume Comment</th>
+                    <th>Sample Obtained</th>
+                    <th>Time Stamp</th>
                     <th>User</th>
                 </tr>
-                <tr *ngFor="let fluidChoice of webService.fluidChoice_list | async" [routerLink]="['fluidChoice', fluidChoice._id]">
-                    <button >Discontinue</button>
-                    <td>{{fluidChoice.continue}}</td>
+                <tr *ngFor="let fluidChoice of webService.fluidChoice_list | async"
+                    [routerLink]="['fluidChoice', fluidChoice._id]">
+                    <td *ngIf="fluidChoice.continue == 'In Progress'">
+                        <button>Stop</button>
+                    </td>
+                    <td *ngIf="fluidChoice.continue != 'In Progress'">
+                        <button disabled>Stop</button>
+                    </td>
+                    <td>{{ fluidChoice.continue }}</td>
                     <td>{{ fluidChoice.electrolytesAvailable }}</td>
                     <td>{{ fluidChoice.serumSodiumRange }}</td>
                     <td>{{ fluidChoice.serumPotasiumRange }}</td>
@@ -178,6 +196,51 @@
                     <td>{{ fluidBalance.overallOutput }}</td>
                     <td>{{ fluidBalance.timeStamp }}</td>
                     <td>{{ fluidBalance.user }}</td>
+                </tr>
+            </table>
+        </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Fluid Input
+        </mat-expansion-panel-header>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>Fluid Input Type</th>
+                    <th>Fluid Volume</th>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let fluidInput of webService.fluidInput_list | async">
+                    <td>{{ fluidInput.fluidInput }}</td>
+                    <td>{{ fluidInput.volInput }}</td>
+                    <td>{{ fluidInput.timeStamp }}</td>
+                    <td>{{ fluidInput.user }}</td>
+                </tr>
+            </table>
+        </div>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Fluid Output
+        </mat-expansion-panel-header>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <tr>
+                    <th>Fluid Output Type</th>
+                    <th>Fluid Volume</th>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                </tr>
+                <tr *ngFor="let fluidOutput of webService.fluidOutput_list | async">
+                    <td>{{ fluidOutput.fluidOutput }}</td>
+                    <td>{{ fluidOutput.volOutput }}</td>
+                    <td>{{ fluidOutput.timeStamp }}</td>
+                    <td>{{ fluidOutput.user }}</td>
                 </tr>
             </table>
         </div>

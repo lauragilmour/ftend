@@ -1,20 +1,19 @@
-<div class="navbar navbar-expand-sm bg-primary
- navbar-dark fixed-top">
-    <span class="navbar-brand">Fluid Monitoring Tool</span>
+<div class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+    <span class="navbar-brand text-dark">Fluid Monitoring Tool</span>
     <ul class="navbar-nav">
         <!-- *ngIf="authService.loggedIn"  -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" routerLink='/'>Home</a>
-        </li>
+        </li> -->
         <!-- *ngIf="authService.loggedIn"  -->
         <li class="nav-item">
-            <a class="nav-link" routerLink='/patients'>Patient List</a>
+            <a class="nav-link text-white" routerLink='/patients' >Patient List</a>
         </li>
     </ul>
 
-    <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" (click)="authService.login()">
+    <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" (click)="authService.login()" routerLink='/patients'>
         Log In</button>
-    <button *ngIf="authService.loggedIn" class="btn btn-outline-light" (click)="authService.logout()">
+    <button *ngIf="authService.loggedIn" class="btn btn-outline-light" (click)="authService.logout()" routerLink='/'>
         Log Out</button>
 
 
