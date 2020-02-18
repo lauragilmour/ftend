@@ -1,115 +1,100 @@
-<div class="jumbotron">
-    <h5>Fluid Calculator</h5>
-    <div *ngFor="let patient of webService.patient_list | async">
-            <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
-        </div>
+<div class="card-header">
+    <h6>Fluid Calculator</h6>
+    <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
+        HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
+    </div>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <form [formGroup]="fluidCalculatorForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="weight">Weight*</label>
-                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9.]+"
-                        class="form-control" formControlName="weight" [ngClass]="{ 'error': isInvalid('weight') }">
-                </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="weight">Weight*</label>
+                                    <input type="weight" id="weight" autocomplete="off" name="weight" pattern="[0-9.]+"
+                                        class="form-control" formControlName="weight"
+                                        [ngClass]="{ 'error': isInvalid('weight') }">
+                                </div>
 
-                <div class="form-group">
-                    <label for="measurement">Measurement Type*</label>
-                    <select id="measurement" name="measurement" class="form-control" formControlName="measurement"
-                        [ngClass]="{ 'error': isInvalid('measurement') }">
-                        <option value="Measured">Measured</option>
-                        <option value="Recent">Recent</option>
-                        <option value="Estimate">Estimate</option>
-                    </select>
-                </div>
+                                <div class="form-group">
+                                    <label for="measurement">Measurement Type*</label>
+                                    <select id="measurement" name="measurement" class="form-control"
+                                        formControlName="measurement" [ngClass]="{ 'error': isInvalid('measurement') }">
+                                        <option value="Measured">Measured</option>
+                                        <option value="Recent">Recent</option>
+                                        <option value="Estimate">Estimate</option>
+                                    </select>
+                                </div>
 
-                <div class="form-group">
-                    <label for="ueAvailable">UE Available*</label>
-                    <select id="ueAvailable" name="ueAvailable" class="form-control" formControlName="ueAvailable"
-                        [ngClass]="{ 'error': isInvalid('ueAvailable') }">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
+                                <div class="form-group">
+                                    <label for="ueAvailable">UE Available*</label>
+                                    <select id="ueAvailable" name="ueAvailable" class="form-control"
+                                        formControlName="ueAvailable" [ngClass]="{ 'error': isInvalid('ueAvailable') }">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
 
-                <div class="form-group">
-                    <label for="reasonIvFluids">Reason for IV Fluids*</label>
-                    <select id="reasonIvFluids" name="reasonIvFluids" class="form-control"
-                        formControlName="reasonIvFluids" [ngClass]="{ 'error': isInvalid('reasonIvFluids') }">
-                        <option value="Intractable Vomiting">Intractable Vomiting</option>
-                        <option value="Excessive Losses">Excessive Losses</option>
-                        <option value="Resp Compromise">Resp Compromise</option>
-                        <option value="Critically Unwell">Critically Unwell</option>
-                        <option value="Other (Specify)">Other (Specify)</option>
-                    </select>
-                </div>
+                                <div class="form-group">
+                                    <label for="reasonIvFluids">Reason for IV Fluids*</label>
+                                    <select id="reasonIvFluids" name="reasonIvFluids" class="form-control"
+                                        formControlName="reasonIvFluids"
+                                        [ngClass]="{ 'error': isInvalid('reasonIvFluids') }">
+                                        <option value="Intractable Vomiting">Intractable Vomiting</option>
+                                        <option value="Excessive Losses">Excessive Losses</option>
+                                        <option value="Resp Compromise">Resp Compromise</option>
+                                        <option value="Critically Unwell">Critically Unwell</option>
+                                        <option value="Other (Specify)">Other (Specify)</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    <label for="amount">Amount of Fluid Bolus*</label>
+                                    <select id="amount" name="amount" class="form-control" formControlName="amount"
+                                        [ngClass]="{ 'error': isInvalid('amount') }">
+                                        <option value="0">None</option>
+                                        <option value="10">1x10ml/kg</option>
+                                        <option value="20">2x10ml/kg</option>
+                                        <option value="20">1x20ml/kg</option>
+                                        <option value="40">2x20ml/kg</option>
+                                    </select>
+                                </div>
 
-                <div class="form-group">
-                    <label for="commentIv">Comment</label>
-                    <input type="commentIv" id="commentIv" autocomplete="off" name="commentIv" class="form-control"
-                        formControlName="commentIv">
-                </div>
+                                <div class="form-group">
+                                    <label for="percentageDehydration">Percentage of Dehydration*</label>
+                                    <select id="percentageDehydration" name="percentageDehydration" class="form-control"
+                                        formControlName="percentageDehydration"
+                                        [ngClass]="{ 'error': isInvalid('percentageDehydration') }">
+                                        <option value="0">0%</option>
+                                        <option value="3">3%</option>
+                                        <option value="5">5%</option>
+                                        <option value="8">8%</option>
+                                    </select>
+                                </div>
 
-                <div class="form-group">
-                    <label for="dehydration">Is there any Dehydration?*</label>
-                    <select id="dehydration" name="dehydration" class="form-control" formControlName="dehydration"
-                        [ngClass]="{ 'error': isInvalid('dehydration') }">
-                        <option value="No">No</option>
-                        <option value="Mild">Mild</option>
-                        <option value="Moderate">Moderate</option>
-                        <option value="Severe">Severe</option>
-                    </select>
-                </div>
+                                <div class="form-group">
+                                    <label for="commentAmount">Comment</label>
+                                    <input type="commentAmount" id="commentAmount" name="commentAmount"
+                                        class="form-control" formControlName="commentAmount" autocomplete="off">
+                                </div>
 
-                <div class="form-group">
-                    <label for="fluidBolus">Was Fluid Bolus required?*</label>
-                    <select id="fluidBolus" name="fluidBolus" class="form-control" formControlName="fluidBolus"
-                        [ngClass]="{ 'error': isInvalid('fluidBolus') }">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
+                                <div class="form-group">
+                                    <label for="signature">Signature*</label>
+                                    <input type="signature" id="signature" autocomplete="off" name="signature"
+                                        class="form-control" formControlName="signature"
+                                        [ngClass]="{ 'error': isInvalid('signature') }">
+                                </div>
 
-                <div class="form-group">
-                    <label for="amount">Amount of Fluid Bolus*</label>
-                    <select id="amount" name="amount" class="form-control" formControlName="amount"
-                        [ngClass]="{ 'error': isInvalid('amount') }">
-                        <option value="0">None</option>
-                        <option value="10">1x10ml/kg</option>
-                        <option value="20">2x10ml/kg</option>
-                        <option value="20">1x20ml/kg</option>
-                        <option value="40">2x20ml/kg</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="commentAmount">Comment</label>
-                    <input type="commentAmount" id="commentAmount" name="commentAmount" class="form-control"
-                        formControlName="commentAmount" autocomplete="off">
-                </div>
-
-                <div class="form-group">
-                    <label for="percentageDehydration">Percentage of Dehydration*</label>
-                    <select id="percentageDehydration" name="percentageDehydration" class="form-control"
-                        formControlName="percentageDehydration"
-                        [ngClass]="{ 'error': isInvalid('percentageDehydration') }">
-                        <option value="0">0%</option>
-                        <option value="3">3%</option>
-                        <option value="5">5%</option>
-                        <option value="8">8%</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="signature">Signature*</label>
-                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature"
-                        [ngClass]="{ 'error': isInvalid('signature') }">
-                </div>
-
-                <span *ngIf="isIncomplete()">
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="font-weight-bold" *ngIf="isIncomplete()">
                     You must complete all required (*) fields
                     <hr>
                 </span>
@@ -119,7 +104,7 @@
     </div>
 </div>
 
-<div class="sticky" >
+<div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

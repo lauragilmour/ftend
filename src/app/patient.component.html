@@ -1,6 +1,6 @@
-<div class="jumbotron">
+<div class="card-header">
     <h5>Patient Details</h5>
-    <div *ngFor="let patient of webService.patient_list | async">
+    <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
         <h6>HSCNumber: {{patient.hscNumber}}</h6>
         <h6>Name: {{patient.name}}</h6>
         <h6>DOB: {{patient.dob}}</h6>
@@ -96,12 +96,9 @@
                     <th>Measurement</th>
                     <th>UeAvailable</th>
                     <th>ReasonIvFluids</th>
-                    <th>CommentIv</th>
-                    <th>Dehydration</th>
-                    <th>FluidBolus</th>
                     <th>Amount</th>
-                    <th>CommentAmount</th>
                     <th>PercentageDehydration</th>
+                    <th>Comment</th>
                     <th>24hrPeriod</th>
                     <th>48hrPeriod</th>
                     <th>TimeStamp</th>
@@ -112,12 +109,9 @@
                     <td>{{ fluidCalculator.measurement }}</td>
                     <td>{{ fluidCalculator.ueAvailable }}</td>
                     <td>{{ fluidCalculator.reasonIvFluids }}</td>
-                    <td>{{ fluidCalculator.commentIv }}</td>
-                    <td>{{ fluidCalculator.dehydration }}</td>
-                    <td>{{ fluidCalculator.fluidBolus }}</td>
-                    <td>{{ fluidCalculator.amount }}</td>
+                    <td>{{ fluidCalculator.amount }}ml/kg</td>
+                    <td>{{ fluidCalculator.percentageDehydration }}%</td>
                     <td>{{ fluidCalculator.commentAmount }}</td>
-                    <td>{{ fluidCalculator.percentageDehydration }}</td>
                     <td>{{ fluidCalculator.twentyfourhrPeriod }}</td>
                     <td>{{ fluidCalculator.fourtyeighthrPeriod }}</td>
                     <td>{{ fluidCalculator.timeStamp }}</td>
@@ -176,26 +170,14 @@
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>FluidInput</th>
-                    <th>VolInput</th>
-                    <th>FluidOutput</th>
-                    <th>VolOutput</th>
+                    <th>TotalVolInput</th>
+                    <th>TotalVolOutput</th>
                     <th>CurrentBalance</th>
-                    <th>OverallInput</th>
-                    <th>OverallOutput</th>
-                    <th>TimeStamp</th>
-                    <th>User</th>
                 </tr>
                 <tr *ngFor="let fluidBalance of webService.fluidBalance_list | async">
-                    <td>{{ fluidBalance.fluidInput }}</td>
-                    <td>{{ fluidBalance.volInput }}</td>
-                    <td>{{ fluidBalance.fluidOutput }}</td>
-                    <td>{{ fluidBalance.volOutput }}</td>
+                    <td>{{ fluidBalance.totalVolInput }}</td>
+                    <td>{{ fluidBalance.totalVolOutput }}</td>
                     <td>{{ fluidBalance.currentBalance }}</td>
-                    <td>{{ fluidBalance.overallInput }}</td>
-                    <td>{{ fluidBalance.overallOutput }}</td>
-                    <td>{{ fluidBalance.timeStamp }}</td>
-                    <td>{{ fluidBalance.user }}</td>
                 </tr>
             </table>
         </div>

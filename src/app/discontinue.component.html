@@ -1,51 +1,68 @@
-<div class="jumbotron">
-    <h5>Discontinue Treatment</h5>
-    <h5>Patient Details</h5>
-    <div *ngFor="let patient of webService.patient_list | async">
-        <h6>HSCNumber: {{patient.hscNumber}}</h6>
-        <h6>Name: {{patient.name}}</h6>
-        <h6>DOB: {{patient.dob}}</h6>
-        <h6 id="prevdate">Last Assessment: {{patient.lastCheck}}</h6>
+<div class="card-header">
+    <h6>Stop Treatment</h6>
+    <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
+        HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
     </div>
 </div>
+
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12" *ngFor="let fluidChoice of webService.oneFluidChoice_list | async">
             <form [formGroup]="choiceForm" (ngSubmit)="onSubmit()">
-                <div class="form-group" >
-                    Treatment: {{fluidChoice.continue}}
-                    <hr>
-                    ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
-                    <hr>
-                    SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
-                    <hr>
-                    SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
-                    <hr>
-                    IvFluidType: {{ fluidChoice.ivFluidType }}
-                    <hr>
-                    IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
-                    <hr>
-                    IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
-                    <hr>
-                    SampleObtained: {{ fluidChoice.sampleObtained }}
-                    <hr>
-                    TimeStamp: {{ fluidChoice.timeStamp }}
-                    <hr>
-                    User: {{ fluidChoice.user }}
-                    <hr>
-                    <label for="signature">Signature*</label>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>
+
+                                <div class="form-group">
+                                    Treatment: {{fluidChoice.continue}}
+                                    <hr>
+                                    ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
+                                    <hr>
+                                    SerumSodiumRange: {{ fluidChoice.serumSodiumRange }}
+                                    <hr>
+                                    SerumPotasiumRange: {{ fluidChoice.serumPotasiumRange }}
+                                    <hr>
+                                    TimeStamp: {{ fluidChoice.timeStamp }}
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    IvFluidType: {{ fluidChoice.ivFluidType }}
+                                    <hr>
+                                    IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
+                                    <hr>
+                                    IvFluidVolumeComment: {{ fluidChoice.ivFluidVolumeComment }}
+                                    <hr>
+                                    SampleObtained: {{ fluidChoice.sampleObtained }}
+                                    <hr>
+                                    User: {{ fluidChoice.user }}
+                                </div>
+
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <label class="font-weight-bold" for="signature">Signature*</label>
                     <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature"
-                        [ngClass]="{ 'error': isInvalid('signature') }">
+                        formControlName="signature" [ngClass]="{ 'error': isInvalid('signature') }">
                 </div>
-                <button *ngIf="!isIncomplete()"  id="discontinueButton" type="submit" class="btn btn-primary">Discontinue</button>
+                <span class="font-weight-bold" *ngIf="isIncomplete()">
+                    You must complete all required (*) fields
+                    <hr>
+                </span>
+
+                <button *ngIf="!isIncomplete()" id="discontinueButton" type="submit"
+                    class="btn btn-primary">Discontinue</button>
             </form>
         </div>
     </div>
 </div>
 
-<div class="sticky" >
+<div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

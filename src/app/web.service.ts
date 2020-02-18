@@ -99,7 +99,7 @@ export class WebService {
                 });
     }
 
-    putChoice(signature){
+    putChoice(signature) {
         let postData = new FormData();
 
         let today = new Date();
@@ -176,9 +176,6 @@ export class WebService {
         postData.append("measurement", fluidCalculator.measurement);
         postData.append("ueAvailable", fluidCalculator.ueAvailable);
         postData.append("reasonIvFluids", fluidCalculator.reasonIvFluids);
-        postData.append("commentIv", fluidCalculator.commentIv);
-        postData.append("dehydration", fluidCalculator.dehydration);
-        postData.append("fluidBolus", fluidCalculator.fluidBolus);
         postData.append("amount", fluidCalculator.amount);
         postData.append("commentAmount", fluidCalculator.commentAmount);
         postData.append("percentageDehydration", fluidCalculator.percentageDehydration);
@@ -198,10 +195,7 @@ export class WebService {
         else {
             twentyfourhrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) / 24);
             fourtyeighthrPeriod = (((weight * percentageDehydration * 10) - (amount * weight)) / 48);
-            console.log("other" + percentageDehydration)
         }
-
-
 
         postData.append("twentyfourhrPeriod", String(twentyfourhrPeriod));
         postData.append("fourtyeighthrPeriod", String(fourtyeighthrPeriod));
@@ -236,7 +230,7 @@ export class WebService {
             }
             )
     }
-  
+
     getOneFluidChoice(bid, rid) {
         return this.http.get('http://localhost:5000/patient/' + bid + '/fluidChoice/' + rid)
             .subscribe(response => {
@@ -290,32 +284,19 @@ export class WebService {
             )
     }
 
-    postFluidBalance(fluidBalance) {
+    postFluidBalance() {
         let postData = new FormData();
-        postData.append("fluidInput", fluidBalance.fluidInput);
-        postData.append("volInput", fluidBalance.volInput);
-        postData.append("fluidOutput", fluidBalance.fluidOutput);
-        postData.append("volOutput", fluidBalance.volOutput);
-        postData.append("user", fluidBalance.signature);
+        let volInput = Number(7);
+        let volOutput = Number(5);
 
-        let volInput = Number(fluidBalance.volInput);
-        let volOutput = Number(fluidBalance.volOutput);
+        console.log(volInput)
+        console.log(volOutput)
 
-        let currentBalance = (volInput - volOutput);
-
+        let currentBalance = Number(volInput - volOutput);
+        console.log(currentBalance)
         postData.append("currentBalance", String(currentBalance));
-        postData.append("overallInput", String(volInput));
-        postData.append("overallOutput", String(volOutput));
-
-        let today = new Date();
-        let todayDate = today.getFullYear() + "-" +
-            (today.getMonth() + 1) + "-" +
-            today.getDate() + " " +
-            today.getHours() + ":" +
-            today.getMinutes() + ":" +
-            today.getSeconds();
-
-        postData.append("timeStamp", todayDate);
+        postData.append("totalVolInput", String(volInput));
+        postData.append("totalVolOutput", String(volOutput));
 
         this.http.post(
             'http://localhost:5000/patient/' +
@@ -327,7 +308,30 @@ export class WebService {
                 });
     }
 
-    
+    putFluidBalance() {
+        let postData = new FormData();
+        let volInput = Number(7);
+        let volOutput = Number(5);
+
+        console.log(volInput)
+        console.log(volOutput)
+
+        let currentBalance = Number(volInput - volOutput);
+        console.log(currentBalance)
+        postData.append("currentBalance", String(currentBalance));
+        postData.append("totalVolInput", String(volInput));
+        postData.append("totalVolOutput", String(volOutput));
+
+        this.http.put(
+            'http://localhost:5000/patient/' +
+            this.patientID + '/fluidBalance',
+            postData).subscribe(
+                response => {
+                    this.getFluidBalance(this.patientID),
+                        this.putLastCheck();
+                });
+    }
+
     getFluidInput(id) {
         return this.http.get('http://localhost:5000/patient/' + id + '/fluidInputs')
             .subscribe(response => {
@@ -365,7 +369,7 @@ export class WebService {
                 });
     }
 
-    
+
     getFluidOutput(id) {
         return this.http.get('http://localhost:5000/patient/' + id + '/fluidOutputs')
             .subscribe(response => {

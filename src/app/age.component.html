@@ -1,7 +1,7 @@
-<div class="jumbotron">
-    <h5>Age</h5>
-    <div *ngFor="let patient of webService.patient_list | async">
-        <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
+<div class="card-header">
+    <h6>Age</h6>
+    <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
+        HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
     </div>
 </div>
 
@@ -9,23 +9,30 @@
     <div class="row">
         <div class="col-sm-12">
             <form [formGroup]="ageForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="age">Confirm age*</label>
-                    <select id="age" name="age" class="form-control" formControlName="age"
-                        [ngClass]="{ 'error': isInvalid('age') }">
-                        <option value="Neonate">Neonate (0-28 days)</option>
-                        <option value="Child">Child (4 weeks up till 16th birthday</option>
-                    </select>
-                </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="age">Confirm age*</label>
+                                    <select id="age" name="age" class="form-control" formControlName="age"
+                                        [ngClass]="{ 'error': isInvalid('age') }">
+                                        <option value="Neonate">Neonate (0-28 days)</option>
+                                        <option value="Child">Child (4 weeks up till 16th birthday</option>
+                                    </select>
+                                </div>
 
-                <div class="form-group">
-                    <label for="signature">Signature*</label>
-                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature"
-                        [ngClass]="{ 'error': isInvalid('signature') }">
-                </div>
-
-                <span *ngIf="isIncomplete()">
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="signature">Signature*</label>
+                                    <input type="signature" id="signature" autocomplete="off" name="signature"
+                                        class="form-control" formControlName="signature"
+                                        [ngClass]="{ 'error': isInvalid('signature') }">
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="font-weight-bold" *ngIf="isIncomplete()">
                     You must complete all required (*) fields
                     <hr>
                 </span>
@@ -35,7 +42,7 @@
     </div>
 </div>
 
-<div class="sticky" >
+<div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

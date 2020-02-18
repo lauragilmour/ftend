@@ -1,54 +1,68 @@
-<div class="jumbotron">
-    <h5>Record Blood Sugar</h5>
-    <div *ngFor="let patient of webService.patient_list | async">
-            <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
-        </div>
+<div class="card-header">
+    <h6>Record Blood Sugar</h6>
+    <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
+        HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
+    </div>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <form [formGroup]="recordBloodSugarForm" (ngSubmit)="onSubmit()">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="bloodSugarLevel">Blood Sugar Level*</label>
+                                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+([.][0-9]+)?"
+                                        step="0.1" name="bloodSugarLevel" class="form-control" autocomplete="off"
+                                        formControlName="bloodSugarLevel"
+                                        [ngClass]="{ 'error': isInvalid('bloodSugarLevel') }">
+                                </div>
+                                <div class="form-group">
+                                    <label for="clinicalComment">Clinical Comment*</label>
+                                    <select id="clinicalComment" name="clinicalComment" class="form-control"
+                                        formControlName="clinicalComment"
+                                        [ngClass]="{ 'error': isInvalid('clinicalComment') }">
+                                        <option value="Normal Result: No action taken">Normal Result: No action taken
+                                        </option>
+                                        <option value="Low Sugar: Extra feed given">Low Sugar: Extra feed given</option>
+                                        <option value="Low Sugar: IVbolus and infusion increased">Low Sugar: IVbolus and
+                                            infusion
+                                            increased</option>
+                                        <option value="Low Sugar: Hypopack taken">Low Sugar: Hypopack taken</option>
+                                        <option value="High Sugar: Insulin given">High Sugar: Insulin given</option>
+                                        <option value="High Sugar: Insulin commenced ">High Sugar: Insulin commenced
+                                        </option>
+                                        <option value="High Sugar: Urine check">High Sugar: Urine check</option>
+                                        <option value="High Sugar: Insulin infusion increased">High Sugar: Insulin
+                                            infusion increased
+                                        </option>
+                                        <option value="Other (please state)">Other (please state)</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th>
 
+                                <div class="form-group">
+                                    <label for="comment">Comment</label>
+                                    <input type="comment" id="comment" autocomplete="off" name="comment"
+                                        class="form-control" formControlName="comment">
+                                </div>
 
-                <div class="form-group">
-                    <label for="bloodSugarLevel">Blood Sugar Level*</label>
-                    <input type="bloodSugarLevel" id="bloodSugarLevel" pattern="[0-9]+([.][0-9]+)?" step="0.1" name="bloodSugarLevel"
-                        class="form-control" autocomplete="off" formControlName="bloodSugarLevel"
-                        [ngClass]="{ 'error': isInvalid('bloodSugarLevel') }">
-                </div>
+                                <div class="form-group">
+                                    <label  for="signature">Signature*</label>
+                                    <input type="signature" id="signature" autocomplete="off" name="signature"
+                                        class="form-control" formControlName="signature"
+                                        [ngClass]="{ 'error': isInvalid('signature') }">
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <div class="form-group">
-                    <label for="clinicalComment">Clinical Comment*</label>
-                    <select id="clinicalComment" name="clinicalComment" class="form-control"
-                        formControlName="clinicalComment" [ngClass]="{ 'error': isInvalid('clinicalComment') }">
-                        <option value="Normal Result: No action taken">Normal Result: No action taken</option>
-                        <option value="Low Sugar: Extra feed given">Low Sugar: Extra feed given</option>
-                        <option value="Low Sugar: IVbolus and infusion increased">Low Sugar: IVbolus and infusion
-                            increased</option>
-                        <option value="Low Sugar: Hypopack taken">Low Sugar: Hypopack taken</option>
-                        <option value="High Sugar: Insulin given">High Sugar: Insulin given</option>
-                        <option value="High Sugar: Insulin commenced ">High Sugar: Insulin commenced </option>
-                        <option value="High Sugar: Urine check">High Sugar: Urine check</option>
-                        <option value="High Sugar: Insulin infusion increased">High Sugar: Insulin infusion increased
-                        </option>
-                        <option value="Other (please state)">Other (please state)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Comment</label>
-                    <input type="comment" id="comment" autocomplete="off" name="comment" class="form-control"
-                        formControlName="comment">
-                </div>
-
-                <div class="form-group">
-                    <label for="signature">Signature*</label>
-                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature"
-                        [ngClass]="{ 'error': isInvalid('signature') }">
-                </div>
-
-                <span *ngIf="isIncomplete()">
+                <span class="font-weight-bold" *ngIf="isIncomplete()">
                     You must complete all required (*) fields
                     <hr>
                 </span>
@@ -59,7 +73,7 @@
     </div>
 </div>
 
-<div class="sticky" >
+<div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

@@ -1,7 +1,7 @@
-<div class="jumbotron">
-    <h5>Other Assessments</h5>
-    <div *ngFor="let patient of webService.patient_list | async">
-        <h6>HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}</h6>
+<div class="card-header">
+    <h6>Other Assessments</h6>
+    <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
+        HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
     </div>
 </div>
 
@@ -9,41 +9,53 @@
     <div class="row">
         <div class="col-sm-12">
             <form [formGroup]="otherAssessmentsForm" (ngSubmit)="onSubmit()">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label for="vipScore">VIP Score</label>
+                                    <img src="https://dm3omg1n1n7zx.cloudfront.net/rcni/static/journals/ns/22/52/ns2008.09.22.52.49.c6650/graphic/ns_v22_n52_6650_0004.jpg"
+                                        class="img-responsive" width="100%">
+                                </div>
+                            </th>
+                            <th>
 
-                <div class="form-group">
-                    <label for="vipScore">VIP Score</label>
-                    <img src="https://dm3omg1n1n7zx.cloudfront.net/rcni/static/journals/ns/22/52/ns2008.09.22.52.49.c6650/graphic/ns_v22_n52_6650_0004.jpg"
-                        class="img-responsive" width="100%">
-                    <label for="vipScore">VIP Score*</label>
-                    <select id="vipScore" name="vipScore" class="form-control" formControlName="vipScore"
-                        [ngClass]="{ 'error': isInvalid('vipScore') }">
-                        <option value="0">0 - No signs of phlebitis</option>
-                        <option value="1">1 - Possible first signs of phlebitis</option>
-                        <option value="2">2 - Early signs of phlebitis</option>
-                        <option value="3">3 - Medium stage of phlebitis</option>
-                        <option value="4">4 - Advanced stage of phlebitis or start of thrombophlebitis</option>
-                        <option value="5">5 - Advanced stage of thrombophlebitis</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="signature">Signature*</label>
-                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature" [ngClass]="{ 'error': isInvalid('signature') }">
-                </div>
+                                <label for="vipScore">VIP Score*</label>
+                                <select id="vipScore" name="vipScore" class="form-control" formControlName="vipScore"
+                                    [ngClass]="{ 'error': isInvalid('vipScore') }">
+                                    <option value="0">0 - No signs of phlebitis</option>
+                                    <option value="1">1 - Possible first signs of phlebitis</option>
+                                    <option value="2">2 - Early signs of phlebitis</option>
+                                    <option value="3">3 - Medium stage of phlebitis</option>
+                                    <option value="4">4 - Advanced stage of phlebitis or start of thrombophlebitis
+                                    </option>
+                                    <option value="5">5 - Advanced stage of thrombophlebitis</option>
+                                </select>
+                                <div class="form-group">
+                                    <label for="signature">Signature*</label>
+                                    <input type="signature" id="signature" autocomplete="off" name="signature"
+                                        class="form-control" formControlName="signature"
+                                        [ngClass]="{ 'error': isInvalid('signature') }">
+                                </div>
+                                <span *ngIf="isIncomplete()">
+                                    You must complete all required (*) fields
+                                    <hr>
+                                </span>
+                                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
 
-                <span *ngIf="isIncomplete()">
-                    You must complete all required (*) fields
-                    <hr>
-                </span>
-                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
 
             </form>
         </div>
     </div>
 </div>
 
-<div class="sticky" >
+<div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

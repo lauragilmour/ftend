@@ -14,32 +14,8 @@ export class FluidBalanceComponent {
     fluidBalanceForm;
 
     onSubmit() {
-        console.log(this.fluidBalanceForm.value);
-        this.webService.postFluidBalance(this.fluidBalanceForm.value);
-        this.fluidBalanceForm.reset();
-    }
-
-    isInvalid(control) {
-        return this.fluidBalanceForm.controls[control].invalid &&
-            this.fluidBalanceForm.controls[control].touched;
-    }
-
-    isUnTouched() {
-        return this.fluidBalanceForm.controls.fluidInput.pristine ||
-        this.fluidBalanceForm.controls.volInput.pristine ||
-        this.fluidBalanceForm.controls.fluidOutput.pristine ||
-        this.fluidBalanceForm.controls.volOutput.pristine||
-        this.fluidBalanceForm.controls.signature.pristine;
-    }
-
-
-    isIncomplete() {
-        return this.isInvalid('fluidInput') ||
-            this.isInvalid('volInput') ||
-            this.isInvalid('fluidOutput') ||
-            this.isInvalid('volOutput') ||
-            this.isInvalid('signature') ||
-            this.isUnTouched();
+        console.log("Clicked")
+        this.webService.postFluidBalance();
     }
 
     constructor(private webService: WebService,
@@ -50,17 +26,18 @@ export class FluidBalanceComponent {
     ngOnInit() {
 
         this.fluidBalanceForm = this.formBuilder.group({
-            fluidInput: ['', Validators.required],
-            volInput: ['', Validators.required],
-            fluidOutput: ['', Validators.required],
-            volOutput: ['', Validators.required],
-            signature: ['', Validators.required]
         });
 
         this.webService.getPatient(
             this.route.snapshot.params.id);
 
         this.webService.getFluidBalance(
+            this.route.snapshot.params.id);
+
+        this.webService.getFluidInput(
+            this.route.snapshot.params.id);
+
+        this.webService.getFluidOutput(
             this.route.snapshot.params.id);
     }
 }
