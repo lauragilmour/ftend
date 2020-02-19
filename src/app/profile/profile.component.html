@@ -1,0 +1,18 @@
+<div class="card-header">
+    <h6>Profile</h6>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <pre *ngIf="auth.userProfile$ | async as profile">
+                <code>
+                    <ul class="list-group">
+                        <li id="name" class="list-group-item">Name: {{ profile.name | json }}</li>
+                        <li id="email" class="list-group-item">Email: {{ profile.email | json }}</li>                     
+                    </ul>
+                </code>
+            </pre>
+        </div>
+    </div>
+</div>

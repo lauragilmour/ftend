@@ -54,7 +54,6 @@ export class WebService {
 
     constructor(private http: HttpClient) { }
 
-
     getPatients() {
         return this.http.get(
             'http://localhost:5000/patient')
@@ -529,7 +528,7 @@ export class WebService {
 
     putDelBalance(balance){
         let postData = new FormData();
-        
+
         postData.append("balance", balance)
         
         this.http.put(

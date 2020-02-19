@@ -1,9 +1,11 @@
-<div class="jumbotron">
-    <h5>Home</h5>
-    <br>
-    <button class="btn btn-primary" (click)="authService.login()" *ngIf="!authService.loggedIn">
-        Log In</button>
-    <button class="btn btn-primary" (click)="authService.logout()" *ngIf="authService.loggedIn">
-        Log Out</button>
+<div class="card-header">
+    <h6>Home</h6>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <label class="font-weight-bold" *ngIf="!authService.loggedIn" for="loginrequired">Login Required to access the Fluid Monitoring Tool</label>
+        </div>
+    </div>
 </div>

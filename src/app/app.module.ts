@@ -25,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ChartsModule } from 'ng2-charts';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './auth.guard';
 
 var routes = [
   {
@@ -32,48 +34,64 @@ var routes = [
     component: HomeComponent
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'patients',
-    component: PatientsComponent
+    component: PatientsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id',
-    component: PatientComponent
+    component: PatientComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/age',
-    component: AgeComponent
+    component: AgeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidCalculator',
-    component: FluidCalculatorComponent
+    component: FluidCalculatorComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidChoice',
-    component: FluidChoiceComponent
+    component: FluidChoiceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:bid/fluidChoice/:rid',
-    component: DiscontinueComponent
+    component: DiscontinueComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidBalance',
-    component: FluidBalanceComponent
+    component: FluidBalanceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidInput',
-    component: FluidInputComponent
+    component: FluidInputComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidOutput',
-    component: FluidOutputComponent
+    component: FluidOutputComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/otherAssessments',
-    component: OtherAssessmentsComponent
+    component: OtherAssessmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/recordBloodSugar',
-    component: RecordBloodSugarComponent
+    component: RecordBloodSugarComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -84,7 +102,8 @@ var routes = [
     OtherAssessmentsComponent, RecordBloodSugarComponent,
     FluidCalculatorComponent, FluidBalanceComponent,
     FluidChoiceComponent, DiscontinueComponent, FluidInputComponent,
-    FluidOutputComponent
+    FluidOutputComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
