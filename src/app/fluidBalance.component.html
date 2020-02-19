@@ -5,6 +5,22 @@
     </div>
 </div>
 
+<div *ngIf="chartReady">
+    <div style="display: block">
+        <canvas id="pichart" baseChart [datasets]="barChartDatapi" [labels]="barChartLabelspi" 
+             [chartType]="barChartTypepi">
+        </canvas>
+    </div>
+</div>
+
+<div *ngIf="chartReady">
+    <div style="display: block">
+        <canvas id="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" 
+             [chartType]="barChartType">
+        </canvas>
+    </div>
+</div>
+
 <div class="card-header">
     <form [formGroup]="fluidBalanceForm" (ngSubmit)="onSubmit()">
         <button type="submit" class="btn btn-primary">Calculate Balance</button>
@@ -18,10 +34,10 @@
             <th>TotalVolOutput</th>
             <th>CurrentBalance</th>
         </tr>
-        <tr *ngFor="let fluidBalance of webService.fluidBalance_list | async">
-            <td>{{ fluidBalance.totalVolInput }}</td>
-            <td>{{ fluidBalance.totalVolOutput }}</td>
-            <td>{{ fluidBalance.currentBalance }}</td>
+        <tr *ngFor="let patient of webService.patient_list | async">
+            <td id="input">{{ patient.addBalance }}</td>
+            <td id="output">{{ patient.delBalance }}</td>
+            <td id="balance">{{ patient.balance }}</td>
         </tr>
     </table>
 </div>
@@ -40,9 +56,9 @@
             <td>{{ fluidInput.timeStamp }}</td>
             <td>{{ fluidInput.user }}</td>
         </tr>
-        <tr>
+        <tr *ngFor="let patient of webService.patient_list | async">
             <td>Total</td>
-            <td>Sum of fluid input</td>
+            <td>{{ patient.addBalance }}</td>
         </tr>
     </table>
 </div>
@@ -61,9 +77,9 @@
             <td>{{ fluidOutput.timeStamp }}</td>
             <td>{{ fluidOutput.user }}</td>
         </tr>
-        <tr>
+        <tr *ngFor="let patient of webService.patient_list | async">
             <td>Total</td>
-            <td>Sum of fluid output</td>
+            <td>{{ patient.delBalance }}</td>
         </tr>
     </table>
 </div>

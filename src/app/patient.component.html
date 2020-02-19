@@ -34,10 +34,10 @@
                 [routerLink]="['/patient', patient._id, 'fluidChoice']" class="btn btn-primary custom"
                 role="button">Fluid
                 Choice</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+            <!-- <a *ngFor="let patient of webService.patient_list | async"
                 [routerLink]="['/patient', patient._id, 'fluidBalance']" class="btn btn-primary custom"
                 role="button">Fluid
-                Balance</a>
+                Balance</a> -->
             <a *ngFor="let patient of webService.patient_list | async"
                 [routerLink]="['/patient', patient._id, 'fluidInput']" class="btn btn-primary custom"
                 role="button">Fluid
@@ -165,21 +165,34 @@
 
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-            Fluid Balance Review
+            Balance
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>TotalVolInput</th>
-                    <th>TotalVolOutput</th>
-                    <th>CurrentBalance</th>
+                    <th>Overall Input</th>
+                    <th>Overall Output</th>
+                    <th>Balance</th>
                 </tr>
-                <tr *ngFor="let fluidBalance of webService.fluidBalance_list | async">
-                    <td>{{ fluidBalance.totalVolInput }}</td>
-                    <td>{{ fluidBalance.totalVolOutput }}</td>
-                    <td>{{ fluidBalance.currentBalance }}</td>
+                <tr *ngFor="let patient of webService.patient_list | async">
+                    <td>{{ patient.addBalance }}</td>
+                    <td>{{ patient.delBalance }}</td>
+                    <td>{{ patient.balance }}</td>
+                    
                 </tr>
             </table>
+        </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            Fluid Balance Review
+        </mat-expansion-panel-header>
+        <div class="table-responsive">
+            <a *ngFor="let patient of webService.patient_list | async"
+            [routerLink]="['/patient', patient._id, 'fluidBalance']" class="btn btn-primary custom"
+            role="button">View Fluid
+            Balance</a>
         </div>
     </mat-expansion-panel>
 

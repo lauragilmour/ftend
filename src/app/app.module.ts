@@ -24,6 +24,7 @@ import { IgxExpansionPanelModule } from 'igniteui-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ChartsModule } from 'ng2-charts';
 
 var routes = [
   {
@@ -90,7 +91,7 @@ var routes = [
     AppRoutingModule, RouterModule.forRoot(routes),
     ReactiveFormsModule, IgxExpansionPanelModule,
     BrowserAnimationsModule, MatExpansionModule, 
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule, ChartsModule
   ],
   providers: [WebService, AuthService],
   bootstrap: [AppComponent]

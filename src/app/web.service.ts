@@ -365,7 +365,9 @@ export class WebService {
             postData).subscribe(
                 response => {
                     this.getFluidInput(this.patientID),
-                        this.putLastCheck();
+                        this.putLastCheck(),
+                        this.putBalanceAdd(fluidInput.volInput),
+                        this.putAddBalance(fluidInput.volInput);
                 });
     }
 
@@ -403,7 +405,9 @@ export class WebService {
             postData).subscribe(
                 response => {
                     this.getFluidOutput(this.patientID),
-                        this.putLastCheck();
+                        this.putLastCheck(),
+                        this.putDelBalance(fluidOutput.volOutput),
+                        this.putBalanceDel(fluidOutput.volOutput);
                 });
     }
 
@@ -479,6 +483,60 @@ export class WebService {
                 response => {
                     this.getRecordBloodSugar(this.patientID),
                         this.putLastCheck();
+                });
+    }
+
+    putBalanceAdd(balance){
+        let postData = new FormData();
+
+        postData.append("balance", balance)
+
+        this.http.put(
+            'http://localhost:5000/patient/' + this.patientID + '/editBalance',
+            postData).subscribe(
+                response => {
+                    this.getPatient(this.patientID);
+                });
+    }
+
+    putBalanceDel(balance){
+        let postData = new FormData();      
+        let num = Number(balance);
+        let negNum = -Math.abs(num)
+
+        postData.append("balance", String(negNum))
+
+        this.http.put(
+            'http://localhost:5000/patient/' + this.patientID + '/editBalance',
+            postData).subscribe(
+                response => {
+                    this.getPatient(this.patientID);
+                });
+    }
+
+    putAddBalance(balance){
+        let postData = new FormData();
+
+        postData.append("balance", balance)
+        
+        this.http.put(
+            'http://localhost:5000/patient/' + this.patientID + '/addBalance',
+            postData).subscribe(
+                response => {
+                    this.getPatient(this.patientID);
+                });
+    }
+
+    putDelBalance(balance){
+        let postData = new FormData();
+        
+        postData.append("balance", balance)
+        
+        this.http.put(
+            'http://localhost:5000/patient/' + this.patientID + '/delBalance',
+            postData).subscribe(
+                response => {
+                    this.getPatient(this.patientID);
                 });
     }
 }
