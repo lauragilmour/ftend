@@ -5,26 +5,21 @@
     </div>
 </div>
 
-<div *ngIf="chartReady">
+
+<div *ngFor="let patient of webService.patient_list | async">
     <div style="display: block">
-        <canvas id="pichart" baseChart [datasets]="barChartDatapi" [labels]="barChartLabelspi" 
-             [chartType]="barChartTypepi">
+        <canvas id="chart" baseChart [chartType]="barChartTypepi" [datasets]="[{ data: [patient.addBalance, patient.delBalance] }]"
+            [labels]="barChartLabelspi" >
         </canvas>
     </div>
 </div>
 
-<div *ngIf="chartReady">
+<div *ngFor="let patient of webService.patient_list | async">
     <div style="display: block">
-        <canvas id="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" 
-             [chartType]="barChartType">
+        <canvas id="chart" baseChart [chartType]="barChartType" [datasets]="[{ data: [patient.addBalance, -patient.delBalance, patient.balance] }]" 
+            [labels]="barChartLabels" >
         </canvas>
     </div>
-</div>
-
-<div class="card-header">
-    <form [formGroup]="fluidBalanceForm" (ngSubmit)="onSubmit()">
-        <button type="submit" class="btn btn-primary">Calculate Balance</button>
-    </form>
 </div>
 
 <div class="table-responsive">
