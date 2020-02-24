@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'fluidChoice',
@@ -30,8 +31,7 @@ export class FluidChoiceComponent {
         this.fluidChoiceForm.controls.serumPotasiumRange.pristine ||
         this.fluidChoiceForm.controls.ivFluidType.pristine ||
         this.fluidChoiceForm.controls.ivFluidVolume.pristine ||
-        this.fluidChoiceForm.controls.sampleObtained.pristine ||
-        this.fluidChoiceForm.controls.signature.pristine;
+        this.fluidChoiceForm.controls.sampleObtained.pristine;
     }
 
     isIncomplete() {
@@ -41,13 +41,13 @@ export class FluidChoiceComponent {
             this.isInvalid('ivFluidType') ||
             this.isInvalid('ivFluidVolume') ||
             this.isInvalid('sampleObtained') ||
-            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
 
     ngOnInit() {
@@ -59,7 +59,7 @@ export class FluidChoiceComponent {
             ivFluidType: ['', Validators.required],
             ivFluidVolume: ['', Validators.required],
             sampleObtained: ['', Validators.required],
-            signature: ['', Validators.required],
+            signature: [''],
             ivFluidVolumeComment: ['']
         });
 

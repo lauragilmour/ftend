@@ -15,8 +15,8 @@
                             <th>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="fluidInput">Fluid Input*</label>
-                                    <select id="fluidInput" name="fluidInput" class="form-control" formControlName="fluidInput"
-                                        [ngClass]="{ 'error': isInvalid('fluidInput') }">
+                                    <select id="fluidInput" name="fluidInput" class="form-control"
+                                        formControlName="fluidInput" [ngClass]="{ 'error': isInvalid('fluidInput') }">
                                         <option value="Oral Intake">Oral Intake</option>
                                         <option value="Jejunal Feed">Jejunal Feed</option>
                                         <option value="Naso-gastric Feed">Naso-gastric Feed</option>
@@ -27,15 +27,19 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="volInput">Volume Input*</label>
-                                    <input type="volInput" id="volInput" autocomplete="off" pattern="[0-9]+" name="volInput"
-                                        class="form-control" formControlName="volInput" [ngClass]="{ 'error': isInvalid('volInput') }">
+                                    <input type="volInput" id="volInput" autocomplete="off" pattern="[0-9]+"
+                                        name="volInput" class="form-control" formControlName="volInput"
+                                        [ngClass]="{ 'error': isInvalid('volInput') }">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="signature">Signature*</label>
-                                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                                        formControlName="signature"
-                                        [ngClass]="{ 'error': isInvalid('signature') }">
+                                    <pre *ngIf="auth.userProfile$ | async as profile">
+                                        <code>
+                                            <input type="signature" id="signature" name="signature" class="form-control"
+                                        formControlName="signature" [ngModel]="profile.name | json" value="{{ profile.name | json }}" readonly >
+                                    </code>
+                                </pre>
                                 </div>
                             </th>
                         </tr>
@@ -52,7 +56,7 @@
     </div>
 </div>
 
-<div class="sticky" >
+<div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>

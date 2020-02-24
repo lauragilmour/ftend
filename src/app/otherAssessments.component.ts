@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'otherAssessments',
@@ -25,25 +26,24 @@ export class OtherAssessmentsComponent {
     }
 
     isUnTouched() {
-        return this.otherAssessmentsForm.controls.vipScore.pristine ||
-        this.otherAssessmentsForm.controls.signature.pristine;
+        return this.otherAssessmentsForm.controls.vipScore.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('vipScore') ||
-            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
     ngOnInit() {
 
         this.otherAssessmentsForm = this.formBuilder.group({
             vipScore: ['', Validators.required],
-            signature: ['', Validators.required]
+            signature: ['']
         });
 
         this.webService.getPatient(

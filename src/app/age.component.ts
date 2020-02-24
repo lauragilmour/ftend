@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'age',
@@ -25,26 +26,25 @@ export class AgeComponent {
     }
 
     isUnTouched() {
-        return this.ageForm.controls.age.pristine ||
-                this.ageForm.controls.signature.pristine;
+        return this.ageForm.controls.age.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('age') ||
-        this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
         
     ngOnInit() {
 
         this.ageForm = this.formBuilder.group({
             age: ['', Validators.required],
-            signature: ['', Validators.required]
+            signature: ['']
         });
 
         this.webService.getPatient(

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'fluidInput',
@@ -26,21 +27,20 @@ export class FluidInputComponent {
 
     isUnTouched() {
         return this.fluidInputForm.controls.fluidInput.pristine ||
-        this.fluidInputForm.controls.volInput.pristine ||
-        this.fluidInputForm.controls.signature.pristine;
+        this.fluidInputForm.controls.volInput.pristine;
     }
 
 
     isIncomplete() {
         return this.isInvalid('fluidInput') ||
             this.isInvalid('volInput') ||
-            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
 
     ngOnInit() {
@@ -48,7 +48,7 @@ export class FluidInputComponent {
         this.fluidInputForm = this.formBuilder.group({
             fluidInput: ['', Validators.required],
             volInput: ['', Validators.required],
-            signature: ['', Validators.required]
+            signature: ['']
         });
 
         this.webService.getPatient(

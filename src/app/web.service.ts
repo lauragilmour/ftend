@@ -108,9 +108,11 @@ export class WebService {
             today.getHours() + ":" +
             today.getMinutes() + ":" +
             today.getSeconds();
+         
+        var name = signature.signature;
+        var namey = name.slice(1, -1);
 
-        postData.append("continue", "Stopped on " + todayDate + " by " + signature.signature)
-
+        postData.append("continue", "Stopped on " + todayDate + " by " + namey)
 
         this.http.put(
             'http://localhost:5000/patient/' + this.patientID + '/fluidChoice/' + this.choiceID,
@@ -134,7 +136,11 @@ export class WebService {
     postAge(age) {
         let postData = new FormData();
         postData.append("age", age.age);
-        postData.append("user", age.signature);
+
+        var name = age.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
@@ -178,7 +184,11 @@ export class WebService {
         postData.append("amount", fluidCalculator.amount);
         postData.append("commentAmount", fluidCalculator.commentAmount);
         postData.append("percentageDehydration", fluidCalculator.percentageDehydration);
-        postData.append("user", fluidCalculator.signature);
+
+        var name = fluidCalculator.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
 
         let weight = Number(fluidCalculator.weight);
         let percentageDehydration = Number(fluidCalculator.percentageDehydration);
@@ -250,7 +260,11 @@ export class WebService {
         postData.append("ivFluidVolume", fluidChoice.ivFluidVolume);
         postData.append("ivFluidVolumeComment", fluidChoice.ivFluidVolumeComment);
         postData.append("sampleObtained", fluidChoice.sampleObtained);
-        postData.append("user", fluidChoice.signature);
+        
+        var name = fluidChoice.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
@@ -272,65 +286,6 @@ export class WebService {
                 });
     }
 
-    getFluidBalance(id) {
-        return this.http.get('http://localhost:5000/patient/' + id + '/fluidBalance')
-            .subscribe(response => {
-                this.fluidBalance_private_list = response;
-                this.fluidBalanceSubject.next(
-                    this.fluidBalance_private_list);
-                this.patientID = id;
-            }
-            )
-    }
-
-    postFluidBalance() {
-        let postData = new FormData();
-        let volInput = Number(7);
-        let volOutput = Number(5);
-
-        console.log(volInput)
-        console.log(volOutput)
-
-        let currentBalance = Number(volInput - volOutput);
-        console.log(currentBalance)
-        postData.append("currentBalance", String(currentBalance));
-        postData.append("totalVolInput", String(volInput));
-        postData.append("totalVolOutput", String(volOutput));
-
-        this.http.post(
-            'http://localhost:5000/patient/' +
-            this.patientID + '/fluidBalance',
-            postData).subscribe(
-                response => {
-                    this.getFluidBalance(this.patientID),
-                        this.putLastCheck();
-                });
-    }
-
-    putFluidBalance() {
-        let postData = new FormData();
-        let volInput = Number(7);
-        let volOutput = Number(5);
-
-        console.log(volInput)
-        console.log(volOutput)
-
-        let currentBalance = Number(volInput - volOutput);
-        console.log(currentBalance)
-        postData.append("currentBalance", String(currentBalance));
-        postData.append("totalVolInput", String(volInput));
-        postData.append("totalVolOutput", String(volOutput));
-
-        this.http.put(
-            'http://localhost:5000/patient/' +
-            this.patientID + '/fluidBalance',
-            postData).subscribe(
-                response => {
-                    this.getFluidBalance(this.patientID),
-                        this.putLastCheck();
-                });
-    }
-
     getFluidInput(id) {
         return this.http.get('http://localhost:5000/patient/' + id + '/fluidInputs')
             .subscribe(response => {
@@ -346,7 +301,11 @@ export class WebService {
         let postData = new FormData();
         postData.append("fluidInput", fluidInput.fluidInput);
         postData.append("volInput", fluidInput.volInput);
-        postData.append("user", fluidInput.signature);
+      
+        var name = fluidInput.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
@@ -386,7 +345,11 @@ export class WebService {
         let postData = new FormData();
         postData.append("fluidOutput", fluidOutput.fluidOutput);
         postData.append("volOutput", fluidOutput.volOutput);
-        postData.append("user", fluidOutput.signature);
+
+        var name = fluidOutput.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
@@ -425,7 +388,12 @@ export class WebService {
     postOtherAssessments(otherAssessments) {
         let postData = new FormData();
         postData.append("vipScore", otherAssessments.vipScore);
-        postData.append("user", otherAssessments.signature);
+        
+        var name = otherAssessments.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
+
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +
@@ -463,7 +431,11 @@ export class WebService {
         postData.append("bloodSugarLevel", recordBloodSugar.bloodSugarLevel);
         postData.append("clinicalComment", recordBloodSugar.clinicalComment);
         postData.append("comment", recordBloodSugar.comment);
-        postData.append("user", recordBloodSugar.signature);
+        
+        var name = recordBloodSugar.signature;
+        var namey = name.slice(1, -1);
+
+        postData.append("user", namey);
 
         let today = new Date();
         let todayDate = today.getFullYear() + "-" +

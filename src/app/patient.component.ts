@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'patient',
@@ -15,7 +16,8 @@ export class PatientComponent {
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
     responsive: true;
     scales: { xAxes: [{}], yAxes: [{}] };
@@ -91,9 +93,6 @@ export class PatientComponent {
             this.route.snapshot.params.id);
 
         this.webService.getFluidChoice(
-            this.route.snapshot.params.id);
-
-        this.webService.getFluidBalance(
             this.route.snapshot.params.id);
 
         this.webService.getFluidInput(

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'recordBloodSugar',
@@ -26,20 +27,19 @@ export class RecordBloodSugarComponent {
 
     isUnTouched() {
         return this.recordBloodSugarForm.controls.bloodSugarLevel.pristine ||
-        this.recordBloodSugarForm.controls.clinicalComment.pristine ||
-        this.recordBloodSugarForm.controls.signature.pristine;
+        this.recordBloodSugarForm.controls.clinicalComment.pristine;
     }
 
     isIncomplete() {
         return this.isInvalid('bloodSugarLevel') ||
             this.isInvalid('clinicalComment') ||
-            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
 
     ngOnInit() {
@@ -47,7 +47,7 @@ export class RecordBloodSugarComponent {
         this.recordBloodSugarForm = this.formBuilder.group({
             bloodSugarLevel: ['', Validators.required],
             clinicalComment: ['', Validators.required],
-            signature: ['', Validators.required],
+            signature: [''],
             comment: ['']
         });
 

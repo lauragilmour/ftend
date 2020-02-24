@@ -7,5 +7,6 @@ import { AuthService } from 'src/auth-service';
     styleUrls: []
 })
 export class NavComponent { 
-     constructor(private authService: AuthService) {}
+     constructor(private authService: AuthService,
+        public auth: AuthService) {}
 }

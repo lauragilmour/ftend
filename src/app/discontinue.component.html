@@ -47,15 +47,17 @@
 
                 <div class="form-group">
                     <label class="font-weight-bold" for="signature">Signature*</label>
-                    <input type="signature" id="signature" autocomplete="off" name="signature" class="form-control"
-                        formControlName="signature" [ngClass]="{ 'error': isInvalid('signature') }">
+                    <pre *ngIf="auth.userProfile$ | async as profile">
+                        <code>
+                            <input type="signature" id="signature" name="signature"
+                                    class="form-control" formControlName="signature" 
+                                    [ngModel]="profile.name | json" value="{{ profile.name | json }}"
+                                    readonly >
+                        </code>
+                    </pre>
                 </div>
-                <span class="font-weight-bold" *ngIf="isIncomplete()">
-                    You must complete all required (*) fields
-                    <hr>
-                </span>
 
-                <button *ngIf="!isIncomplete()" id="discontinueButton" type="submit"
+                <button id="discontinueButton" type="submit"
                     class="btn btn-primary">Discontinue</button>
             </form>
         </div>

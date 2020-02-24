@@ -8,6 +8,10 @@
             <a *ngIf="authService.loggedIn" class="nav-link text-white" routerLink="profile">Profile</a>
         </li>
         <li class="nav-item">
+            <pre *ngIf="auth.userProfile$ | async as profile"><code>
+            <a *ngIf="authService.loggedIn" class="nav-link text-white">Hello : {{ profile.name | json }} </a></code></pre>
+        </li>
+        <li class="nav-item">
             <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" (click)="authService.login()"
                 routerLink='/'>
                 Log In</button>

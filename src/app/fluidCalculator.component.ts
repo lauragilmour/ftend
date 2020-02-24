@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'fluidCalculator',
@@ -30,8 +31,7 @@ export class FluidCalculatorComponent {
             this.fluidCalculatorForm.controls.ueAvailable.pristine ||
             this.fluidCalculatorForm.controls.reasonIvFluids.pristine ||
             this.fluidCalculatorForm.controls.amount.pristine ||
-            this.fluidCalculatorForm.controls.percentageDehydration.pristine||
-            this.fluidCalculatorForm.controls.signature.pristine;
+            this.fluidCalculatorForm.controls.percentageDehydration.pristine;
     }
 
     isIncomplete() {
@@ -41,13 +41,13 @@ export class FluidCalculatorComponent {
             this.isInvalid('reasonIvFluids') ||
             this.isInvalid('amount') ||
             this.isInvalid('percentageDehydration') ||
-            this.isInvalid('signature') ||
             this.isUnTouched();
     }
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
 
     ngOnInit() {
@@ -60,7 +60,7 @@ export class FluidCalculatorComponent {
             amount: ['', Validators.required],
             commentAmount: [''],
             percentageDehydration: ['', Validators.required],
-            signature: ['', Validators.required]
+            signature: ['']
         });
 
         this.webService.getPatient(

@@ -34,10 +34,6 @@
                 [routerLink]="['/patient', patient._id, 'fluidChoice']" class="btn btn-primary custom"
                 role="button">Fluid
                 Choice</a>
-            <!-- <a *ngFor="let patient of webService.patient_list | async"
-                [routerLink]="['/patient', patient._id, 'fluidBalance']" class="btn btn-primary custom"
-                role="button">Fluid
-                Balance</a> -->
             <a *ngFor="let patient of webService.patient_list | async"
                 [routerLink]="['/patient', patient._id, 'fluidInput']" class="btn btn-primary custom"
                 role="button">Fluid
@@ -79,7 +75,7 @@
                 <tr *ngFor="let age of webService.age_list | async">
                     <td>{{ age.age }}</td>
                     <td>{{ age.timeStamp }}</td>
-                    <td>{{age.user}}</td>
+                    <td>{{ age.user }}</td>
                 </tr>
             </table>
         </div>
@@ -112,8 +108,8 @@
                     <td>{{ fluidCalculator.amount }}ml/kg</td>
                     <td>{{ fluidCalculator.percentageDehydration }}%</td>
                     <td>{{ fluidCalculator.commentAmount }}</td>
-                    <td>{{ fluidCalculator.twentyfourhrPeriod | number : '1.2-2'}}</td>
-                    <td>{{ fluidCalculator.fourtyeighthrPeriod | number : '1.2-2'}}</td>
+                    <td>{{ fluidCalculator.twentyfourhrPeriod | number : '1.2-2' }}</td>
+                    <td>{{ fluidCalculator.fourtyeighthrPeriod | number : '1.2-2' }}</td>
                     <td>{{ fluidCalculator.timeStamp }}</td>
                     <td>{{ fluidCalculator.user }}</td>
                 </tr>
@@ -279,9 +275,9 @@
                     <th>User</th>
                 </tr>
                 <tr *ngFor="let recordBloodSugar of webService.recordBloodSugar_list | async">
-                    <td>{{recordBloodSugar.bloodSugarLevel}}</td>
-                    <td>{{recordBloodSugar.comment}}</td>
-                    <td>{{recordBloodSugar.clinicalComment}}</td>
+                    <td>{{ recordBloodSugar.bloodSugarLevel }}</td>
+                    <td>{{ recordBloodSugar.comment }}</td>
+                    <td>{{ recordBloodSugar.clinicalComment }}</td>
                     <td>{{ recordBloodSugar.timeStamp }}</td>
                     <td>{{ recordBloodSugar.user }}</td>
                 </tr>

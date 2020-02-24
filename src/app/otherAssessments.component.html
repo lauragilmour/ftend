@@ -34,10 +34,15 @@
                                     <option value="5">5 - Advanced stage of thrombophlebitis</option>
                                 </select>
                                 <div class="form-group">
-                                    <label for="signature">Signature*</label>
-                                    <input type="signature" id="signature" autocomplete="off" name="signature"
-                                        class="form-control" formControlName="signature"
-                                        [ngClass]="{ 'error': isInvalid('signature') }">
+                                    <label class="font-weight-bold" for="signature">Signature*</label>
+                                    <pre *ngIf="auth.userProfile$ | async as profile">
+                                        <code>
+                                            <input type="signature" id="signature" name="signature"
+                                                    class="form-control" formControlName="signature" 
+                                                    [ngModel]="profile.name | json" value="{{ profile.name | json }}"
+                                                    readonly >
+                                        </code>
+                                    </pre>
                                 </div>
                                 <span *ngIf="isIncomplete()">
                                     You must complete all required (*) fields

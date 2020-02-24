@@ -3,6 +3,7 @@ import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Button } from 'protractor';
+import { AuthService } from 'src/auth-service';
 
 @Component({
     selector: 'discontinue',
@@ -14,7 +15,8 @@ export class DiscontinueComponent {
 
     constructor(private webService: WebService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        public auth: AuthService) { }
 
     choiceForm;
 
@@ -25,24 +27,10 @@ export class DiscontinueComponent {
         (<HTMLInputElement>document.getElementById("discontinueButton")).disabled = true;
     }
 
-    isInvalid(control) {
-        return this.choiceForm.controls[control].invalid &&
-            this.choiceForm.controls[control].touched;
-    }
-
-    isUnTouched() {
-        return this.choiceForm.controls.signature.pristine;
-    }
-
-    isIncomplete() {
-        return this.isInvalid('signature') ||
-            this.isUnTouched();
-    }
-
     ngOnInit() {
 
         this.choiceForm = this.formBuilder.group({
-            signature: ['', Validators.required]
+            signature: ['']
         });
 
         this.webService.getPatient(
