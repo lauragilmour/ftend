@@ -8,7 +8,7 @@
 
 <div *ngFor="let patient of webService.patient_list | async">
     <div style="display: block">
-        <canvas id="chart" baseChart [chartType]="barChartTypepi" [datasets]="[{ data: [patient.addBalance, patient.delBalance] }]"
+        <canvas id="chart" baseChart [chartType]="barChartTypepi" [datasets]="[{ data: [patient.addBalance, patient.delBalance]}]"
             [labels]="barChartLabelspi" >
         </canvas>
     </div>
@@ -16,7 +16,7 @@
 
 <div *ngFor="let patient of webService.patient_list | async">
     <div style="display: block">
-        <canvas id="chart" baseChart [chartType]="barChartType" [datasets]="[{ data: [patient.addBalance, -patient.delBalance, patient.balance] }]" 
+        <canvas id="chart" baseChart [chartType]="barChartType" [datasets]="[{ data: [patient.addBalance, -patient.delBalance, patient.balance], label: 'Fluid Balance' }]"
             [labels]="barChartLabels" >
         </canvas>
     </div>

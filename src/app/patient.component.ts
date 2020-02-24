@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
     selector: 'patient',
@@ -15,6 +17,30 @@ export class PatientComponent {
         private route: ActivatedRoute,
         private formBuilder: FormBuilder) { }
 
+    responsive: true;
+    scales: { xAxes: [{}], yAxes: [{}] };
+    plugins: {
+        datalabels: {
+            anchor: 'end',
+            align: 'end',
+        }
+    }
+
+    public barChartType: ChartType = 'horizontalBar';
+    public barChartLabels: Label[] = ['Input', 'Output', 'Balance'];
+    public barChartTypepi: ChartType = 'pie';
+    public barChartLabelspi: Label[] = ['Input', 'Output'];
+
+    public barChartLegend = true;
+
+    public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+        console.log(event, active);
+    }
+
+    public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+        console.log(event, active);
+    }
+
     Update() {
         var prevDate = document.getElementById('prevdate').textContent;
         var target_date = new Date(prevDate).getTime();
@@ -25,7 +51,7 @@ export class PatientComponent {
 
             var current_date = new Date().getTime();
             var seconds_left = (target_date - current_date) / 1000;
-            
+
             days = (hours / 24);
             hours = (seconds_left / 3600);
             seconds_left = seconds_left % 3600;
