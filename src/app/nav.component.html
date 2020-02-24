@@ -1,15 +1,11 @@
 <div class="navbar navbar-expand-sm bg-primary navbar-dark navbar-default navbar-static-top">
-    <span class="navbar-brand text-dark">Fluid Monitoring Tool</span>
+    <button class="nav-link btn btn-outline-primary btn-lg text-dark" routerLink='/'>Fluid Monitoring Tool</button>
     <ul class="navbar-nav">
         <li class="nav-item">
             <a *ngIf="authService.loggedIn" class="nav-link text-white" routerLink='/patients'>Patient List</a>
         </li>
         <li class="nav-item">
             <a *ngIf="authService.loggedIn" class="nav-link text-white" routerLink="profile">Profile</a>
-        </li>
-        <li class="nav-item">
-            <pre *ngIf="auth.userProfile$ | async as profile"><code>
-            <a *ngIf="authService.loggedIn" class="nav-link text-white">Hello : {{ profile.name | json }} </a></code></pre>
         </li>
         <li class="nav-item">
             <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" (click)="authService.login()"

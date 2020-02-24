@@ -5,7 +5,20 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <label class="font-weight-bold" *ngIf="!authService.loggedIn" for="loginrequired">Login Required to access the Fluid Monitoring Tool</label>
+            <label class="font-weight-bold" *ngIf="!auth.loggedIn" for="loginrequired">Login Required to access the
+                Fluid Monitoring Tool</label>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <pre *ngIf="auth.userProfile$ | async as profile">
+                <code>
+                    <label>Hello {{ profile.name | json }}</label>
+                </code>
+            </pre>
         </div>
     </div>
 </div>
