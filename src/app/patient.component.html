@@ -1,5 +1,5 @@
 <div class="card-header">
-    <h5>Patient Details</h5>
+    <h5 id="title">Patient Details</h5>
     <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
         <h6>HSCNumber: {{patient.hscNumber}}</h6>
         <h6>Name: {{patient.name}}</h6>
@@ -25,28 +25,28 @@
     <div class="card text-center">
         <div class="card-body">
             <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id, 'age']"
-                class="btn btn-primary custom" role="button">Age</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+                id="addAge" class="btn btn-primary custom" role="button">Age</a>
+            <a *ngFor="let patient of webService.patient_list | async" id="addFluidCalculator"
                 [routerLink]="['/patient', patient._id, 'fluidCalculator']" class="btn btn-primary custom"
                 role="button">Fluid
                 Calculator</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+            <a *ngFor="let patient of webService.patient_list | async" id="addFluidChoice"
                 [routerLink]="['/patient', patient._id, 'fluidChoice']" class="btn btn-primary custom"
                 role="button">Fluid
                 Choice</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+            <a *ngFor="let patient of webService.patient_list | async" id="addFluidInput"
                 [routerLink]="['/patient', patient._id, 'fluidInput']" class="btn btn-primary custom"
                 role="button">Fluid
                 Input</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+            <a *ngFor="let patient of webService.patient_list | async" id="addFluidOutput"
                 [routerLink]="['/patient', patient._id, 'fluidOutput']" class="btn btn-primary custom"
                 role="button">Fluid
                 Output</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+            <a *ngFor="let patient of webService.patient_list | async" id="addOtherAssessments"
                 [routerLink]="['/patient', patient._id, 'otherAssessments']" class="btn btn-primary custom"
                 role="button">Other
                 Assessments</a>
-            <a *ngFor="let patient of webService.patient_list | async"
+            <a *ngFor="let patient of webService.patient_list | async" id="addRecordBloodSugar"
                 [routerLink]="['/patient', patient._id, 'recordBloodSugar']" class="btn btn-primary custom"
                 role="button">Record
                 Blood Sugar</a>
@@ -61,13 +61,13 @@
 </div>
 <mat-accordion>
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewAge">
             Age Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>Age</th>
+                    <th id="ageTitle" >Age</th>
                     <th>Timestamp</th>
                     <th>User</th>
                     <th></th>
@@ -82,13 +82,13 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewFluidCalculator">
             Fluid Calculator Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>Weight</th>
+                    <th id="weightTitle" >Weight</th>
                     <th>Measurement</th>
                     <th>UeAvailable</th>
                     <th>ReasonIvFluids</th>
@@ -118,14 +118,14 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewFluidChoice">
             Fluid Choice Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
                     <th></th>
-                    <th>Treatment</th>
+                    <th id="treatmentTitle" >Treatment</th>
                     <th>Electrolytes Available</th>
                     <th>Serum Sodium Range</th>
                     <th>Serum Potasium Range</th>
@@ -160,13 +160,13 @@
     </mat-expansion-panel>
     
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewFluidInput">
             Fluid Input Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>Fluid Input Type</th>
+                    <th id="inputTitle" >Fluid Input Type</th>
                     <th>Fluid Volume</th>
                     <th>Timestamp</th>
                     <th>User</th>
@@ -183,13 +183,13 @@
 
 
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewFluidOutput">
             Fluid Output Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>Fluid Output Type</th>
+                    <th id="outputTitle" >Fluid Output Type</th>
                     <th>Fluid Volume</th>
                     <th>Timestamp</th>
                     <th>User</th>
@@ -205,13 +205,13 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewFluidBalance">
             Fluid Balance Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>Overall Input</th>
+                    <th id="overallTitle" >Overall Input</th>
                     <th>Overall Output</th>
                     <th>Balance</th>
                 </tr>
@@ -242,13 +242,13 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewOtherAssessments">
             Other Assessments Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>VipScore</th>
+                    <th id="vipTitle" >VipScore</th>
                     <th>TimeStamp</th>
                     <th>User</th>
                 </tr>
@@ -262,13 +262,13 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header id="reviewRecordBloodSugar">
             Record Blood Sugar Review
         </mat-expansion-panel-header>
         <div class="table-responsive">
             <table class="table text-center">
                 <tr>
-                    <th>BloodSugarLevel</th>
+                    <th id="bloodSugarTitle" >BloodSugarLevel</th>
                     <th>Comment</th>
                     <th>ClinicalComment</th>
                     <th>TimeStamp</th>

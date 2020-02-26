@@ -329,7 +329,6 @@ export class WebService {
                 });
     }
 
-
     getFluidOutput(id) {
         return this.http.get('http://localhost:5000/patient/' + id + '/fluidOutputs')
             .subscribe(response => {
@@ -372,7 +371,6 @@ export class WebService {
                         this.putBalanceDel(fluidOutput.volOutput);
                 });
     }
-
 
     getOtherAssessments(id) {
         return this.http.get('http://localhost:5000/patient/' + id + '/otherAssessments')

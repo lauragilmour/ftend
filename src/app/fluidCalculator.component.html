@@ -1,5 +1,5 @@
 <div class="card-header">
-    <h6>Fluid Calculator</h6>
+    <h6 id="title">Fluid Calculator</h6>
     <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
         HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
     </div>
@@ -24,9 +24,9 @@
                                     <label for="measurement">Measurement Type*</label>
                                     <select id="measurement" name="measurement" class="form-control"
                                         formControlName="measurement" [ngClass]="{ 'error': isInvalid('measurement') }">
-                                        <option value="Measured">Measured</option>
-                                        <option value="Recent">Recent</option>
-                                        <option value="Estimate">Estimate</option>
+                                        <option id="m0" value="Measured">Measured</option>
+                                        <option id="r1" value="Recent">Recent</option>
+                                        <option id="e2" value="Estimate">Estimate</option>
                                     </select>
                                 </div>
 
@@ -34,8 +34,8 @@
                                     <label for="ueAvailable">UE Available*</label>
                                     <select id="ueAvailable" name="ueAvailable" class="form-control"
                                         formControlName="ueAvailable" [ngClass]="{ 'error': isInvalid('ueAvailable') }">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option id="yes" value="Yes">Yes</option>
+                                        <option id="no" value="No">No</option>
                                     </select>
                                 </div>
 
@@ -44,11 +44,11 @@
                                     <select id="reasonIvFluids" name="reasonIvFluids" class="form-control"
                                         formControlName="reasonIvFluids"
                                         [ngClass]="{ 'error': isInvalid('reasonIvFluids') }">
-                                        <option value="Intractable Vomiting">Intractable Vomiting</option>
-                                        <option value="Excessive Losses">Excessive Losses</option>
-                                        <option value="Resp Compromise">Resp Compromise</option>
-                                        <option value="Critically Unwell">Critically Unwell</option>
-                                        <option value="Other (Specify)">Other (Specify)</option>
+                                        <option id="IV0" value="Intractable Vomiting">Intractable Vomiting</option>
+                                        <option id="IV1" value="Excessive Losses">Excessive Losses</option>
+                                        <option id="IV2" value="Resp Compromise">Resp Compromise</option>
+                                        <option id="IV3" value="Critically Unwell">Critically Unwell</option>
+                                        <option id="IV4" value="Other (Specify)">Other (Specify)</option>
                                     </select>
                                 </div>
                             </th>
@@ -57,11 +57,11 @@
                                     <label for="amount">Amount of Fluid Bolus*</label>
                                     <select id="amount" name="amount" class="form-control" formControlName="amount"
                                         [ngClass]="{ 'error': isInvalid('amount') }">
-                                        <option value="0">None</option>
-                                        <option value="10">1x10ml/kg</option>
-                                        <option value="20">2x10ml/kg</option>
-                                        <option value="20">1x20ml/kg</option>
-                                        <option value="40">2x20ml/kg</option>
+                                        <option id="FB0" value="0">None</option>
+                                        <option id="FB1" value="10">1x10ml/kg</option>
+                                        <option id="FB2" value="20">2x10ml/kg</option>
+                                        <option id="FB3" value="20">1x20ml/kg</option>
+                                        <option id="FB4" value="40">2x20ml/kg</option>
                                     </select>
                                 </div>
 
@@ -70,10 +70,10 @@
                                     <select id="percentageDehydration" name="percentageDehydration" class="form-control"
                                         formControlName="percentageDehydration"
                                         [ngClass]="{ 'error': isInvalid('percentageDehydration') }">
-                                        <option value="0">0%</option>
-                                        <option value="3">3%</option>
-                                        <option value="5">5%</option>
-                                        <option value="8">8%</option>
+                                        <option id="PD0" value="0">0%</option>
+                                        <option id="PD1" value="3">3%</option>
+                                        <option id="PD2" value="5">5%</option>
+                                        <option id="PD3" value="8">8%</option>
                                     </select>
                                 </div>
 
@@ -93,6 +93,11 @@
                                         </code>
                                     </pre>
                                 </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="signature">Signature*</label>
+                                            <input type="signature" id="signature" name="signature"
+                                                    class="form-control" formControlName="signature">
+                                </div>
 
                             </th>
                         </tr>
@@ -102,7 +107,7 @@
                     You must complete all required (*) fields
                     <hr>
                 </span>
-                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+                <button id="submit" *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
@@ -111,6 +116,6 @@
 <div class="sticky">
     <div class="card-header">
         <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
-            class="btn btn-primary" role="button">Return to Patient</a>
+            class="btn btn-primary" id="return" role="button">Return to Patient</a>
     </div>
 </div>

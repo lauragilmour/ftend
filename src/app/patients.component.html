@@ -1,13 +1,13 @@
 <div class="card-header">
-    <h6>Patient List</h6>
+    <h6 id="title">Patient List</h6>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div *ngFor="let patient of webService.patients_list | async" [routerLink]="['/patient', patient._id]"
+            <div id="patient" *ngFor="let patient of webService.patients_list | async" [routerLink]="['/patient', patient._id]"
                 style="cursor: pointer">
-                <div class="card text-white bg-primary mb-3">
+                <div class="card text-white bg-primary mb-3" >
                     <div class="card-header">
                         H&SC Number: {{patient.hscNumber}}
                     </div>

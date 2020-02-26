@@ -1,19 +1,19 @@
 <div class="navbar navbar-expand-sm bg-primary navbar-dark navbar-default navbar-static-top">
-    <button class="nav-link btn btn-outline-primary btn-lg text-dark" routerLink='/'>Fluid Monitoring Tool</button>
+    <button class="nav-link btn btn-outline-primary btn-lg text-dark" id="home" routerLink='/'>Fluid Monitoring Tool</button>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a *ngIf="authService.loggedIn" class="nav-link text-white" routerLink='/patients'>Patient List</a>
+            <a *ngIf="!authService.loggedIn" id="patientList" class="nav-link text-white" routerLink='/patients'>Patient List</a>
         </li>
         <li class="nav-item">
-            <a *ngIf="authService.loggedIn" class="nav-link text-white" routerLink="profile">Profile</a>
+            <a *ngIf="!authService.loggedIn" id="profile" class="nav-link text-white" routerLink="profile">Profile</a>
         </li>
         <li class="nav-item">
-            <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" (click)="authService.login()"
+            <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" id="login" (click)="authService.login()"
                 routerLink='/'>
                 Log In</button>
         </li>
         <li class="nav-item">
-            <button *ngIf="authService.loggedIn" class="btn btn-outline-light" (click)="authService.logout()">
+            <button *ngIf="!authService.loggedIn" class="btn btn-outline-light" id="logout" (click)="authService.logout()" routerLink='/'> 
                 Log Out</button>
         </li>
     </ul>

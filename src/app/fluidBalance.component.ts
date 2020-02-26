@@ -46,9 +46,6 @@ export class FluidBalanceComponent implements OnInit {
         this.webService.getPatient(
             this.route.snapshot.params.id);
 
-        this.webService.getFluidBalance(
-            this.route.snapshot.params.id);
-
         this.webService.getFluidInput(
             this.route.snapshot.params.id);
 
