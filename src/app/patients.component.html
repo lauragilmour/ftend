@@ -3,11 +3,20 @@
 </div>
 
 <div class="container">
+    <form [formGroup]="resetBalance" (ngSubmit)="onSubmit()">
+    <button class="btn btn-primary" id="submit" type="submit">
+        Start of shift
+    </button>
+            </form>
+</div>
+
+
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div id="patient" *ngFor="let patient of webService.patients_list | async" [routerLink]="['/patient', patient._id]"
-                style="cursor: pointer">
-                <div class="card text-white bg-primary mb-3" >
+            <div id="patient" *ngFor="let patient of webService.patients_list | async"
+                [routerLink]="['/patient', patient._id]" style="cursor: pointer">
+                <div class="card text-white bg-primary mb-3">
                     <div class="card-header">
                         H&SC Number: {{patient.hscNumber}}
                     </div>

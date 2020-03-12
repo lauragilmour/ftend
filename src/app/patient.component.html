@@ -139,10 +139,10 @@
                 <tr *ngFor="let fluidChoice of webService.fluidChoice_list | async"
                     [routerLink]="['fluidChoice', fluidChoice._id]">
                     <td *ngIf="fluidChoice.continue == 'In Progress'">
-                        <button>Stop</button>
+                        <button id="stop">Stop</button>
                     </td>
                     <td *ngIf="fluidChoice.continue != 'In Progress'">
-                        <button disabled>Stop</button>
+                        
                     </td>
                     <td>{{ fluidChoice.continue }}</td>
                     <td>{{ fluidChoice.electrolytesAvailable }}</td>

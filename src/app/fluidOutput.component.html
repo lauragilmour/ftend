@@ -1,5 +1,5 @@
 <div class="card-header">
-    <h6>Fluid Output</h6>
+    <h6 id="title" >Fluid Output</h6>
     <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
         HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
     </div>
@@ -17,10 +17,10 @@
                                     <label class="font-weight-bold" for="fluidOutput">Fluid Output*</label>
                                     <select id="fluidOutput" name="fluidOutput" class="form-control"
                                         formControlName="fluidOutput" [ngClass]="{ 'error': isInvalid('fluidOutput') }">
-                                        <option value="Urine">Urine</option>
-                                        <option value="Faeces">Faeces</option>
-                                        <option value="Gastric">Gastric</option>
-                                        <option value="Drain">Drain</option>
+                                        <option id="fo0" value="Urine">Urine</option>
+                                        <option id="fo1" value="Faeces">Faeces</option>
+                                        <option id="fo2" value="Gastric">Gastric</option>
+                                        <option id="fo3" value="Drain">Drain</option>
                                     </select>
                                 </div>
 
@@ -42,15 +42,22 @@
                                         </code>
                                     </pre>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="signature">Signature*</label>
+                                            <input type="signature" id="signature" name="signature"
+                                                    class="form-control" formControlName="signature" >
+                                        
+                                </div>
                             </th>
                         </tr>
                     </tbody>
                 </table>
-                <span class="font-weight-bold" *ngIf="isIncomplete()">
+                <span id="noSubmit"  class="font-weight-bold" *ngIf="isIncomplete()">
                     You must complete all required (*) fields
                     <hr>
                 </span>
-                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+                <button id="submit" *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
 
             </form>
         </div>
@@ -59,7 +66,7 @@
 
 <div class="sticky">
     <div class="card-header">
-        <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+        <a id="return" *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>
     </div>
 </div>

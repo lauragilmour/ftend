@@ -508,4 +508,18 @@ export class WebService {
                     this.getPatient(this.patientID);
                 });
     }
+
+    putResetBalance(bal){       
+        let postData = new FormData();
+
+        postData.append("balance", bal);
+        
+        this.http.put(
+            'http://localhost:5000/patients/resetBalance',
+            postData).subscribe(
+                response => {
+                    this.getPatients();
+                    console.log(this.getPatients);
+                });
+    }
 }

@@ -1,5 +1,5 @@
 <div class="card-header">
-    <h6>Stop Treatment</h6>
+    <h6 id="title">Stop Treatment</h6>
     <div class="font-weight-bold" *ngFor="let patient of webService.patient_list | async">
         HSCNumber: {{patient.hscNumber}} - Name: {{patient.name}} - DOB: {{patient.dob}}
     </div>
@@ -15,7 +15,7 @@
                         <tr>
                             <th>
 
-                                <div class="form-group">
+                                <div id="form1" class="form-group">
                                     Treatment: {{fluidChoice.continue}}
                                     <hr>
                                     ElectrolytesAvailable: {{ fluidChoice.electrolytesAvailable }}
@@ -28,7 +28,7 @@
                                 </div>
                             </th>
                             <th>
-                                <div class="form-group">
+                                <div id="form2" class="form-group">
                                     IvFluidType: {{ fluidChoice.ivFluidType }}
                                     <hr>
                                     IvFluidVolume: {{ fluidChoice.ivFluidVolume }}
@@ -56,8 +56,14 @@
                         </code>
                     </pre>
                 </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="signature">Signature*</label>
+                   
+                            <input type="signature" id="signature" name="signature"
+                                    class="form-control" formControlName="signature" >
+                </div>
 
-                <button id="discontinueButton" type="submit"
+                <button id="submit" type="submit"
                     class="btn btn-primary">Discontinue</button>
             </form>
         </div>
@@ -66,7 +72,7 @@
 
 <div class="sticky">
     <div class="card-header">
-        <a *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
+        <a id="return" *ngFor="let patient of webService.patient_list | async" [routerLink]="['/patient', patient._id]"
             class="btn btn-primary" role="button">Return to Patient</a>
     </div>
 </div>

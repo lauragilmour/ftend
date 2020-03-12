@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebService } from './web.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'patients',
@@ -8,9 +9,19 @@ import { WebService } from './web.service';
 })
 
 export class PatientsComponent {
-    constructor(private webService: WebService) {}
+    constructor(private webService: WebService,
+        private formBuilder: FormBuilder) { }
 
-    ngOnInit(){
+    resetBalance;
+
+    onSubmit() {
+        console.log("Reset Balance");
+        this.webService.putResetBalance(0);
+    }
+
+    ngOnInit() {
         this.webService.getPatients();
+        this.resetBalance = this.formBuilder.group({
+        });
     }
 }
