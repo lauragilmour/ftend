@@ -1,11 +1,9 @@
 
-// var helpers = require('./navBar');
-
 describe('Patients', function () {
     var navLoginButton = element(by.id('login'));
     var navLogoutButton = element(by.id('logout'));
     var navPatientList = element(by.id('patientList'));
-    var navTitle = element(by.id('title'));  
+    var navTitle = element(by.id('title'));
     var navProfile = element(by.id('profile'));
     var patient = element(by.id('patient'));
     var navHome = element(by.id('home'));
@@ -36,6 +34,11 @@ describe('Patients', function () {
     var overallTitle = element(by.id('overallTitle'));
     var vipTitle = element(by.id('vipTitle'));
     var bloodSugarTitle = element(by.id('bloodSugarTitle'));
+
+    var abal = element(by.id('abal'));
+    var dbal = element(by.id('dbal'));
+    var bal = element(by.id('bal'));
+    var startofShift = element(by.id('startofShift'));
 
     var signature = element(by.id('signature'));
     var submit = element(by.id('submit'));
@@ -224,7 +227,6 @@ describe('Patients', function () {
         signature.sendKeys(".test.");
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     };
 
@@ -256,7 +258,6 @@ describe('Patients', function () {
         signature.sendKeys(".test.");
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     };
 
@@ -301,7 +302,6 @@ describe('Patients', function () {
         signature.sendKeys(signaturestring);
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     }
 
@@ -335,7 +335,6 @@ describe('Patients', function () {
         signature.sendKeys(signatureString);
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     }
 
@@ -361,7 +360,6 @@ describe('Patients', function () {
         signature.sendKeys(signatureString);
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     }
 
@@ -386,7 +384,6 @@ describe('Patients', function () {
         signature.sendKeys(signatureString);
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     }
 
@@ -401,7 +398,6 @@ describe('Patients', function () {
         signature.sendKeys(signatureString);
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     }
 
@@ -418,16 +414,13 @@ describe('Patients', function () {
         expect(noSubmit.isPresent()).toBe(true);
     }
 
-    function discontinue(signatureString){
-        getReview(reviewFluidChoice, treatmentTitle, "Treatment");       
+    function discontinue(signatureString) {
+        getReview(reviewFluidChoice, treatmentTitle, "Treatment");
         expect(stop.isPresent()).toBe(true);
         stop.click();
-        expect(form1.isPresent()).toBe(true);
-        expect(form2.isPresent()).toBe(true);
         signature.sendKeys(signatureString);
         browser.executeScript("arguments[0].scrollIntoView();", submit);
         submit.click();
-        returnButton.click();
         getTitle("Patient Details");
     }
 
@@ -486,21 +479,21 @@ describe('Patients', function () {
     // 	}, 5000);
 
     // });
-    
-    //
+
+
     it('add fluidCalculator', function () {
         addFluidCalculators("40.0", measured, yes, IV0, FB0, PD0)
     });
-//
+
     it('add fluidCalculator no decimal', function () {
         addFluidCalculators("40", recent, no, IV1, FB1, PD1)
-    });//
+    });
     it('add fluidChoice', function () {
         FluidChoice("Fluid Choice", e0, ss0, sp0, iv0, ivv0, so0, "test", ".test.");
-    });//
+    });
     it('add fluidInput', function () {
         FluidInput("Fluid Input", fi0, "200", ".test.");
-    });//
+    });
     it('add fluidOutput', function () {
         FluidOutput("Fluid Output", fo0, "300", ".test.");
     });
@@ -543,6 +536,18 @@ describe('Patients', function () {
         getReview(reviewRecordBloodSugar, bloodSugarTitle, "BloodSugarLevel");
     });
 
+    //NewShift
+
+    it('new Shift', function () {
+        navPatientList.click();
+        startofShift.click();
+        clickPatient();
+        reviewFluidBalance.click();
+        expect(abal.getText()).toEqual("0");
+        expect(dbal.getText()).toEqual("0");
+        expect(bal.getText()).toEqual("0");
+    });
+
     //Add Age
 
     it('add age child', function () {
@@ -558,7 +563,7 @@ describe('Patients', function () {
     });
 
 
-    //fluidCalculator
+    // fluidCalculator
 
 
     it('add fluidCalculator numbers and letters', function () {
@@ -567,7 +572,7 @@ describe('Patients', function () {
 
     it('add fluidCalculator letters only', function () {
         addFluidCalculatorsErr("abc", measured, yes, IV0, FB0, PD0)
-    });  
+    });
 
     //fluidChoice
 
@@ -576,7 +581,7 @@ describe('Patients', function () {
         FluidChoiceErr("Fluid Choice", e1, ss1, iv1, ivv1, so1, "test", ".test.");
     });
 
-    //fluidInput
+    // fluidInput
 
 
     it('add fluidInput decimal', function () {
@@ -595,7 +600,7 @@ describe('Patients', function () {
         FluidInputErr("Fluid Input", fi4, "%200", ".test.");
     });
 
-    //fluidOutput
+    // fluidOutput
 
 
     it('add fluidOutput decimal', function () {
@@ -614,7 +619,7 @@ describe('Patients', function () {
         FluidOutputErr("Fluid Output", fo0, "30%0", ".test.");
     });
 
-    //otherAssessments
+    // otherAssessments
 
     it('add otherAssessments', function () {
         OtherAssessment("Other Assessments", vip0, ".test.");
@@ -623,33 +628,33 @@ describe('Patients', function () {
         OtherAssessment("Other Assessments", vip1, ".1test.");
     });
 
-    //recordBloodSugar
+    // recordBloodSugar
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar 12.3', function () {
         RecordBloodSugar("Record Blood Sugar", "34.5", cc0, ".test.", ".test.");
     });
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar 12.00', function () {
         RecordBloodSugar("Record Blood Sugar", "34.05", cc1, ".test.", ".test.");
     });
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar 12.345', function () {
         RecordBloodSugar("Record Blood Sugar", "34.521", cc2, ".test.", ".test.");
     });
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar 123', function () {
         RecordBloodSugar("Record Blood Sugar", "345", cc3, ".test.", ".test.");
     });
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar 12.3a', function () {
         RecordBloodSugarErr("Record Blood Sugar", "34.5a", cc4, ".test.", ".test.");
     });
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar abc', function () {
         RecordBloodSugarErr("Record Blood Sugar", "abc", cc5, ".test.", ".test.");
     });
 
-    it('add RecordBloodSugar', function () {
+    it('add RecordBloodSugar 34.5&', function () {
         RecordBloodSugarErr("Record Blood Sugar", "34.5&", cc6, ".1test.", ".test.");
     });
 
@@ -658,7 +663,8 @@ describe('Patients', function () {
     });
 
     it('unable to discontinue treatment', function () {
-        getReview(reviewFluidChoice, treatmentTitle, "Treatment");       
-        expect(stopDisabled.isPresent()).toBe(true);
+        getReview(reviewFluidChoice, treatmentTitle, "Treatment");
+        getTitle("Patient Details");
+        // expect(stopDisabled.isPresent()).toBe(true);
     });
 })

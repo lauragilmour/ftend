@@ -18,6 +18,8 @@ export class RecordBloodSugarComponent {
         console.log(this.recordBloodSugarForm.value);
         this.webService.postRecordBloodSugar(this.recordBloodSugarForm.value);
         this.recordBloodSugarForm.reset();
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     isInvalid(control) {

@@ -18,6 +18,8 @@ export class OtherAssessmentsComponent {
         console.log(this.otherAssessmentsForm.value);
         this.webService.postOtherAssessments(this.otherAssessmentsForm.value);
         this.otherAssessmentsForm.reset();
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     isInvalid(control) {

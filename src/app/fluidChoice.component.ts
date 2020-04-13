@@ -18,6 +18,8 @@ export class FluidChoiceComponent {
         console.log(this.fluidChoiceForm.value);
         this.webService.postFluidChoice(this.fluidChoiceForm.value);
         this.fluidChoiceForm.reset();
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     isInvalid(control) {

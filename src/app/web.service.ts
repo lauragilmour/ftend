@@ -509,17 +509,24 @@ export class WebService {
                 });
     }
 
-    putResetBalance(bal){       
+    putResetBalance(){       
         let postData = new FormData();
+      
+        let today = new Date();
+        let todayDate = today.getFullYear() + "-" +
+            (today.getMonth() + 1) + "-" +
+            today.getDate() + " " +
+            today.getHours() + ":" +
+            today.getMinutes() + ":" +
+            today.getSeconds();
 
-        postData.append("balance", bal);
+        postData.append("timeStamp", todayDate);
         
         this.http.put(
             'http://localhost:5000/patients/resetBalance',
             postData).subscribe(
                 response => {
                     this.getPatients();
-                    console.log(this.getPatients);
                 });
     }
 }

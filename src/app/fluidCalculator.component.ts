@@ -18,6 +18,8 @@ export class FluidCalculatorComponent {
         console.log(this.fluidCalculatorForm.value);
         this.webService.postFluidCalculator(this.fluidCalculatorForm.value);
         this.fluidCalculatorForm.reset();
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     isInvalid(control) {

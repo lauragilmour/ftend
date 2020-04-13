@@ -58,7 +58,7 @@
                                     <input type="comment" id="comment" autocomplete="off" name="comment"
                                         class="form-control" formControlName="comment">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" *ngIf="auth.loggedIn">
                                     <label class="font-weight-bold" for="signature">Signature*</label>
                                     <pre *ngIf="auth.userProfile$ | async as profile">
                                         <code>
@@ -69,7 +69,7 @@
                                         </code>
                                     </pre>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" *ngIf="!auth.loggedIn">
                                     <label class="font-weight-bold" for="signature">Signature*</label>
                                     
                                     <input type="signature" id="signature" name="signature" class="form-control"

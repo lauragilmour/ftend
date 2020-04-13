@@ -216,9 +216,9 @@
                     <th>Balance</th>
                 </tr>
                 <tr *ngFor="let patient of webService.patient_list | async">
-                    <td>{{ patient.addBalance }}</td>
-                    <td>{{ patient.delBalance }}</td>
-                    <td>{{ patient.balance }}</td>
+                    <td id="abal">{{ patient.addBalance }}</td>
+                    <td id="dbal">{{ patient.delBalance }}</td>
+                    <td id="bal">{{ patient.balance }}</td>
 
                 </tr>
             </table>

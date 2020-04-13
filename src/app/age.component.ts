@@ -18,6 +18,8 @@ export class AgeComponent {
         console.log(this.ageForm.value);
         this.webService.postAge(this.ageForm.value);
         this.ageForm.reset();
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     isInvalid(control) {

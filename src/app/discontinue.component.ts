@@ -22,9 +22,9 @@ export class DiscontinueComponent {
 
     onSubmit() {
         this.webService.putChoice(this.choiceForm.value);
-        this.choiceForm.reset();
-        console.log("Change to discontinue");
-        (<HTMLInputElement>document.getElementById("discontinueButton")).disabled = true;
+        this.choiceForm.reset();   
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     ngOnInit() {

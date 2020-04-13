@@ -35,75 +35,63 @@ var routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
-    //,
-    // canActivate: [AuthGuard]
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patients',
-    component: PatientsComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: PatientsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id',
-    component: PatientComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: PatientComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/age',
-    component: AgeComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: AgeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidCalculator',
-    component: FluidCalculatorComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: FluidCalculatorComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidChoice',
-    component: FluidChoiceComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: FluidChoiceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:bid/fluidChoice/:rid',
-    component: DiscontinueComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: DiscontinueComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidBalance',
-    component: FluidBalanceComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: FluidBalanceComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidInput',
-    component: FluidInputComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: FluidInputComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/fluidOutput',
-    component: FluidOutputComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: FluidOutputComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/otherAssessments',
-    component: OtherAssessmentsComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: OtherAssessmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'patient/:id/recordBloodSugar',
-    component: RecordBloodSugarComponent
-    // ,
-    // canActivate: [AuthGuard]
+    component: RecordBloodSugarComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

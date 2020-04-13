@@ -18,6 +18,8 @@ export class FluidInputComponent {
         console.log(this.fluidInputForm.value);
         this.webService.postFluidInput(this.fluidInputForm.value);
         this.fluidInputForm.reset();
+        var returnB = document.getElementById('return');
+        returnB.click();
     }
 
     isInvalid(control) {

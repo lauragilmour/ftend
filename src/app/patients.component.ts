@@ -16,7 +16,7 @@ export class PatientsComponent {
 
     onSubmit() {
         console.log("Reset Balance");
-        this.webService.putResetBalance(0);
+        this.webService.putResetBalance();
     }
 
     ngOnInit() {
