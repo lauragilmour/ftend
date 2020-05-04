@@ -3,7 +3,7 @@ import { WebService } from './web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Colors, Color } from 'ng2-charts';
 import { AuthService } from 'src/auth-service';
 
 @Component({
@@ -25,7 +25,7 @@ export class PatientComponent {
         datalabels: {
             anchor: 'end',
             align: 'end',
-        }
+        } 
     }
 
     public barChartType: ChartType = 'horizontalBar';
@@ -34,6 +34,12 @@ export class PatientComponent {
     public barChartLabelspi: Label[] = ['Input', 'Output'];
 
     public barChartLegend = true;
+
+    public chartColors: Array<any> = [
+        { 
+          backgroundColor: ['#F4D03F', '#28B463', '#3498DB']
+        }
+    ]
 
     public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
         console.log(event, active);

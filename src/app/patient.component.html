@@ -108,8 +108,8 @@
                     <td>{{ fluidCalculator.amount }}ml/kg</td>
                     <td>{{ fluidCalculator.percentageDehydration }}%</td>
                     <td>{{ fluidCalculator.commentAmount }}</td>
-                    <td>{{ fluidCalculator.twentyfourhrPeriod | number : '1.2-2' }}</td>
-                    <td>{{ fluidCalculator.fourtyeighthrPeriod | number : '1.2-2' }}</td>
+                    <td>{{ fluidCalculator.twentyfourhrPeriod | number : '1.2-2' }}mls/hr</td>
+                    <td>{{ fluidCalculator.fourtyeighthrPeriod | number : '1.2-2' }}mls/hr</td>
                     <td>{{ fluidCalculator.timeStamp }}</td>
                     <td>{{ fluidCalculator.user }}</td>
                 </tr>
@@ -225,7 +225,7 @@
             <div *ngFor="let patient of webService.patient_list | async">
                 <div style="display: block">
                     <canvas id="chart" baseChart [chartType]="barChartTypepi"
-                        [datasets]="[{ data: [patient.addBalance, patient.delBalance]}]" [labels]="barChartLabelspi">
+                        [datasets]="[{ data: [patient.addBalance, patient.delBalance]}]" [labels]="barChartLabels" [colors]="chartColors">
                     </canvas>
                 </div>
             </div>
@@ -233,8 +233,8 @@
             <div *ngFor="let patient of webService.patient_list | async">
                 <div style="display: block">
                     <canvas id="chart" baseChart [chartType]="barChartType"
-                        [datasets]="[{ data: [patient.addBalance, -patient.delBalance, patient.balance], label: 'Fluid Balance' }]"
-                        [labels]="barChartLabels">
+                        [datasets]="[{ data: [patient.addBalance, -patient.delBalance, patient.balance]}]"
+                        [labels]="barChartLabels" [colors]="chartColors">
                     </canvas>
                 </div>
             </div>
